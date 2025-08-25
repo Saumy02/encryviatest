@@ -4,99 +4,10 @@
 
 
 
-// // src/App.jsx
-// import React from 'react';
-// import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// // Components (from the 'components' folder as per your structure)
-// import Header from './components/Header/Header';
-// import Footer from './components/Footer/Footer';
-// import CyberSecurity from './components/Services/CyberSecurity'; // Correct path based on your image
-// import SEOAndAds from './components/Services/SEOAds';           // Correct path and assumed name based on your image
-// // If you have a generic 'OurServices' component for a general services page:
-// import OurServices from './components/Home/OurServices';
-// import Blog from './pages/Blog';
-// // Pages (from the 'pages' folder as per your structure)
-// import Home from './pages/Home';
-// import Contact from './pages/Contact';
-// import OurTeam from './pages/Aboutus'; // Based on your image's OurTeam.jsx in pages
-// import Projects from './pages/Projects'; // Based on your image's Projects.jsx in pages
-// import WebDevelopment from './components/Services/WebDevelopment'; // As provided in your webdevlopement.txt
-
-//  // ✅ Route to full blog
-
-// import Blog from './pages/Blog';
-// import MoreBlog from './pages/MoreBlog';
-
-// <Route path="/blog" element={<Blog />} />
-// <Route path="/moreblog" element={<MoreBlog />} />
-
-// // import './App.css'; // Make sure this imports Tailwind via index.css
-
-// const App = () => {
-//   return (
-//     <Router>
-//       {/* 🔧 Main Container: Ensures full screen width and handles potential horizontal overflow. */}
-//       {/* Background gradient, text color, font, minimum height, flex column for layout. */}
-//       <div className="bg-gradient-to-br from-black via-gray-900 to-indigo-900 text-white font-sans min-h-screen flex flex-col w-screen max-w-full overflow-x-hidden">
-
-//         {/* Navbar/Header - Renders globally on all pages */}
-//         <Header />
-
-//         {/* Main content area, takes available space and spans full width */}
-//         <main className="flex-grow w-full">
-//           <Routes>
-//             {/* Define Routes for different pages */}
-//             <Route path="/" element={<Home />} /> {/* Home page as default */}
-//             <Route path="/about" element={<OurTeam />} />
-//             <Route path="/contact" element={<Contact />} />
-//             <Route path="/projects" element={<Projects />} />
-
-//             {/* Service-specific pages */}
-//             <Route path="/services/web-development" element={<WebDevelopment />} />
-//             <Route path="/services/cyber-security" element={<CyberSecurity />} />
-//             <Route path="/services/seo-ads" element={<SEOAndAds />} />
-
-//             {/* General Services page (if you have one, otherwise remove this route) */}
-//             <Route path="/services" element={<OurServices />} />
-
-//             {/* Placeholder routes for future development */}
-//             <Route path="/Blog" element={<Blog/>} />
-//             <Route path="*" element={<NotFound />} /> {/* Catch-all for undefined routes */}
-//           </Routes>
-//         </main>
-
-//         {/* Footer - Renders globally on all pages */}
-//         <Footer />
-//       </div>
-//     </Router>
-//   );
-// };
-
-// // --- Placeholder Components for pages not yet fully developed ---
-// const BlogPlaceholder = () => (
-//   <div className="w-full px-4 py-16 text-center min-h-screen flex flex-col items-center justify-center">
-//     <h1 className="text-5xl font-bold">Blog Page</h1>
-//     <p className="mt-4 text-lg text-gray-300">Our latest articles and insights will be featured here.</p>
-//   </div>
-// );
-
-// const NotFound = () => (
-//   <div className="w-full px-4 py-16 text-center min-h-screen flex flex-col items-center justify-center">
-//     <h1 className="text-5xl font-bold text-red-500">404 - Page Not Found</h1>
-//     <p className="mt-4 text-lg text-gray-300">The page you are looking for does not exist.</p>
-//   </div>
-// );
-
-// export default App;
-
-
-
-
-
 // src/App.jsx
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 
 // --- Global Components ---
 import Header from './components/Header/Header';
@@ -119,64 +30,193 @@ import SEOAndAds from './components/Services/SEOAds';
 // --- General Services Page (Optional) ---
 import OurServices from './components/Home/OurServices';
 
+// Page transition variants
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    y: 20,
+    scale: 0.98
+  },
+  in: {
+    opacity: 1,
+    y: 0,
+    scale: 1
+  },
+  out: {
+    opacity: 0,
+    y: -20,
+    scale: 0.98
+  }
+};
+
+const pageTransition = {
+  type: "tween",
+  ease: "anticipate",
+  duration: 0.6
+};
+
+// Animated page wrapper component
+const AnimatedPage = ({ children }) => (
+  <motion.div
+    initial="initial"
+    animate="in"
+    exit="out"
+    variants={pageVariants}
+    transition={pageTransition}
+    className="w-full"
+  >
+    {children}
+  </motion.div>
+);
+
 // --- Fallback Page ---
 const NotFound = () => (
-  <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
-    <div className="max-w-2xl mx-auto space-y-8">
-      <div className="space-y-4">
-        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-red-500 mb-4">404</h1>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">Page Not Found</h2>
-        <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
-          The page you are looking for doesn't exist or has been moved.
-        </p>
-      </div>
-      <div className="pt-8">
-        <a 
-          href="/" 
-          className="inline-flex items-center px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+  <AnimatedPage>
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
+      <motion.div 
+        className="max-w-2xl mx-auto space-y-8"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.8 }}
+      >
+        <motion.div 
+          className="space-y-4"
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.4, type: "spring", stiffness: 100 }}
         >
-          Return Home
-        </a>
-      </div>
+          <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-red-500 mb-4">404</h1>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">Page Not Found</h2>
+          <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
+            The page you are looking for doesn't exist or has been moved.
+          </p>
+        </motion.div>
+        <motion.div 
+          className="pt-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+        >
+          <motion.a 
+            href="/" 
+            className="inline-flex items-center px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+            whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(99, 102, 241, 0.3)" }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Return Home
+          </motion.a>
+        </motion.div>
+      </motion.div>
     </div>
-  </div>
+  </AnimatedPage>
 );
+
+// Animated routes wrapper
+const AnimatedRoutes = () => {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        {/* === Public Pages === */}
+        <Route path="/" element={
+          <AnimatedPage>
+            <Home />
+          </AnimatedPage>
+        } />
+        <Route path="/about" element={
+          <AnimatedPage>
+            <OurTeam />
+          </AnimatedPage>
+        } />
+        <Route path="/contact" element={
+          <AnimatedPage>
+            <Contact />
+          </AnimatedPage>
+        } />
+        <Route path="/projects" element={
+          <AnimatedPage>
+            <Projects />
+          </AnimatedPage>
+        } />
+        <Route path="/blog" element={
+          <AnimatedPage>
+            <Blog />
+          </AnimatedPage>
+        } />
+        <Route path="/moreblog" element={
+          <AnimatedPage>
+            <MoreBlog />
+          </AnimatedPage>
+        } />
+        <Route path="/privacy-policy" element={
+          <AnimatedPage>
+            <PrivacyPolicy />
+          </AnimatedPage>
+        } />
+
+        {/* === Services Pages === */}
+        <Route path="/services" element={
+          <AnimatedPage>
+            <OurServices />
+          </AnimatedPage>
+        } />
+        <Route path="/services/web-development" element={
+          <AnimatedPage>
+            <WebDevelopment />
+          </AnimatedPage>
+        } />
+        <Route path="/services/cyber-security" element={
+          <AnimatedPage>
+            <CyberSecurity />
+          </AnimatedPage>
+        } />
+        <Route path="/services/seo-ads" element={
+          <AnimatedPage>
+            <SEOAndAds />
+          </AnimatedPage>
+        } />
+
+        {/* === Fallback === */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
 
 const App = () => {
   return (
     <Router>
-      {/* Main Application Container */}
-      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900 text-white font-sans flex flex-col">
-        
-        {/* Global Header - Sticky with backdrop blur */}
-        <Header />
+      {/* Main Application Container with enhanced animations */}
+      <motion.div 
+        className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900 text-white font-sans flex flex-col"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Global Header with enhanced animations */}
+        <motion.div
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.8, type: "spring", stiffness: 100 }}
+        >
+          <Header />
+        </motion.div>
 
-        {/* Main Content Area - Flexible and properly spaced */}
+        {/* Main Content Area with smooth transitions */}
         <main className="flex-1 w-full">
-          <Routes>
-            {/* === Public Pages === */}
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<OurTeam />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/moreblog" element={<MoreBlog />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
-            {/* === Services Pages === */}
-            <Route path="/services" element={<OurServices />} />
-            <Route path="/services/web-development" element={<WebDevelopment />} />
-            <Route path="/services/cyber-security" element={<CyberSecurity />} />
-            <Route path="/services/seo-ads" element={<SEOAndAds />} />
-
-            {/* === Fallback === */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <AnimatedRoutes />
         </main>
 
-        {/* Global Footer */}
-        <Footer />
-      </div>
+        {/* Global Footer with enhanced animations */}
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4, duration: 0.8, type: "spring", stiffness: 100 }}
+        >
+          <Footer />
+        </motion.div>
+      </motion.div>
     </Router>
   );
 };

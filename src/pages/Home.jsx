@@ -1,4 +1,6 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import Hero from '../components/Home/Hero';
 import HighlightBanner from '../components/Home/HighlightBanner';
 import DrivenByIndependence from '../components/Home/DrivenByIndependence';
@@ -11,63 +13,205 @@ import testimonials from '../data/testimonials.json';
 import services from '../components/Home/services.json';
 import slides from '../components/Home/slides.json';
 
+// Animation variants for sections
+const sectionVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.95
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.3,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30,
+    scale: 0.9
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
+
+// Animated section wrapper
+const AnimatedSection = ({ children, className = "", delay = 0 }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    rootMargin: "-50px"
+  });
+
+  return (
+    <motion.section
+      ref={ref}
+      className={className}
+      variants={sectionVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      transition={{ delay }}
+    >
+      {children}
+    </motion.section>
+  );
+};
+
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <motion.div 
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       {/* Hero Section */}
-      <section className="relative">
+      <AnimatedSection>
         <Hero />
-      </section>
+      </AnimatedSection>
 
       {/* Highlight Banner Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 to-purple-900/20"></div>
+      <AnimatedSection className="relative py-24 lg:py-32" delay={0.2}>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 to-purple-900/20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+        />
         <div className="relative z-10">
           <HighlightBanner slides={slides} />
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Driven by Independence Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"></div>
+      <AnimatedSection className="relative py-24 lg:py-32" delay={0.3}>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6, duration: 1 }}
+        />
         <div className="relative z-10">
           <DrivenByIndependence />
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Why Trust Us Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"></div>
+      <AnimatedSection className="relative py-24 lg:py-32" delay={0.4}>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 1 }}
+        />
         <div className="relative z-10">
           <WhyTrustUsSection />
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Our Services Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"></div>
+      <AnimatedSection className="relative py-24 lg:py-32" delay={0.5}>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 1 }}
+        />
         <div className="relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {/* Section Header */}
-            <div className="text-center mb-20 lg:mb-28">
-              <div className="inline-flex items-center justify-center mb-8">
-                <div className="flex-grow border-t-2 border-indigo-500/30 max-w-xs"></div>
-                <h2 className="mx-6 text-4xl lg:text-5xl xl:text-6xl font-bold text-white">
+            <motion.div 
+              className="text-center mb-20 lg:mb-28"
+              variants={itemVariants}
+            >
+              <motion.div 
+                className="inline-flex items-center justify-center mb-8"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+              >
+                <motion.div 
+                  className="flex-grow border-t-2 border-indigo-500/30 max-w-xs"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                />
+                <motion.h2 
+                  className="mx-6 text-4xl lg:text-5xl xl:text-6xl font-bold text-white"
+                  initial={{ y: 30, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
+                >
                   Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Services</span>
-                </h2>
-                <div className="flex-grow border-t-2 border-indigo-500/30 max-w-xs"></div>
-              </div>
-              <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                </motion.h2>
+                <motion.div 
+                  className="flex-grow border-t-2 border-indigo-500/30 max-w-xs"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.5, duration: 0.8 }}
+                />
+              </motion.div>
+              <motion.p 
+                className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.9, type: "spring", stiffness: 100 }}
+              >
                 Comprehensive digital solutions designed to elevate your business presence and drive measurable results
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
             {/* Services Grid */}
-            <div className="space-y-28 lg:space-y-36">
+            <motion.div 
+              className="space-y-28 lg:space-y-36"
+              variants={containerVariants}
+            >
               {services.map((service, index) => (
-                <div key={index} className="relative">
+                <motion.div 
+                  key={index} 
+                  className="relative"
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 200 }}
+                >
                   {/* Background decoration */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-3xl transform -skew-y-1"></div>
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-3xl transform -skew-y-1"
+                    initial={{ opacity: 0, rotateY: -15 }}
+                    animate={{ opacity: 1, rotateY: 0 }}
+                    transition={{ delay: index * 0.2 + 1, duration: 0.8 }}
+                  />
                   <div className="relative z-10">
                     <SingleServiceHighlight
                       title={service.title}
@@ -78,48 +222,85 @@ const Home = () => {
                       imageOnRight={index % 2 === 0}
                     />
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Client Reviews Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"></div>
+      <AnimatedSection className="relative py-24 lg:py-32" delay={0.6}>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9, duration: 1 }}
+        />
         <div className="relative z-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {/* Section Header */}
-            <div className="text-center mb-20 lg:mb-28">
-              <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6">
+            <motion.div 
+              className="text-center mb-20 lg:mb-28"
+              variants={itemVariants}
+            >
+              <motion.h2 
+                className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6"
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+              >
                 What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">Clients Say</span>
-              </h2>
-              <p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              </motion.h2>
+              <motion.p 
+                className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
+              >
                 Real feedback from businesses we've helped transform and grow
-              </p>
-            </div>
-          </div>
-          <AutoSwappingClientReview reviews={testimonials} />
+              </motion.p>
+            </motion.div>
+
+            {/* Client Reviews Component */}
+            <motion.div variants={itemVariants}>
+              <AutoSwappingClientReview testimonials={testimonials} />
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </AnimatedSection>
 
       {/* Connect Now Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/20 to-transparent"></div>
+      <AnimatedSection className="relative py-24 lg:py-32" delay={0.7}>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+        />
         <div className="relative z-10">
           <ConnectNow />
         </div>
-      </section>
+      </AnimatedSection>
 
-      {/* Newsletter Section */}
-      <section className="relative py-24 lg:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/20 to-transparent"></div>
+      {/* Newsletter Subscribe Section */}
+      <AnimatedSection className="relative py-24 lg:py-32" delay={0.8}>
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.1, duration: 1 }}
+        />
         <div className="relative z-10">
           <NewsletterSubscribe />
         </div>
-      </section>
-    </div>
+      </AnimatedSection>
+    </motion.div>
   );
 };
 
