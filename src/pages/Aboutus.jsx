@@ -1,6 +1,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-// import TeamMemberCard from '../components/TeamMemberCard'; Isko import nhi kiya hai
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 // SVG Icons for the cards (simplified versions)
 const LightbulbIcon = () => (
@@ -128,6 +129,115 @@ const AnimatedText = ({ text, isAnimating, baseClassName, onMouseEnter, onMouseL
   );
 };
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.95
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
+
+const textVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 30,
+    scale: 0.9
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  }
+};
+
+const cardVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 50,
+    scale: 0.9,
+    rotateY: -15
+  },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    rotateY: 0,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 20
+    }
+  },
+  hover: {
+    scale: 1.05,
+    rotateY: 5,
+    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.3)",
+    transition: {
+      type: "spring",
+      stiffness: 200
+    }
+  }
+};
+
+const iconVariants = {
+  hover: {
+    scale: 1.2,
+    rotate: 360,
+    transition: {
+      type: "spring",
+      stiffness: 300
+    }
+  }
+};
+
+// Animated section wrapper
+const AnimatedSection = ({ children, className = "", delay = 0 }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    rootMargin: "-50px"
+  });
+
+  return (
+    <motion.section
+      ref={ref}
+      className={className}
+      variants={containerVariants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      transition={{ delay }}
+    >
+      {children}
+    </motion.section>
+  );
+};
 
 function OurTeam() { // Renamed from App to OurTeam
   // State to track which part of the H3 (section 3) is currently being hovered over.
@@ -145,9 +255,13 @@ function OurTeam() { // Renamed from App to OurTeam
     {type: 'text', content: 'in Mind'}
   ];
 
-
   return (
-    <div className="min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-indigo-900">
+    <motion.div 
+      className="min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-indigo-900"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       {/* Link to Google Fonts to import the 'Inter' font. */}
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
       {/* Custom CSS for the animation and font styling. */}
@@ -178,26 +292,68 @@ function OurTeam() { // Renamed from App to OurTeam
       </style>
 
       {/* First section: Hero Text - Enhanced spacing and typography */}
-      <section className="flex items-center justify-center py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
-        <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8 lg:mb-12">
-            <span className="text-indigo-500">" Who We Are: </span> 
+      <AnimatedSection className="flex items-center justify-center py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
+        <motion.div 
+          className="relative z-10 max-w-5xl mx-auto text-center"
+          variants={containerVariants}
+        >
+          <motion.h1 
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8 lg:mb-12"
+            variants={textVariants}
+          >
+            <motion.span 
+              className="text-indigo-500"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+            >
+              " Who We Are: 
+            </motion.span>
             A startup digital team blending creative hustle and data‑driven precision to build secure, scalable solutions.
-            <span className="text-indigo-500">"</span>
-          </h1>
-        </div>
-      </section>
+            <motion.span 
+              className="text-indigo-500"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
+            >
+              "
+            </motion.span>
+          </motion.h1>
+        </motion.div>
+      </AnimatedSection>
 
       {/* Second section: Tailored Websites - Enhanced layout and spacing */}
-      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.2}>
+        <motion.div 
+          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
+          variants={containerVariants}
+        >
           
           {/* "About Us" heading with lines - Enhanced visual design */}
-          <div className="flex items-center justify-center">
-            <div className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"></div>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mx-6 text-blue-400">About Encryvia</h2>
-            <div className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"></div>
-          </div>
+          <motion.div 
+            className="flex items-center justify-center"
+            variants={itemVariants}
+          >
+            <motion.div 
+              className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            />
+            <motion.h2 
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mx-6 text-blue-400"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              About Encryvia
+            </motion.h2>
+            <motion.div 
+              className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            />
+          </motion.div>
 
           {/* Main title for this section - Enhanced typography */}
           <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-center max-w-5xl mx-auto">
@@ -262,12 +418,15 @@ function OurTeam() { // Renamed from App to OurTeam
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </AnimatedSection>
 
       {/* Third section: Security, Speed, and Scalability - Enhanced layout */}
-      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.3}>
+        <motion.div 
+          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
+          variants={containerVariants}
+        >
           
           {/* Title for this section with the new animation - Enhanced typography */}
           <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left mb-12 lg:mb-16 cursor-pointer font-inter">
@@ -308,12 +467,15 @@ function OurTeam() { // Renamed from App to OurTeam
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </AnimatedSection>
 
       {/* Fourth section: A Smarter Development Process - Enhanced layout */}
-      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.4}>
+        <motion.div 
+          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
+          variants={containerVariants}
+        >
           
           {/* Title for this section - Enhanced typography */}
           <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left mb-12 lg:mb-16">
@@ -350,23 +512,29 @@ function OurTeam() { // Renamed from App to OurTeam
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </AnimatedSection>
 
       {/* New section for the large image placeholder above "Extraordinary digital products" - Enhanced presentation */}
-      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-7xl mx-auto">
+      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.5}>
+        <motion.div 
+          className="max-w-7xl mx-auto"
+          variants={containerVariants}
+        >
           <div className="w-full flex justify-center">
             <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-[1.02]" style={{ maxWidth: '1203px', height: '630px' }}>
               <img src="https://placehold.co/1203x630/555555/EEEEEE?text=Extraordinary+Products+Image" alt="Extraordinary Products Image Placeholder" className="w-full h-full object-cover rounded-[130px]" />
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </AnimatedSection>
 
       {/* Fifth section: Extraordinary Digital Products Cards - Enhanced layout and spacing */}
-      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8" delay={0.6}>
+        <motion.div 
+          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
+          variants={containerVariants}
+        >
           
           {/* Section header - Enhanced typography */}
           <div className="space-y-8">
@@ -382,7 +550,11 @@ function OurTeam() { // Renamed from App to OurTeam
           {/* Cards grid - Enhanced spacing and presentation */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {/* Card 1 - Enhanced styling */}
-            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+            <motion.div 
+              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
+              variants={cardVariants}
+              whileHover="hover"
+            >
               <div className="flex items-center gap-4">
                 <LightbulbIcon className="w-8 h-8 text-indigo-400" />
                 <h4 className="text-2xl lg:text-3xl font-bold">Vision‑driven</h4>
@@ -391,10 +563,14 @@ function OurTeam() { // Renamed from App to OurTeam
                 Great Technology, Designed to Grow — We build digital solutions that grow businesses.
                 Every plan, line of code, and campaign is tailored to help you simplify, secure, and scale.
               </p>
-            </div>
+            </motion.div>
 
             {/* Card 2 - Enhanced styling */}
-            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+            <motion.div 
+              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
+              variants={cardVariants}
+              whileHover="hover"
+            >
               <div className="flex items-center gap-4">
                 <LayoutGridIcon className="w-8 h-8 text-indigo-400" />
                 <h4 className="text-2xl lg:text-3xl font-bold">Problem‑solving Focus</h4>
@@ -403,10 +579,14 @@ function OurTeam() { // Renamed from App to OurTeam
                 Solving Real Business Problems — Technology should solve, not cause problems.
                 That's why we offer robust security, transparent solutions, and campaigns that deliver results.
               </p>
-            </div>
+            </motion.div>
 
             {/* Card 3 - Enhanced styling */}
-            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+            <motion.div 
+              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
+              variants={cardVariants}
+              whileHover="hover"
+            >
               <div className="flex items-center gap-4">
                 <NetworkIcon className="w-8 h-8 text-indigo-400" />
                 <h4 className="text-2xl lg:text-3xl font-bold">Human + Data</h4>
@@ -415,10 +595,14 @@ function OurTeam() { // Renamed from App to OurTeam
                 Where Data and Human Insight Converge — From cybersecurity audits to ROI-focused marketing,
                 we blend data with creativity to build solutions that work better for your business.
               </p>
-            </div>
+            </motion.div>
 
             {/* Card 4 - Enhanced styling */}
-            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+            <motion.div 
+              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
+              variants={cardVariants}
+              whileHover="hover"
+            >
               <div className="flex items-center gap-4">
                 <LayersIcon className="w-8 h-8 text-indigo-400" />
                 <h4 className="text-2xl lg:text-3xl font-bold">Your Growth Partner</h4>
@@ -427,11 +611,11 @@ function OurTeam() { // Renamed from App to OurTeam
                 Not just an agency — EncryVia acts as an extension of your team.
                 We build, protect, and grow with transparency, speed, and your success in mind.
               </p>
-            </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
-    </div>
+        </motion.div>
+      </AnimatedSection>
+    </motion.div>
   );
 }
 
