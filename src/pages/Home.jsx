@@ -20,7 +20,7 @@ const Home = () => {
       </section>
 
       {/* Highlight Banner Section */}
-      <section className="relative py-16 lg:py-24">
+      <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 to-purple-900/20"></div>
         <div className="relative z-10">
           <HighlightBanner slides={slides} />
@@ -28,7 +28,7 @@ const Home = () => {
       </section>
 
       {/* Driven by Independence Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"></div>
         <div className="relative z-10">
           <DrivenByIndependence />
@@ -36,7 +36,7 @@ const Home = () => {
       </section>
 
       {/* Why Trust Us Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"></div>
         <div className="relative z-10">
           <WhyTrustUsSection />
@@ -44,12 +44,12 @@ const Home = () => {
       </section>
 
       {/* Our Services Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
-            <div className="text-center mb-16 lg:mb-24">
+            <div className="text-center mb-20 lg:mb-28">
               <div className="inline-flex items-center justify-center mb-8">
                 <div className="flex-grow border-t-2 border-indigo-500/30 max-w-xs"></div>
                 <h2 className="mx-6 text-4xl lg:text-5xl xl:text-6xl font-bold text-white">
@@ -63,7 +63,7 @@ const Home = () => {
             </div>
 
             {/* Services Grid */}
-            <div className="space-y-24 lg:space-y-32">
+            <div className="space-y-28 lg:space-y-36">
               {services.map((service, index) => (
                 <div key={index} className="relative">
                   {/* Background decoration */}
@@ -86,12 +86,12 @@ const Home = () => {
       </section>
 
       {/* Client Reviews Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"></div>
         <div className="relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
-            <div className="text-center mb-16 lg:mb-24">
+            <div className="text-center mb-20 lg:mb-28">
               <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6">
                 What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">Clients Say</span>
               </h2>
@@ -105,7 +105,7 @@ const Home = () => {
       </section>
 
       {/* Connect Now Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/20 to-transparent"></div>
         <div className="relative z-10">
           <ConnectNow />
@@ -113,7 +113,7 @@ const Home = () => {
       </section>
 
       {/* Newsletter Section */}
-      <section className="relative py-20 lg:py-32">
+      <section className="relative py-24 lg:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/20 to-transparent"></div>
         <div className="relative z-10">
           <NewsletterSubscribe />
