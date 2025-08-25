@@ -97,7 +97,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Highlight Banner Section */}
-      <AnimatedSection className="relative py-24 lg:py-32" delay={0.2}>
+      <AnimatedSection className="relative py-16 lg:py-20" delay={0.2}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 to-purple-900/20"
           initial={{ opacity: 0 }}
@@ -110,7 +110,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Driven by Independence Section */}
-      <AnimatedSection className="relative py-24 lg:py-32" delay={0.3}>
+      <AnimatedSection className="relative  " delay={0.3}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"
           initial={{ opacity: 0 }}
@@ -123,7 +123,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Why Trust Us Section */}
-      <AnimatedSection className="relative py-24 lg:py-32" delay={0.4}>
+      <AnimatedSection className="relative  " delay={0.4}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"
           initial={{ opacity: 0 }}
@@ -136,7 +136,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Our Services Section */}
-      <AnimatedSection className="relative py-24 lg:py-32" delay={0.5}>
+      <AnimatedSection className="relative  " delay={0.5}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"
           initial={{ opacity: 0 }}
@@ -152,11 +152,11 @@ const Home = () => {
           >
             {/* Section Header */}
             <motion.div 
-              className="text-center mb-20 lg:mb-28"
+              className="text-center mb-12 lg:mb-16"
               variants={itemVariants}
             >
               <motion.div 
-                className="inline-flex items-center justify-center mb-8"
+                className="inline-flex items-center justify-center "
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
@@ -194,7 +194,7 @@ const Home = () => {
 
             {/* Services Grid */}
             <motion.div 
-              className="space-y-28 lg:space-y-36"
+              className="space-y-16 lg:space-y-20"
               variants={containerVariants}
             >
               {services.map((service, index) => (
@@ -230,7 +230,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Client Reviews Section */}
-      <AnimatedSection className="relative py-24 lg:py-32" delay={0.6}>
+      <AnimatedSection className="relative py-16 lg:py-20" delay={0.6}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"
           initial={{ opacity: 0 }}
@@ -246,7 +246,7 @@ const Home = () => {
           >
             {/* Section Header */}
             <motion.div 
-              className="text-center mb-20 lg:mb-28"
+              className="text-center mb-12 lg:mb-16"
               variants={itemVariants}
             >
               <motion.h2 
@@ -276,7 +276,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Connect Now Section */}
-      <AnimatedSection className="relative py-24 lg:py-32" delay={0.7}>
+      <AnimatedSection className="relative py-16 lg:py-20" delay={0.7}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"
           initial={{ opacity: 0 }}
@@ -289,7 +289,7 @@ const Home = () => {
       </AnimatedSection>
 
       {/* Newsletter Subscribe Section */}
-      <AnimatedSection className="relative py-24 lg:py-32" delay={0.8}>
+      <AnimatedSection className="relative py-16 lg:py-20" delay={0.8}>
         <motion.div 
           className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"
           initial={{ opacity: 0 }}
