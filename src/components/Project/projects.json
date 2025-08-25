@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "title": "First Project",
+    "description": "this is a sample text of web development section area",
+    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+1",
+    "direction": "normal"
+  },
+  {
+    "id": 2,
+    "title": "Second Project",
+    "description": "this is a sample text of web development section area",
+    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+2",
+    "direction": "reverse"
+  },
+  {
+    "id": 3,
+    "title": "Third Project",
+    "description": "this is a sample text of web development section area",
+    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+3",
+    "direction": "normal"
+  },
+  {
+    "id": 4,
+    "title": "Fourth Project",
+    "description": "this is a sample text of web development section area",
+    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+4",
+    "direction": "reverse"
+  },
+  {
+    "id": 5,
+    "title": "Fifth Project",
+    "description": "this is a sample text of web development section area",
+    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+5",
+    "direction": "normal"
+  }
+] 

@@ -1,0 +1,74 @@
+/* Tailwind CSS Directives:
+   These three lines are absolutely essential for Tailwind CSS to work.
+   They inject Tailwind's base styles, component classes, and utility classes. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Box Sizing:
+   This ensures that padding and border are included in the element's total width and height.
+   It helps in predictable sizing and prevents layout issues. */
+* {
+  box-sizing: border-box;
+}
+
+/* Base HTML, Body, and Root Element Resets:
+   These styles remove default browser margins and paddings,
+   and ensure the main container elements stretch across the entire viewport.
+   'overflow-x: hidden' is crucial to prevent unwanted horizontal scrolling or white space. */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%; /* Ensures element takes 100% of its parent's width */
+  height: 100%; /* Ensures element takes 100% of its parent's height */
+  overflow-x: hidden; /* Prevents horizontal scrollbar if content accidentally overflows */
+}
+
+/* Inherit Box Sizing:
+   Ensures that pseudo-elements also follow the same box-sizing rule. */
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* Optional: Smooth Scroll Behavior:
+   Provides a smooth scrolling animation when navigating to anchor links on the page. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Animation Keyframes and Classes (for dropdowns and menus) --- */
+
+/* Keyframes for a general fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Class to apply the general fade-in animation */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Keyframes for a dropdown-specific fade-in animation */
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Class to apply the dropdown fade-in animation */
+.animate-fade-in-dropdown {
+  animation: fadeInDropdown 0.2s ease-out forwards;
+}
+

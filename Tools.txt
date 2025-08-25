@@ -1,0 +1,5 @@
+Isme Pahle Vite se bana hai
+tailwind hai
+yarn 
+Lucid react
+framer  + intersection-observer

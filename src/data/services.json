@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Web Development",
+    "description": "We build modern, responsive, and high-performance websites tailored to your needs.",
+    "imageUrl": "https://placehold.co/300x200/0A0A0A/FFFFFF?text=Web+Dev"
+  },
+  {
+    "title": "Cyber Security",
+    "description": "Protect your digital assets with our comprehensive security solutions and expert guidance.",
+    "imageUrl": "https://placehold.co/300x200/0A0A0A/FFFFFF?text=Cyber+Sec"
+  },
+  {
+    "title": "SEO & Ads",
+    "description": "Boost your online visibility with SEO strategies and targeted advertising campaigns.",
+    "imageUrl": "https://placehold.co/300x200/0A0A0A/FFFFFF?text=SEO+%26+Ads"
+  }
+]
