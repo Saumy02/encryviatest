@@ -9,26 +9,77 @@ const ConnectNow = () => {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 py-10">
-      <div className="relative bg-purple-600/60 backdrop-blur-md border border-white/30 p-6 sm:p-8 lg:p-10 rounded-3xl shadow-2xl w-full max-w-3xl mx-auto flex flex-col md:flex-row flex-wrap items-center justify-between gap-6">
-        
-        {/* Text */}
-        <div className="text-center md:text-left flex-1 min-w-[250px]">
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 leading-relaxed">
-            Get to know more about us,
-            Relax and feel free to connect
-            with us without any doubt.
-          </p>
-        </div>
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div className="max-w-6xl mx-auto">
+        <div className="relative group">
+          {/* Background glow */}
+          <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
+          
+          {/* Main container */}
+          <div className="relative bg-gradient-to-r from-indigo-900/80 via-purple-900/80 to-indigo-900/80 backdrop-blur-xl border border-white/20 p-8 sm:p-12 lg:p-16 rounded-3xl shadow-2xl">
+            
+            {/* Background pattern */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30 rounded-3xl"></div>
+            
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+              
+              {/* Text Content */}
+              <div className="text-center lg:text-left flex-1 space-y-6">
+                <div className="space-y-4">
+                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+                    Ready to <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Transform</span> Your Business?
+                  </h3>
+                  <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl">
+                    Get to know more about us. Relax and feel free to connect with us without any doubt. 
+                    Let's build something amazing together.
+                  </p>
+                </div>
+                
+                {/* Features list */}
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center lg:justify-start">
+                  <div className="flex items-center gap-2 text-indigo-300">
+                    <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-sm font-medium">Free Consultation</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-indigo-300">
+                    <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-sm font-medium">24/7 Support</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-indigo-300">
+                    <svg className="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-sm font-medium">Custom Solutions</span>
+                  </div>
+                </div>
+              </div>
 
-        {/* Button */}
-        <div className="w-full sm:w-auto flex-shrink-0">
-          <button
-            onClick={handleConnectClick}
-            className="w-full sm:w-auto bg-white text-black text-sm sm:text-base md:text-lg font-semibold px-6 py-3 rounded-xl shadow-lg hover:bg-gray-200 transition duration-300 ease-in-out"
-          >
-            Connect Now
-          </button>
+              {/* CTA Button */}
+              <div className="flex-shrink-0">
+                <button
+                  onClick={handleConnectClick}
+                  className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-lg rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                >
+                  <span className="relative z-10 flex items-center gap-3">
+                    Connect Now
+                    <svg className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </button>
+              </div>
+            </div>
+            
+            {/* Floating elements */}
+            <div className="absolute top-4 right-4 w-3 h-3 bg-indigo-400 rounded-full animate-pulse"></div>
+            <div className="absolute bottom-4 left-4 w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 right-8 w-1 h-1 bg-pink-400 rounded-full animate-pulse delay-500"></div>
+          </div>
         </div>
       </div>
     </div>
