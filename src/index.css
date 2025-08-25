@@ -30,19 +30,125 @@ html, body, #root {
   box-sizing: inherit;
 }
 
-/* Optional: Smooth Scroll Behavior:
-   Provides a smooth scrolling animation when navigating to anchor links on the page. */
+/* Enhanced Typography and Spacing */
 html {
   scroll-behavior: smooth;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  line-height: 1.6;
 }
 
-/* --- Animation Keyframes and Classes (for dropdowns and menus) --- */
+body {
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 
-/* Keyframes for a general fade-in animation */
+/* Professional Spacing System */
+.section-spacing {
+  padding: 5rem 0;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding: 7rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding: 8rem 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section-spacing {
+    padding: 10rem 0;
+  }
+}
+
+/* Enhanced Container System */
+.container-professional {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-professional {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-professional {
+    padding: 0 2rem;
+  }
+}
+
+/* Professional Typography Scale */
+.text-hero {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.text-display {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.text-heading {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+.text-subheading {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.text-body {
+  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  line-height: 1.6;
+}
+
+/* Enhanced Button Styles */
+.btn-primary {
+  @apply bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-transparent border border-white/30 text-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300 transform hover:scale-105 shadow-lg;
+}
+
+/* Enhanced Card Styles */
+.card-professional {
+  @apply bg-gray-800 rounded-2xl p-8 shadow-2xl border border-gray-700/50 hover:transform hover:scale-105 transition-all duration-300;
+}
+
+/* Enhanced Image Styles */
+.image-professional {
+  @apply rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-[1.02] overflow-hidden;
+}
+
+/* Professional Gradient Backgrounds */
+.gradient-primary {
+  background: linear-gradient(135deg, #000000 0%, #1f2937 50%, #3730a3 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, #1f2937 0%, #000000 50%, #1e40af 100%);
+}
+
+/* Enhanced Animation Keyframes */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -50,12 +156,50 @@ html {
   }
 }
 
-/* Class to apply the general fade-in animation */
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out forwards;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Keyframes for a dropdown-specific fade-in animation */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes fadeInDropdown {
   from {
     opacity: 0;
@@ -67,8 +211,202 @@ html {
   }
 }
 
-/* Class to apply the dropdown fade-in animation */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.animate-fade-in-left {
+  animation: fadeInLeft 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.animate-fade-in-right {
+  animation: fadeInRight 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
 .animate-fade-in-dropdown {
   animation: fadeInDropdown 0.2s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Enhanced Hover Effects */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-glow:hover {
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+}
+
+/* Professional Focus States */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900;
+}
+
+/* Enhanced Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4f46e5;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6366f1;
+}
+
+/* Professional Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.3);
+  color: white;
+}
+
+/* Enhanced Loading States */
+.loading-skeleton {
+  background: linear-gradient(90deg, #374151 25%, #4b5563 50%, #374151 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Professional Text Gradients */
+.text-gradient-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced Backdrop Effects */
+.backdrop-blur-professional {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Professional Border Gradients */
+.border-gradient {
+  border: 2px solid transparent;
+  background: linear-gradient(135deg, #6366f1, #a855f7) border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out;
+  mask-composite: exclude;
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .mobile-hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 641px) {
+  .desktop-hidden {
+    display: none;
+  }
+}
+
+/* Professional Grid System */
+.grid-professional {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid-professional {
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-professional {
+    gap: 4rem;
+  }
+}
+
+/* Enhanced Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Professional Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
 }
 

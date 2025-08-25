@@ -177,93 +177,100 @@ function OurTeam() { // Renamed from App to OurTeam
         `}
       </style>
 
-      {/* First section: Hero Text */}
-      <section className="flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 min-h-[50vh]">
-        <div className="relative z-10 max-w-4xl mx-auto text-left">
-          {/* H1 Title reverted to original structure */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            <span className="text-indigo-500">" Who We Are: </span> A startup digital team blending creative hustle and data‑driven precision to build secure, scalable solutions.
+      {/* First section: Hero Text - Enhanced spacing and typography */}
+      <section className="flex items-center justify-center py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8 lg:mb-12">
+            <span className="text-indigo-500">" Who We Are: </span> 
+            A startup digital team blending creative hustle and data‑driven precision to build secure, scalable solutions.
             <span className="text-indigo-500">"</span>
           </h1>
         </div>
       </section>
 
-      {/* Second section: Tailored Websites */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* "About Us" heading with lines */}
-          <div className="flex items-center justify-center mb-12">
-            <div className="flex-grow border-t border-gray-600"></div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mx-4 text-blue-400">About Encryvia</h2>
-            <div className="flex-grow border-t border-gray-600"></div>
+      {/* Second section: Tailored Websites - Enhanced layout and spacing */}
+      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+          
+          {/* "About Us" heading with lines - Enhanced visual design */}
+          <div className="flex items-center justify-center">
+            <div className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"></div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mx-6 text-blue-400">About Encryvia</h2>
+            <div className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"></div>
           </div>
 
-          {/* Main title for this section */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-center mb-12 max-w-3xl mx-auto">
+          {/* Main title for this section - Enhanced typography */}
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-center max-w-5xl mx-auto">
             Tailored Websites That Work Harder for Your Business
           </h3>
 
-          {/* New structure for this section: Image then Text, both centered */}
-          <div className="flex flex-col items-center gap-12">
-            {/* Image Placeholder - Centered, larger resolution */}
+          {/* New structure for this section: Image then Text, both centered - Enhanced spacing */}
+          <div className="flex flex-col items-center gap-16 lg:gap-20">
+            
+            {/* Image Placeholder - Centered, larger resolution - Enhanced presentation */}
             <div className="w-full flex justify-center">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden" style={{ maxWidth: '1195px', height: '568px' }}>
+              <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-[1.02]" style={{ maxWidth: '1195px', height: '568px' }}>
                 <img src="https://placehold.co/1195x568/555555/EEEEEE?text=Tailored+Websites+Image" alt="Tailored Websites Image" className="w-full h-full object-cover rounded-[130px]" />
               </div>
             </div>
 
-            {/* Description Text - Now below the image and centered */}
-     <div className="w-full max-w-3xl text-center mx-auto">
-  {/* Top Paragraph */}
-  <p className="text-lg sm:text-xl leading-relaxed text-gray-300 mb-6">
-    At Encryvia, we believe technology should solve problems—not create new ones. That’s why we focus on purpose-driven solutions, crafted with precision and always keeping people at the heart of what we build—whether it’s code, campaigns, or cybersecurity protocols.
-    <br /><br />
-    By deeply understanding how businesses grow and adapt in real-world markets, we design and deliver digital tools that are more than just websites, dashboards, or ads—they become engines of growth. They simplify complex workflows, protect what matters most, and scale effortlessly as your business evolves.
-  </p>
+            {/* Description Text - Now below the image and centered - Enhanced typography and spacing */}
+            <div className="w-full max-w-4xl text-center mx-auto space-y-12">
+              
+              {/* Top Paragraph - Enhanced spacing */}
+              <div className="space-y-8">
+                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
+                  At Encryvia, we believe technology should solve problems—not create new ones. That's why we focus on purpose-driven solutions, crafted with precision and always keeping people at the heart of what we build—whether it's code, campaigns, or cybersecurity protocols.
+                </p>
+                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
+                  By deeply understanding how businesses grow and adapt in real-world markets, we design and deliver digital tools that are more than just websites, dashboards, or ads—they become engines of growth. They simplify complex workflows, protect what matters most, and scale effortlessly as your business evolves.
+                </p>
+              </div>
 
-  {/* What we deliver - Two Column List */}
-  <h4 className="text-xl font-bold text-white mb-3">What we deliver:</h4>
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-left text-lg text-gray-300 mb-8">
-    <ul className="list-disc list-inside space-y-2">
-      <li>✅ 100% in-house team of developers, analysts, and cybersecurity experts</li>
-      <li>🧠 Decades of combined experience spanning SaaS platforms, eCommerce sites, and enterprise-grade systems</li>
-      <li>📊 Results-first mindset focused on ROI and measurable impact, not vanity metrics</li>
-      <li>🛡 Trusted by startups, SMEs, and global brands for reliable and scalable digital solutions</li>
-    </ul>
-    <ul className="list-disc list-inside space-y-2">
-      <li>🚀 Agile approach that adapts to your business as it grows, ensuring long-term success</li>
-      <li>💡 Seamless integration of web development, cybersecurity, and marketing strategies under one roof</li>
-      <li>🤝 Commitment to transparent communication, so you’re always informed at every stage</li>
-    </ul>
-  </div>
+              {/* What we deliver - Two Column List - Enhanced layout */}
+              <div className="space-y-8">
+                <h4 className="text-xl lg:text-2xl font-bold text-white">What we deliver:</h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 text-left text-lg lg:text-xl text-gray-300">
+                  <ul className="list-disc list-inside space-y-4">
+                    <li>✅ 100% in-house team of developers, analysts, and cybersecurity experts</li>
+                    <li>🧠 Decades of combined experience spanning SaaS platforms, eCommerce sites, and enterprise-grade systems</li>
+                    <li>📊 Results-first mindset focused on ROI and measurable impact, not vanity metrics</li>
+                    <li>🛡 Trusted by startups, SMEs, and global brands for reliable and scalable digital solutions</li>
+                  </ul>
+                  <ul className="list-disc list-inside space-y-4">
+                    <li>🚀 Agile approach that adapts to your business as it grows, ensuring long-term success</li>
+                    <li>💡 Seamless integration of web development, cybersecurity, and marketing strategies under one roof</li>
+                    <li>🤝 Commitment to transparent communication, so you're always informed at every stage</li>
+                  </ul>
+                </div>
+              </div>
 
-  {/* Vision & Mission */}
-  <div className="mt-10 space-y-6">
-    <div>
-      <h4 className="text-2xl font-bold">Our <span className='text-indigo-500 bold'>Vision</span></h4>
-      <p className="text-lg text-gray-300">
-        To empower businesses with digital products that combine security, usability, and measurable growth so they can compete confidently in any market.
-      </p>
-    </div>
-    <div>
-      <h2 className="text-2xl font-bold ">Our <span className='text-indigo-500 bold'> Mission</span></h2>
-      <p className="text-lg text-gray-300">
-        To deliver end-to-end digital solutions—web development, cybersecurity, and marketing—that are crafted in-house, performance-driven, and tailored to real business needs.
-      </p>
-    </div>
-  </div>
-</div>
-
-
+              {/* Vision & Mission - Enhanced spacing and typography */}
+              <div className="space-y-12">
+                <div className="space-y-6">
+                  <h4 className="text-2xl lg:text-3xl font-bold">Our <span className='text-indigo-500 bold'>Vision</span></h4>
+                  <p className="text-lg lg:text-xl text-gray-300 leading-relaxed">
+                    To empower businesses with digital products that combine security, usability, and measurable growth so they can compete confidently in any market.
+                  </p>
+                </div>
+                <div className="space-y-6">
+                  <h2 className="text-2xl lg:text-3xl font-bold">Our <span className='text-indigo-500 bold'> Mission</span></h2>
+                  <p className="text-lg lg:text-xl text-gray-300 leading-relaxed">
+                    To deliver end-to-end digital solutions—web development, cybersecurity, and marketing—that are crafted in-house, performance-driven, and tailored to real business needs.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Third section: Security, Speed, and Scalability */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* Title for this section with the new animation */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-left mb-12 cursor-pointer font-inter">
+      {/* Third section: Security, Speed, and Scalability - Enhanced layout */}
+      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+          
+          {/* Title for this section with the new animation - Enhanced typography */}
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left mb-12 lg:mb-16 cursor-pointer font-inter">
             {animatedH3HeadingParts.map((part, partIndex) => {
               if (part.type === 'text' || part.type === 'span') {
                 return (
@@ -281,21 +288,22 @@ function OurTeam() { // Renamed from App to OurTeam
             })}
           </h3>
 
-          {/* Adjusted to lg:items-center for vertical middle alignment of items */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-12">
-            {/* Description Text - Left-aligned, vertically centered */}
+          {/* Content layout - Enhanced spacing and alignment */}
+          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-16 lg:gap-20">
+            
+            {/* Description Text - Left-aligned, vertically centered - Enhanced typography */}
             <div className="flex-1 w-full text-center lg:text-left">
-              <p className="text-lg sm:text-xl leading-relaxed text-gray-300">
+              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
                 Modern websites face real-world pressure—from performance expectations to
-                security threats.  We code with purpose and precision, using the right tech
+                security threats. We code with purpose and precision, using the right tech
                 stack to ensure your site runs fast, stays secure, and grows with your
                 business.
               </p>
             </div>
 
-            {/* Image/Card Placeholder - Maintained size and corner radius, right-aligned */}
+            {/* Image/Card Placeholder - Maintained size and corner radius, right-aligned - Enhanced presentation */}
             <div className="flex-1 w-full flex justify-center lg:justify-end">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden" style={{ maxWidth: '559px', height: '568px' }}>
+              <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-105" style={{ maxWidth: '559px', height: '568px' }}>
                 <img src="https://placehold.co/559x568/555555/EEEEEE?text=Code+Security" alt="Code Security" className="w-full h-full object-cover rounded-[130px]" />
               </div>
             </div>
@@ -303,118 +311,127 @@ function OurTeam() { // Renamed from App to OurTeam
         </div>
       </section>
 
-      {/* Fourth section: A Smarter Development Process */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          {/* Title for this section */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-left mb-12">
+      {/* Fourth section: A Smarter Development Process - Enhanced layout */}
+      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+          
+          {/* Title for this section - Enhanced typography */}
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left mb-12 lg:mb-16">
             A Smarter Development Process That Keeps You In the Loop
           </h3>
 
-          {/* Reverted to side-by-side layout, image left, text right, text content middle-right */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-12">
-            {/* Image Placeholder - Left-aligned, original size/radius */}
+          {/* Content layout - Enhanced spacing and alignment */}
+          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-16 lg:gap-20">
+            
+            {/* Image Placeholder - Left-aligned, original size/radius - Enhanced presentation */}
             <div className="flex-1 w-full flex justify-center lg:justify-start">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden" style={{ maxWidth: '559px', height: '568px' }}>
+              <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-105" style={{ maxWidth: '559px', height: '568px' }}>
                 <img src="https://placehold.co/559x568/555555/EEEEEE?text=Development+Process" alt="Development Process" className="w-full h-full object-cover rounded-[130px]" />
               </div>
             </div>
 
-            {/* Description Text - Right-aligned and vertically centered */}
-            <div className="flex-1 w-full text-center lg:text-right">
-              <p className="text-lg sm:text-xl leading-relaxed text-gray-300 mb-6">
-                No mystery, no black box.  We run a lean, transparent development cycle
-                with built-in checkpoints so you stay in control at every stage.  From
+            {/* Description Text - Right-aligned and vertically centered - Enhanced typography and spacing */}
+            <div className="flex-1 w-full text-center lg:text-right space-y-8">
+              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
+                No mystery, no black box. We run a lean, transparent development cycle
+                with built-in checkpoints so you stay in control at every stage. From
                 kick-off to post-launch support, you're part of the process—and we're
                 accountable for every click, line, and deadline.
               </p>
-              <h4 className="text-xl font-bold text-white mb-3">What to expect:</h4>
-              <ul className="list-disc list-inside text-lg text-gray-300 space-y-2 text-center lg:text-right">
-                <li>Weekly progress shared dashboards</li>
-                <li>Clear timelines, no vague deliveries</li>
-                <li>CMS training for your team</li>
-                <li>Post-launch support, updates, and optimization packs</li>
-              </ul>
+              
+              <div className="space-y-6">
+                <h4 className="text-xl lg:text-2xl font-bold text-white">What to expect:</h4>
+                <ul className="list-disc list-inside text-lg lg:text-xl text-gray-300 space-y-4 text-center lg:text-right">
+                  <li>Weekly progress shared dashboards</li>
+                  <li>Clear timelines, no vague deliveries</li>
+                  <li>CMS training for your team</li>
+                  <li>Post-launch support, updates, and optimization packs</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* New section for the large image placeholder above "Extraordinary digital products" */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="w-full flex justify-center mb-16 mt-8">
-            <div className="bg-gray-800 rounded-[140px] p-6 shadow-xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden" style={{ maxWidth: '1203px', height: '630px' }}>
+      {/* New section for the large image placeholder above "Extraordinary digital products" - Enhanced presentation */}
+      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="w-full flex justify-center">
+            <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-[1.02]" style={{ maxWidth: '1203px', height: '630px' }}>
               <img src="https://placehold.co/1203x630/555555/EEEEEE?text=Extraordinary+Products+Image" alt="Extraordinary Products Image Placeholder" className="w-full h-full object-cover rounded-[130px]" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Fifth section: Extraordinary Digital Products Cards */}
-      <section className="py-16">
-  <div className="max-w-6xl mx-auto">
-    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-left mb-6">
-      Extraordinary digital products
-    </h3>
-    <p className="text-lg sm:text-xl leading-relaxed text-gray-300 max-w-4xl mb-12">
-      We play to our strengths: For over years we've been ideating, creating and
-      shipping wonderful things on the internet.
-    </p>
+      {/* Fifth section: Extraordinary Digital Products Cards - Enhanced layout and spacing */}
+      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+          
+          {/* Section header - Enhanced typography */}
+          <div className="space-y-8">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left">
+              Extraordinary digital products
+            </h3>
+            <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300 max-w-5xl">
+              We play to our strengths: For over years we've been ideating, creating and
+              shipping wonderful things on the internet.
+            </p>
+          </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Card 1 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <LightbulbIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Vision‑driven</h4>
-        </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Great Technology, Designed to Grow — We build digital solutions that grow businesses.
-          Every plan, line of code, and campaign is tailored to help you simplify, secure, and scale.
-        </p>
-      </div>
+          {/* Cards grid - Enhanced spacing and presentation */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {/* Card 1 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <div className="flex items-center gap-4">
+                <LightbulbIcon className="w-8 h-8 text-indigo-400" />
+                <h4 className="text-2xl lg:text-3xl font-bold">Vision‑driven</h4>
+              </div>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                Great Technology, Designed to Grow — We build digital solutions that grow businesses.
+                Every plan, line of code, and campaign is tailored to help you simplify, secure, and scale.
+              </p>
+            </div>
 
-      {/* Card 2 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <LayoutGridIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Problem‑solving Focus</h4>
-        </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Solving Real Business Problems — Technology should solve, not cause problems.
-          That’s why we offer robust security, transparent solutions, and campaigns that deliver results.
-        </p>
-      </div>
+            {/* Card 2 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <div className="flex items-center gap-4">
+                <LayoutGridIcon className="w-8 h-8 text-indigo-400" />
+                <h4 className="text-2xl lg:text-3xl font-bold">Problem‑solving Focus</h4>
+              </div>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                Solving Real Business Problems — Technology should solve, not cause problems.
+                That's why we offer robust security, transparent solutions, and campaigns that deliver results.
+              </p>
+            </div>
 
-      {/* Card 3 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <NetworkIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Human + Data</h4>
-        </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Where Data and Human Insight Converge — From cybersecurity audits to ROI-focused marketing,
-          we blend data with creativity to build solutions that work better for your business.
-        </p>
-      </div>
+            {/* Card 3 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <div className="flex items-center gap-4">
+                <NetworkIcon className="w-8 h-8 text-indigo-400" />
+                <h4 className="text-2xl lg:text-3xl font-bold">Human + Data</h4>
+              </div>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                Where Data and Human Insight Converge — From cybersecurity audits to ROI-focused marketing,
+                we blend data with creativity to build solutions that work better for your business.
+              </p>
+            </div>
 
-      {/* Card 4 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <LayersIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Your Growth Partner</h4>
+            {/* Card 4 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <div className="flex items-center gap-4">
+                <LayersIcon className="w-8 h-8 text-indigo-400" />
+                <h4 className="text-2xl lg:text-3xl font-bold">Your Growth Partner</h4>
+              </div>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                Not just an agency — EncryVia acts as an extension of your team.
+                We build, protect, and grow with transparency, speed, and your success in mind.
+              </p>
+            </div>
+          </div>
         </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Not just an agency — EncryVia acts as an extension of your team.
-          We build, protect, and grow with transparency, speed, and your success in mind.
-        </p>
-      </div>
+      </section>
     </div>
-  </div>
-</section>
-    </div>
-  
   );
 }
 

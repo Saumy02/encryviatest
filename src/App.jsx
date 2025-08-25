@@ -111,7 +111,6 @@ import Blog from './pages/Blog';
 import MoreBlog from "./components/Blog/MoreBlog";
 import PrivacyPolicy from './components/Footer/PrivacyPolicy';
 
-
 // --- Service-Specific Pages ---
 import WebDevelopment from './components/Services/WebDevelopment';
 import CyberSecurity from './components/Services/CyberSecurity';
@@ -122,23 +121,38 @@ import OurServices from './components/Home/OurServices';
 
 // --- Fallback Page ---
 const NotFound = () => (
-  <div className="w-full px-4 py-16 text-center min-h-screen flex flex-col items-center justify-center">
-    <h1 className="text-5xl font-bold text-red-500">404 - Page Not Found</h1>
-    <p className="mt-4 text-lg text-gray-300">The page you are looking for does not exist.</p>
+  <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
+    <div className="max-w-2xl mx-auto space-y-8">
+      <div className="space-y-4">
+        <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold text-red-500 mb-4">404</h1>
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">Page Not Found</h2>
+        <p className="text-lg sm:text-xl text-gray-300 leading-relaxed">
+          The page you are looking for doesn't exist or has been moved.
+        </p>
+      </div>
+      <div className="pt-8">
+        <a 
+          href="/" 
+          className="inline-flex items-center px-8 py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg"
+        >
+          Return Home
+        </a>
+      </div>
+    </div>
   </div>
 );
 
 const App = () => {
   return (
     <Router>
-      {/* Page Container with gradient background and global styling */}
-      <div className="bg-gradient-to-br from-black via-gray-900 to-indigo-900 text-white font-sans min-h-screen flex flex-col w-screen max-w-full overflow-x-hidden">
-
-        {/* Global Header */}
+      {/* Main Application Container */}
+      <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900 text-white font-sans flex flex-col">
+        
+        {/* Global Header - Sticky with backdrop blur */}
         <Header />
 
-        {/* Main Content */}
-        <main className="flex-grow w-full">
+        {/* Main Content Area - Flexible and properly spaced */}
+        <main className="flex-1 w-full">
           <Routes>
             {/* === Public Pages === */}
             <Route path="/" element={<Home />} />

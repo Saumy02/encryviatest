@@ -40,25 +40,34 @@ const LayersIcon = () => (
 function WebDevelopment() {
   return (
     <div className="min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-indigo-900">
-      <section className="flex flex-col items-center justify-center py-20 px-4 sm:px-6 lg:px-8 text-center min-h-[calc(100vh-80px)]">
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            <span className="text-indigo-500">"</span> Our <span className='text-indigo-500'> Web Development</span>  that works as hard as you do — secure, scalable, and built for growth from day one. <span className="text-indigo-500">"</span>
+      
+      {/* Hero Section - Enhanced spacing and typography */}
+      <section className="flex flex-col items-center justify-center py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 text-center min-h-[60vh]">
+        <div className="relative z-10 max-w-5xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8 lg:mb-12">
+            <span className="text-indigo-500">"</span> 
+            Our <span className='text-indigo-500'> Web Development</span> 
+            <br />
+            that works as hard as you do — secure, scalable, and built for growth from day one. 
+            <span className="text-indigo-500">"</span>
           </h1>
         </div>
       </section>
 
-      <section className="py-16 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-center mb-12">
-            <div className="flex-grow border-t border-gray-600"></div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mx-4 text-blue-400">Web Development Service</h2>
-            <div className="flex-grow border-t border-gray-600"></div>
+      {/* Main Content Section - Enhanced layout and spacing */}
+      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-7xl mx-auto space-y-16 lg:space-y-20">
+          
+          {/* Service Header - Enhanced visual design */}
+          <div className="flex items-center justify-center">
+            <div className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"></div>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mx-6 text-blue-400">Web Development Service</h2>
+            <div className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"></div>
           </div>
 
-          {/* Image 1 */}
-          <div className="w-full flex justify-center mb-16">
-            <div className="bg-gray-800 rounded-3xl p-6 shadow-xl w-full max-w-4xl h-96 flex items-center justify-center text-gray-400 text-lg overflow-hidden">
+          {/* Main Service Image - Enhanced presentation */}
+          <div className="w-full flex justify-center">
+            <div className="bg-gray-800 rounded-3xl p-6 shadow-2xl w-full max-w-5xl h-96 lg:h-[500px] flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-[1.02]">
               <img
                 src="https://placehold.co/1000x500/555555/EEEEEE?text=Web+Development+Service+Image"
                 alt="Web Development Service"
@@ -67,192 +76,229 @@ function WebDevelopment() {
             </div>
           </div>
 
-          {/* Extraordinary digital products */}
-<section className="py-16">
-  <div className="max-w-6xl mx-auto">
-    <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-left mb-6">
-      Extraordinary digital products
-    </h3>
-    <p className="text-lg sm:text-xl leading-relaxed text-gray-300 max-w-4xl mb-12">
-      We play to our strengths: For over years we've been ideating, creating and
-      shipping wonderful things on the internet.
-    </p>
+          {/* Extraordinary digital products section - Enhanced layout */}
+          <section className="space-y-16 lg:space-y-20">
+            <div className="space-y-8 lg:space-y-12">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left">
+                Extraordinary digital products
+              </h3>
+              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300 max-w-5xl">
+                We play to our strengths: For over years we've been ideating, creating and
+                shipping wonderful things on the internet.
+              </p>
+            </div>
 
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {/* Card 1 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <LightbulbIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Vision‑driven</h4>
-        </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Great Technology, Designed to Grow — We build digital solutions that grow businesses.
-          Every plan, line of code, and campaign is tailored to help you simplify, secure, and scale.
-        </p>
-      </div>
+            {/* Cards Grid - Enhanced spacing and presentation */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+              {/* Card 1 - Enhanced styling */}
+              <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+                <div className="flex items-center gap-4">
+                  <LightbulbIcon className="w-8 h-8 text-indigo-400" />
+                  <h4 className="text-2xl lg:text-3xl font-bold">Vision‑driven</h4>
+                </div>
+                <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                  Great Technology, Designed to Grow — We build digital solutions that grow businesses.
+                  Every plan, line of code, and campaign is tailored to help you simplify, secure, and scale.
+                </p>
+              </div>
 
-      {/* Card 2 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <LayoutGridIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Problem‑solving Focus</h4>
-        </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Solving Real Business Problems — Technology should solve, not cause problems.
-          That’s why we offer robust security, transparent solutions, and campaigns that deliver results.
-        </p>
-      </div>
+              {/* Card 2 - Enhanced styling */}
+              <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+                <div className="flex items-center gap-4">
+                  <LayoutGridIcon className="w-8 h-8 text-indigo-400" />
+                  <h4 className="text-2xl lg:text-3xl font-bold">Problem‑solving Focus</h4>
+                </div>
+                <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                  Solving Real Business Problems — Technology should solve, not cause problems.
+                  That's why we offer robust security, transparent solutions, and campaigns that deliver results.
+                </p>
+              </div>
 
-      {/* Card 3 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <NetworkIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Human + Data</h4>
-        </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Where Data and Human Insight Converge — From cybersecurity audits to ROI-focused marketing,
-          we blend data with creativity to build solutions that work better for your business.
-        </p>
-      </div>
+              {/* Card 3 - Enhanced styling */}
+              <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+                <div className="flex items-center gap-4">
+                  <NetworkIcon className="w-8 h-8 text-indigo-400" />
+                  <h4 className="text-2xl lg:text-3xl font-bold">Human + Data</h4>
+                </div>
+                <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                  Where Data and Human Insight Converge — From cybersecurity audits to ROI-focused marketing,
+                  we blend data with creativity to build solutions that work better for your business.
+                </p>
+              </div>
 
-      {/* Card 4 */}
-      <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-        <div className="flex items-center gap-3">
-          <LayersIcon className="w-6 h-6 text-indigo-400" />
-          <h4 className="text-2xl font-bold">Your Growth Partner</h4>
-        </div>
-        <p className="text-gray-300 text-lg mt-3">
-          Not just an agency — EncryVia acts as an extension of your team.
-          We build, protect, and grow with transparency, speed, and your success in mind.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-          {/* Section: Tailored Websites */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-center mb-6 mt-10">
-             Custom Websites That Do More for Your Business
-          </h3>
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 mb-24">
-            <div className="flex-1 w-full flex justify-center lg:justify-start">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-xl w-full max-w-[365px] h-[568px] flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://placehold.co/365x568/555555/EEEEEE?text=Laptop+User"
-                  alt="Laptop User"
-                  className="w-full h-full object-cover rounded-[130px] transition-transform duration-300 ease-in-out hover:scale-105"
-                />
+              {/* Card 4 - Enhanced styling */}
+              <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+                <div className="flex items-center gap-4">
+                  <LayersIcon className="w-8 h-8 text-indigo-400" />
+                  <h4 className="text-2xl lg:text-3xl font-bold">Your Growth Partner</h4>
+                </div>
+                <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
+                  Not just an agency — EncryVia acts as an extension of your team.
+                  We build, protect, and grow with transparency, speed, and your success in mind.
+                </p>
               </div>
             </div>
-            <div className="flex-1 w-full mt-16">
-              <p className="text-lg sm:text-xl leading-relaxed text-gray-300 mb-6">
-                We don't just throw up websites to look pretty—we build digital workhorses. Each website is handcrafted to highlight your brand, guide your users around, and deliver actual results.
-From mobile responsiveness to high-conversion design, we transform your site into an asset, not an address.
-              </p>
-              <h4 className="text-xl font-bold text-white mb-3">What we deliver:</h4>
-              <ul className="list-disc list-inside text-lg text-gray-300 space-y-2">
-  <li>Personalized UI/UX tailored to fit your brand and objectives</li>
-  <li>Mobile-first responsive design</li>
-  <li>SEO-friendly organization with clean, scalable code</li>
-  <li>Built on WordPress, Shopify, or custom stacks as needed</li>
-</ul>
+          </section>
 
-            </div>
-          </div>
-
-          {/* Section: Built with Security */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight r mb-6">
-           Built with security, performance, and scalability in its design
-          </h3>
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12 mb-24">
-            <div className="flex-1 w-full mt-16">
-              <p className="text-lg sm:text-xl leading-relaxed text-gray-300 mb-6">
-               Websites today have to face real-world pressures—from performance expectations to security threats. We code with purpose and attention, using the best tech stack to get your site to load fast, stay secure, and grow with your business.
-              </p>
-              <h4 className="text-xl font-bold text-white mb-3">How we do it:</h4>
-              <ul className="list-disc list-inside text-lg text-gray-300 space-y-2">
-  <li>Enterprise-grade security features (SSL, firewalls, input validation)</li>
-  <li>Front-end and back-end optimization for quick and stable speeds</li>
-  <li>Cloud-enabled configurations and API-first integrations</li>
-  <li>Periodic maintenance and technical support plans</li>
-</ul>
-
-            </div>
-            <div className="flex-1 w-full flex justify-center lg:justify-end">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-xl w-full max-w-[365px] h-[568px] flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://placehold.co/365x568/555555/EEEEEE?text=Code+Security"
-                  alt="Code Security"
-                  className="w-full h-full object-cover rounded-[130px] transition-transform duration-300 ease-in-out hover:scale-105"
-                />
+          {/* Custom Websites Section - Enhanced layout and spacing */}
+          <section className="space-y-16 lg:space-y-20">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-center">
+              Custom Websites That Do More for Your Business
+            </h3>
+            
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16 lg:gap-20">
+              {/* Image - Enhanced presentation */}
+              <div className="flex-1 w-full flex justify-center lg:justify-start">
+                <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full max-w-[365px] h-[568px] flex items-center justify-center overflow-hidden transition-transform duration-500 hover:scale-105">
+                  <img
+                    src="https://placehold.co/365x568/555555/EEEEEE?text=Laptop+User"
+                    alt="Laptop User"
+                    className="w-full h-full object-cover rounded-[130px] transition-transform duration-300 ease-in-out hover:scale-105"
+                  />
+                </div>
+              </div>
+              
+              {/* Content - Enhanced typography and spacing */}
+              <div className="flex-1 w-full mt-16 space-y-8">
+                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
+                  We don't just throw up websites to look pretty—we build digital workhorses. Each website is handcrafted to highlight your brand, guide your users around, and deliver actual results.
+                  <br /><br />
+                  From mobile responsiveness to high-conversion design, we transform your site into an asset, not an address.
+                </p>
+                
+                <div className="space-y-6">
+                  <h4 className="text-xl lg:text-2xl font-bold text-white">What we deliver:</h4>
+                  <ul className="list-disc list-inside text-lg lg:text-xl text-gray-300 space-y-4">
+                    <li>Personalized UI/UX tailored to fit your brand and objectives</li>
+                    <li>Mobile-first responsive design</li>
+                    <li>SEO-friendly organization with clean, scalable code</li>
+                    <li>Built on WordPress, Shopify, or custom stacks as needed</li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
 
-          {/* Section: Smarter Process */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight  mb-6">
-            A Smarter Development Process That Keeps You In the Loop
-          </h3>
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-12">
-            <div className="flex-1 w-full flex justify-center lg:justify-start">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-xl w-full max-w-[365px] h-[568px] flex items-center justify-center overflow-hidden">
-                <img
-                  src="https://placehold.co/365x568/555555/EEEEEE?text=Development+Process"
-                  alt="Development Process"
-                  className="w-full h-full object-cover rounded-[130px] transition-transform duration-300 ease-in-out hover:scale-105"
-                />
+          {/* Built with Security Section - Enhanced layout */}
+          <section className="space-y-16 lg:space-y-20">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              Built with security, performance, and scalability in its design
+            </h3>
+            
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16 lg:gap-20">
+              {/* Content - Enhanced typography and spacing */}
+              <div className="flex-1 w-full space-y-8">
+                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
+                  Websites today have to face real-world pressures—from performance expectations to security threats. We code with purpose and attention, using the best tech stack to get your site to load fast, stay secure, and grow with your business.
+                </p>
+                
+                <div className="space-y-6">
+                  <h4 className="text-xl lg:text-2xl font-bold text-white">How we do it:</h4>
+                  <ul className="list-disc list-inside text-lg lg:text-xl text-gray-300 space-y-4">
+                    <li>Enterprise-grade security features (SSL, firewalls, input validation)</li>
+                    <li>Front-end and back-end optimization for quick and stable speeds</li>
+                    <li>Cloud-enabled configurations and API-first integrations</li>
+                    <li>Periodic maintenance and technical support plans</li>
+                  </ul>
+                </div>
+              </div>
+              
+              {/* Image - Enhanced presentation */}
+              <div className="flex-1 w-full flex justify-center lg:justify-end">
+                <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full max-w-[365px] h-[568px] flex items-center justify-center overflow-hidden transition-transform duration-500 hover:scale-105">
+                  <img
+                    src="https://placehold.co/365x568/555555/EEEEEE?text=Code+Security"
+                    alt="Code Security"
+                    className="w-full h-full object-cover rounded-[130px] transition-transform duration-300 ease-in-out hover:scale-105"
+                  />
+                </div>
               </div>
             </div>
-            <div className="flex-1 w-full mt-16">
-              <p className="text-lg sm:text-xl leading-relaxed text-gray-300 mb-6">
-                It's all simple, no gimmicks. We keep our development process straightforward and simple, with check-ins along the way so you're in control at every step. From the beginning through to after going live, you're part of everything—and we're accountable for every click, line, and deadline.
-              </p>
-              <h4 className="text-xl font-bold text-white mb-3">What to expect:</h4>
-              <ul className="list-disc list-inside text-lg text-gray-300 space-y-2">
-  <li>Weekly progress reports and collaborative dashboards</li>
-  <li>Transparent timelines, not vague deliverables</li>
-  <li>CMS training for your staff</li>
-  <li>Post-launch support, patches, and optimization routes</li>
-</ul>
+          </section>
 
+          {/* Smarter Process Section - Enhanced layout */}
+          <section className="space-y-16 lg:space-y-20">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              A Smarter Development Process That Keeps You In the Loop
+            </h3>
+            
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-16 lg:gap-20">
+              {/* Image - Enhanced presentation */}
+              <div className="flex-1 w-full flex justify-center lg:justify-start">
+                <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full max-w-[365px] h-[568px] flex items-center justify-center overflow-hidden transition-transform duration-500 hover:scale-105">
+                  <img
+                    src="https://placehold.co/365x568/555555/EEEEEE?text=Development+Process"
+                    alt="Development Process"
+                    className="w-full h-full object-cover rounded-[130px] transition-transform duration-300 ease-in-out hover:scale-105"
+                  />
+                </div>
+              </div>
+              
+              {/* Content - Enhanced typography and spacing */}
+              <div className="flex-1 w-full mt-16 space-y-8">
+                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
+                  It's all simple, no gimmicks. We keep our development process straightforward and simple, with check-ins along the way so you're in control at every step. From the beginning through to after going live, you're part of everything—and we're accountable for every click, line, and deadline.
+                </p>
+                
+                <div className="space-y-6">
+                  <h4 className="text-xl lg:text-2xl font-bold text-white">What to expect:</h4>
+                  <ul className="list-disc list-inside text-lg lg:text-xl text-gray-300 space-y-4">
+                    <li>Weekly progress reports and collaborative dashboards</li>
+                    <li>Transparent timelines, not vague deliverables</li>
+                    <li>CMS training for your staff</li>
+                    <li>Post-launch support, patches, and optimization routes</li>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
       </section>
 
-      {/* New Section: Superb digital offerings */}
-      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 border-t border-gray-800">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-center mb-8 ">
-            Superb digital offerings
-          </h3>
-          <p className="text-lg sm:text-xl leading-relaxed text-gray-300 max-w-3xl mx-auto mb-10 text-center">
-            We play to our strengths: For over years we've been ideating, creating and shipping wonderful things on the internet.
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-              <h4 className="text-2xl font-bold mb-2">Idea to Implementation</h4>
-              <p className="text-gray-300 text-lg">
+      {/* Superb digital offerings Section - Enhanced styling */}
+      <section className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 bg-gray-900/50 border-t border-gray-800">
+        <div className="max-w-5xl mx-auto space-y-16 lg:space-y-20">
+          
+          {/* Section Header - Enhanced typography */}
+          <div className="text-center space-y-8">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              Superb digital offerings
+            </h3>
+            <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300 max-w-4xl mx-auto">
+              We play to our strengths: For over years we've been ideating, creating and shipping wonderful things on the internet.
+            </p>
+          </div>
+          
+          {/* Cards Grid - Enhanced spacing and presentation */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {/* Card 1 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <h4 className="text-2xl lg:text-3xl font-bold mb-2">Idea to Implementation</h4>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
                 An entire product designed in-house, from initial strategy to end product. That is, everything we do is designed with a purpose, built to the best standards.
               </p>
             </div>
-            <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-              <h4 className="text-2xl font-bold mb-2">Full Stack</h4>
-              <p className="text-gray-300 text-lg">
+            
+            {/* Card 2 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <h4 className="text-2xl lg:text-3xl font-bold mb-2">Full Stack</h4>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
                 We have experts and generalists all under one roof, from UI development to interaction design, CMS installation and technical development.
               </p>
             </div>
-            <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-              <h4 className="text-2xl font-bold mb-2">Technology Neutral</h4>
-              <p className="text-gray-300 text-lg">
+            
+            {/* Card 3 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <h4 className="text-2xl lg:text-3xl font-bold mb-2">Technology Neutral</h4>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
                 The greatest tech is the tech that does the job, in fact. We're always listening and observing, so we can recommend the perfect solution to your business problem.
               </p>
             </div>
-            <div className="bg-gray-800 rounded-lg p-8 shadow-xl flex flex-col items-start">
-              <h4 className="text-2xl font-bold mb-2">Integrated</h4>
-              <p className="text-gray-300 text-lg">
+            
+            {/* Card 4 - Enhanced styling */}
+            <div className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50">
+              <h4 className="text-2xl lg:text-3xl font-bold mb-2">Integrated</h4>
+              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
                 We place your site at the center of your online universe, with safe API connections and automated processes in your business infrastructure.
               </p>
             </div>
