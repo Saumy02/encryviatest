@@ -4,8 +4,8 @@ import services from '../Home/services.json';
 
 const OurServices = ({ services }) => {
   return (
-    <div className="relative py-16 text-white min-h-screen font-sans overflow-hidden w-full">
-      <div className="text-center mb-16">
+    <div className="relative py-10 text-white font-sans overflow-hidden w-full ">
+      <div className="text-center mb-10 ">
         <h1 className="text-4xl font-bold inline-block border-b-2 border-white pb-2">
           Our Services
         </h1>

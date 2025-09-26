@@ -1,34 +1,107 @@
-import React from 'react';
+import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import Hero from '../components/Home/Hero';
-import HighlightBanner from '../components/Home/HighlightBanner';
-import DrivenByIndependence from '../components/Home/DrivenByIndependence';
-import WhyTrustUsSection from '../components/Home/WhyTrustUsSection';
-import SingleServiceHighlight from '../components/Home/SingleServiceHighlight';
-import AutoSwappingClientReview from '../components/Home/AutoSwappingClientReview';
-import ConnectNow from '../components/Home/ConnectNow';
-import NewsletterSubscribe from '../components/Home/NewsletterSubscribe';
+import { ErrorBoundary } from 'react-error-boundary';
+
+// Lazy-loaded components with error handling
+const Hero = lazy(() => 
+  import('../components/Home/Hero').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load Hero component</div>
+  }))
+);
+
+const HighlightBanner = lazy(() => 
+  import('../components/Home/HighlightBanner').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load HighlightBanner</div>
+  }))
+);
+
+const DrivenByIndependence = lazy(() => 
+  import('../components/Home/DrivenByIndependence').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load DrivenByIndependence</div>
+  }))
+);
+
+const WhyTrustUsSection = lazy(() => 
+  import('../components/Home/WhyTrustUsSection').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load WhyTrustUsSection</div>
+  }))
+);
+
+const SingleServiceHighlight = lazy(() => 
+  import('../components/Home/SingleServiceHighlight').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load SingleServiceHighlight</div>
+  }))
+);
+
+const AutoSwappingClientReview = lazy(() => 
+  import('../components/Home/AutoSwappingClientReview').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load AutoSwappingClientReview</div>
+  }))
+);
+
+const ConnectNow = lazy(() => 
+  import('../components/Home/ConnectNow').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load ConnectNow</div>
+  }))
+);
+
+const NewsletterSubscribe = lazy(() => 
+  import('../components/Home/NewsletterSubscribe').catch(() => ({
+    default: () => <div className="text-white text-center py-20">Failed to load NewsletterSubscribe</div>
+  }))
+);
+
+// Import JSON data
 import testimonials from '../data/testimonials.json';
 import services from '../components/Home/services.json';
 import slides from '../components/Home/slides.json';
 
-// Animation variants for sections
+// Loader fallback
+const Loader = ({ height = "50vh" }) => (
+  <div className={`min-h-[${height}] flex items-center justify-center`}>
+    <motion.div 
+      className="flex flex-col items-center space-y-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
+      <motion.div
+        className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full"
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+      />
+      <motion.p 
+        className="text-gray-400 text-lg"
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        Loading...
+      </motion.p>
+    </motion.div>
+  </div>
+);
+
+const ErrorFallback = ({ error, resetErrorBoundary }) => (
+  <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="text-center p-8 bg-red-900/20 rounded-lg border border-red-500/30 max-w-md">
+      <h2 className="text-2xl font-bold text-red-400 mb-4">Something went wrong</h2>
+      <p className="text-gray-300 mb-6 text-sm">{error?.message || 'An error occurred'}</p>
+      <button
+        onClick={resetErrorBoundary}
+        className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300"
+      >
+        Try again
+      </button>
+    </div>
+  </div>
+);
+// Animation variants
 const sectionVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50,
-    scale: 0.95
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      ease: "easeOut",
-      staggerChildren: 0.2
-    }
+  hidden: { opacity: 0, y: 30, scale: 0.98 },
+  visible: {
+    opacity: 1, y: 0, scale: 1,
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
@@ -36,238 +109,207 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.3,
-      delayChildren: 0.2
-    }
+    transition: { staggerChildren: 0.15, delayChildren: 0.1 }
   }
 };
 
 const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 30,
-    scale: 0.9
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20
-    }
-  }
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
 };
 
 // Animated section wrapper
-const AnimatedSection = ({ children, className = "", delay = 0 }) => {
+const AnimatedSection = React.memo(({ children, className = "", delay = 0 }) => {
+  // Detect the scroll container element after mount (the custom scroll wrapper)
+  const [scrollRoot, setScrollRoot] = useState(null);
+
+  useEffect(() => {
+    // Look for the specific attribute we set on the SmoothScroll wrapper
+    const rootEl = typeof window !== 'undefined' ? document.querySelector('[data-smooth-scroll-container]') : null;
+    setScrollRoot(rootEl);
+  }, []);
+
+  // Pass found scrollRoot to useInView as `root` so IntersectionObserver watches the right container
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px"
+    threshold: 0.02,
+    root: scrollRoot || undefined,
+    rootMargin: "200px 0px 200px 0px"
   });
 
   return (
     <motion.section
       ref={ref}
-      className={className}
+      className={`will-change-auto ${className}`}
       variants={sectionVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      transition={{ delay }}
+      transition={{ delay, duration: 0.6 }}
     >
-      {children}
+      <Suspense fallback={<div className="min-h-[300px]"></div>}>
+        {children}
+      </Suspense>
     </motion.section>
+  );
+});
+
+const SmoothScroll = ({ children }) => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    // Apply smooth scroll behavior
+    container.style.scrollBehavior = "smooth";
+    
+    // Add scroll event listener for performance monitoring
+    const handleScroll = () => {
+      if (container.scrollTop > 100) {
+        document.body.classList.add('scrolled');
+      } else {
+        document.body.classList.remove('scrolled');
+      }
+    };
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+
+  return (
+    <div
+      ref={containerRef}
+      // important: mark this element so hooked components can find it and use as IntersectionObserver root
+      data-smooth-scroll-container
+      className="min-h-screen overflow-y-auto overflow-x-hidden"
+      style={{
+        WebkitOverflowScrolling: 'touch',
+        scrollbarWidth: 'none',
+        msOverflowStyle: 'none'
+      }}
+    >
+      {/* Hide scrollbar for Chrome/Safari */}
+      <style jsx global>{`
+        ::-webkit-scrollbar {
+          display: none;
+          width: 0;
+          height: 0;
+        }
+      `}</style>
+      {children}
+    </div>
   );
 };
 
 const Home = () => {
   return (
-    <motion.div 
-      className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900"
+    <motion.div
+      className="min-h-screen bg-transparent overflow-x-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.5 }}
     >
       {/* Hero Section */}
-      <AnimatedSection>
-        <Hero />
+      <AnimatedSection className="min-h-screen flex items-center justify-center">
+        <Suspense fallback={<Loader />}>
+          <Hero />
+        </Suspense>
       </AnimatedSection>
 
-      {/* Highlight Banner Section */}
-      <AnimatedSection className="relative py-16 lg:py-20" delay={0.2}>
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-r from-indigo-900/20 to-purple-900/20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        />
+      {/* Highlight Banner */}
+      <AnimatedSection className="relative py-8 lg:py-8" delay={0.2}>
         <div className="relative z-10">
           <HighlightBanner slides={slides} />
         </div>
       </AnimatedSection>
 
-      {/* Driven by Independence Section */}
-      <AnimatedSection className="relative  " delay={0.3}>
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-        />
+      {/* Driven by Independence */}
+      <AnimatedSection className="relative" delay={0.3}>
         <div className="relative z-10">
           <DrivenByIndependence />
         </div>
       </AnimatedSection>
 
-      {/* Why Trust Us Section */}
-      <AnimatedSection className="relative  " delay={0.4}>
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 1 }}
-        />
+      {/* Why Trust Us */}
+      <AnimatedSection className="relative" delay={0.4}>
         <div className="relative z-10">
           <WhyTrustUsSection />
         </div>
       </AnimatedSection>
 
-      {/* Our Services Section */}
-      <AnimatedSection className="relative  " delay={0.5}>
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 1 }}
-        />
-        <div className="relative z-10">
-          <motion.div 
+      {/* Services */}
+      <AnimatedSection className="relative" delay={0.5}>
+        <div className="relative z-10 mt-20">
+          <motion.div
             className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Section Header */}
-            <motion.div 
-              className="text-center mb-12 lg:mb-16"
-              variants={itemVariants}
-            >
-              <motion.div 
-                className="inline-flex items-center justify-center "
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-              >
-                <motion.div 
-                  className="flex-grow border-t-2 border-indigo-500/30 max-w-xs"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                />
-                <motion.h2 
-                  className="mx-6 text-4xl lg:text-5xl xl:text-6xl font-bold text-white"
-                  initial={{ y: 30, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.7, type: "spring", stiffness: 100 }}
-                >
-                  Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Services</span>
-                </motion.h2>
-                <motion.div 
-                  className="flex-grow border-t-2 border-indigo-500/30 max-w-xs"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                />
-              </motion.div>
-              <motion.p 
-                className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.9, type: "spring", stiffness: 100 }}
-              >
+            <motion.div className="text-center mb-4 lg:mb-2" variants={itemVariants}>
+              <motion.h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white">
+                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Services</span>
+              </motion.h2>
+              <motion.p className="text-lg lg:text-2xl text-gray-300 max-w-4xl mt-4 mx-auto leading-relaxed">
                 Comprehensive digital solutions designed to elevate your business presence and drive measurable results
               </motion.p>
             </motion.div>
 
-            {/* Services Grid */}
-            <motion.div 
-              className="space-y-16 lg:space-y-20"
-              variants={containerVariants}
-            >
-              {services.map((service, index) => (
-                <motion.div 
-                  key={index} 
-                  className="relative"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 200 }}
-                >
-                  {/* Background decoration */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-indigo-500/5 to-purple-500/5 rounded-3xl transform -skew-y-1"
-                    initial={{ opacity: 0, rotateY: -15 }}
-                    animate={{ opacity: 1, rotateY: 0 }}
-                    transition={{ delay: index * 0.2 + 1, duration: 0.8 }}
-                  />
-                  <div className="relative z-10">
-                    <SingleServiceHighlight
-                      title={service.title}
-                      hook={service.hook}
-                      description={service.description}
-                      cta={service.cta}
-                      imageUrl={service.imageUrl}
-                      imageOnRight={index % 2 === 0}
-                    />
-                  </div>
-                </motion.div>
-              ))}
+            <motion.div className="space-y-12 lg:space-y-6" variants={containerVariants}>
+              {Array.isArray(services) && services.length > 0 ? (
+                services.map((service, index) => (
+                  <motion.div
+                    key={`service-${index}`}
+                    className="relative"
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 200 }}
+                  >
+                    <div className="relative z-10">
+                      <SingleServiceHighlight
+                        title={service.title}
+                        hook={service.hook}
+                        description={service.description}
+                        cta={service.cta}
+                        imageUrl={service.imageUrl}
+                        imageOnRight={index % 2 === 0}
+                      />
+                    </div>
+                  </motion.div>
+                ))
+              ) : (
+                <div className="text-center py-20 text-gray-400">
+                  <p>No services data available</p>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         </div>
       </AnimatedSection>
 
-      {/* Client Reviews Section */}
-      <AnimatedSection className="relative py-16 lg:py-20" delay={0.6}>
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-800/10 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.9, duration: 1 }}
-        />
+
+      {/* Client Reviews */}
+      <AnimatedSection className="relative py-16 lg:py-20" delay={0.7}>
         <div className="relative z-10">
-          <motion.div 
+          <motion.div
             className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            {/* Section Header */}
-            <motion.div 
-              className="text-center mb-12 lg:mb-16"
-              variants={itemVariants}
-            >
-              <motion.h2 
-                className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6"
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
-              >
+            <motion.div className="text-center mb-12 lg:mb-16" variants={itemVariants}>
+              <motion.h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6">
                 What Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-400">Clients Say</span>
               </motion.h2>
-              <motion.p 
-                className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, type: "spring", stiffness: 100 }}
-              >
+              <motion.p className="text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 Real feedback from businesses we've helped transform and grow
               </motion.p>
             </motion.div>
 
-            {/* Client Reviews Component */}
             <motion.div variants={itemVariants}>
               <AutoSwappingClientReview testimonials={testimonials} />
             </motion.div>
@@ -275,27 +317,15 @@ const Home = () => {
         </div>
       </AnimatedSection>
 
-      {/* Connect Now Section */}
+      {/* Connect Now */}
       <AnimatedSection className="relative py-16 lg:py-20" delay={0.7}>
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-        />
         <div className="relative z-10">
           <ConnectNow />
         </div>
       </AnimatedSection>
 
-      {/* Newsletter Subscribe Section */}
+      {/* Newsletter */}
       <AnimatedSection className="relative py-16 lg:py-20" delay={0.8}>
-        <motion.div 
-          className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-900/10 to-transparent"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1, duration: 1 }}
-        />
         <div className="relative z-10">
           <NewsletterSubscribe />
         </div>
@@ -304,4 +334,21 @@ const Home = () => {
   );
 };
 
-export default Home;
+// Final export with SmoothScroll wrapper
+// export default React.memo(function SmoothScrollHome() {
+//   return (
+//     <SmoothScroll>
+//       <Home />
+//     </SmoothScroll>
+//   );
+// });
+
+export default React.memo(function SmoothScrollHome() {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <SmoothScroll>
+        <Home />
+      </SmoothScroll>
+    </ErrorBoundary>
+  );
+});

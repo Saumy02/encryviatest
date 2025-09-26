@@ -6,14 +6,14 @@ const ServiceCard = ({ service, index }) => {
 
   return (
     <div
-      className={`relative mb-16 md:flex md:items-start ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
+      className={`relative mb-10 flex flex-col md:flex-row md:items-start ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}
     >
-      {/* Image */}
-      <div className="md:w-1/2 px-6">
+      {/* Image Container - Adjusted width and added centering */}
+      <div className="w-full md:w-1/2 lg:w-1/3 px-6 flex justify-center items-center"> {/* Changed md:w-3/4 to md:w-1/2 and added lg:w-1/3 for even smaller on large screens */}
         <img
           src={service.imageUrl}
           alt={service.service}
-          className="w-full rounded-lg shadow-lg"
+          className="w-full h-auto max-w-xs md:max-w-sm rounded-lg shadow-lg"
         />
       </div>
 

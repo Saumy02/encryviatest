@@ -1,37 +1,52 @@
 [
   {
     "id": 1,
-    "title": "First Project",
-    "description": "this is a sample text of web development section area",
-    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+1",
-    "direction": "normal"
+    "title": "EncryVia Website",
+    "description": "A modern, responsive corporate website built with React and Tailwind CSS. Features include dynamic animations, contact forms, service showcases, and optimized performance. The site includes advanced SEO optimization and secure contact handling.",
+    "category": "Web Development",
+    "imageUrl": "./image/projects/encryvia-website.webp",
+    "direction": "left",
+    "technologies": ["React", "Tailwind CSS", "Framer Motion", "Node.js", "MongoDB"],
+    "completedDate": "September 2025"
   },
   {
     "id": 2,
-    "title": "Second Project",
-    "description": "this is a sample text of web development section area",
-    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+2",
-    "direction": "reverse"
+    "title": "Network Security Management Dashboard",
+    "description": "A unified platform that combines network monitoring with real-time security intelligence for IT administrators. Delivers continuous network health visibility, automated threat detection and blocking, proactive vulnerability identification, and 99.9% uptime reliability. Generates compliance-ready reports while reducing operational complexity through integrated diagnostics and security management in a single solution.",
+    "category": "Cyber Security",
+    "imageUrl": "./image/projects/security-platform.webp",
+    "direction": "right",
+    "technologies": ["Python", "Django", "PostgreSQL", "Redis", "Docker"],
+    "completedDate": "February 2024"
   },
   {
     "id": 3,
-    "title": "Third Project",
-    "description": "this is a sample text of web development section area",
-    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+3",
-    "direction": "normal"
+    "title": "Audbaba E-commerce Platform",
+    "description": "AudBaba is a comprehensive multi-vendor marketplace platform designed to connect businesses with professional service providers. Built on WordPress with WooCommerce and Dokan integration, this project delivers a scalable B2B marketplace solution.",
+    "category": "E-commerce",
+    "imageUrl": "./image/projects/audbaba.webp",
+    "direction": "left",
+    "technologies": ["Wordpress", "Stripe", "PHP", "MySQL", "Dokan", "WooCommerce"],
+    "completedDate": "July 2024"
   },
   {
     "id": 4,
-    "title": "Fourth Project",
-    "description": "this is a sample text of web development section area",
-    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+4",
-    "direction": "reverse"
-  },
+    "title": "DriveLite - Privacy-First Cloud Storage Platform",
+    "description": "DriveLite is a fast, minimalist, and privacy-focused file storage application designed for developers and privacy-conscious users. Positioned as (The Suparbase for File Storage) it combines enterprise-grade security with developer-friendly APIs and self-hosting capabilities.",
+    "category": "Web Development",
+    "imageUrl": "./image/projects/drivelite.webp",
+    "direction": "right",
+    "technologies": ["SvelteKit", "TailwindCSS", "TypeScript", "FastAPI", "Machine Learning"],
+    "completedDate": "January 2024"
+   },
   {
     "id": 5,
-    "title": "Fifth Project",
-    "description": "this is a sample text of web development section area",
-    "imageUrl": "https://placehold.co/630x630/333333/FFFFFF?text=Project+Image+5",
-    "direction": "normal"
+    "title": "AI-Powered SEO Analytics Dashboard",
+    "description": "Advanced SEO analytics platform with AI-driven insights, keyword tracking, competitor analysis, and automated reporting. Integrates with Google Analytics, Search Console, and social media APIs.",
+    "category": "SEO & Marketing",
+    "imageUrl": "./image/projects/seo-dashboard.webp",
+    "direction": "left",
+    "technologies": ["Vue.js", "Chart.js", "Python", "FastAPI", "Machine Learning"],
+    "completedDate": "January 2024"
   }
-] 
+]

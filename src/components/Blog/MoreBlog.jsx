@@ -17,7 +17,7 @@ const MoreBlog = () => {
   };
 
   return (
-    <div className="min-h-screen px-4 py-12 text-white bg-gradient-to-br from-black via-gray-900 to-indigo-900 font-inter max-w-4xl mx-auto">
+    <div className="min-h-screen px-4 py-12 text-white font-inter max-w-4xl mx-auto">
       {/* Header */}
       <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-blue-400">
         "AI in Cybersecurity: The Double-Edged Sword"

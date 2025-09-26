@@ -1,11 +1,5 @@
-
-
-
-
-
-
 // src/App.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
@@ -29,6 +23,7 @@ import SEOAndAds from './components/Services/SEOAds';
 
 // --- General Services Page (Optional) ---
 import OurServices from './components/Home/OurServices';
+import ScrollToTop from "./components/ScrollToTop"; 
 
 // Page transition variants
 const pageVariants = {
@@ -115,6 +110,20 @@ const NotFound = () => (
 const AnimatedRoutes = () => {
   const location = useLocation();
   
+  // Toggle a slightly darker overlay on non-home pages
+  useEffect(() => {
+    const isHome = location.pathname === '/';
+    if (isHome) {
+      document.body.classList.remove('page-other');
+    } else {
+      document.body.classList.add('page-other');
+    }
+    return () => {
+      // Ensure cleanup does not leave the class behind when component unmounts
+      document.body.classList.remove('page-other');
+    };
+  }, [location.pathname]);
+
   return (
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
@@ -154,7 +163,7 @@ const AnimatedRoutes = () => {
             <PrivacyPolicy />
           </AnimatedPage>
         } />
-
+        
         {/* === Services Pages === */}
         <Route path="/services" element={
           <AnimatedPage>
@@ -176,7 +185,7 @@ const AnimatedRoutes = () => {
             <SEOAndAds />
           </AnimatedPage>
         } />
-
+        
         {/* === Fallback === */}
         <Route path="*" element={<NotFound />} />
       </Routes>
@@ -187,12 +196,13 @@ const AnimatedRoutes = () => {
 const App = () => {
   return (
     <Router>
-      {/* Main Application Container with enhanced animations */}
+      <ScrollToTop />  
       <motion.div 
-        className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900 text-white font-sans flex flex-col"
+        className="min-h-screen text-white font-sans flex flex-col bg-transparent"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
+        style={{ background: 'transparent' }}
       >
         {/* Global Header with enhanced animations */}
         <motion.div

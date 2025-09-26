@@ -1,89 +1,207 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import reviews from '../data/clientReviews.json';
 
 const ClientReview = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
-  const [isSliding, setIsSliding] = useState(false);
+  const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
 
-  const nextReview = () => {
-    setIsSliding(true);
-    setTimeout(() => {
-      setCurrentReviewIndex((prevIndex) =>
-        prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
-      );
-      setIsSliding(false);
-    }, 300);
-  };
+  // Memoized functions to prevent useEffect dependency issues
+  const nextReview = useCallback(() => {
+    setDirection(1);
+    setCurrentReviewIndex((prevIndex) =>
+      prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
+    );
+  }, [reviews.length]);
 
-  const prevReview = () => {
-    setIsSliding(true);
-    setTimeout(() => {
-      setCurrentReviewIndex((prevIndex) =>
-        prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
-      );
-      setIsSliding(false);
-    }, 300);
-  };
+  const prevReview = useCallback(() => {
+    setDirection(-1);
+    setCurrentReviewIndex((prevIndex) =>
+      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
+    );
+  }, [reviews.length]);
 
+  // Auto-slide effect
   useEffect(() => {
     const interval = setInterval(nextReview, 5000);
     return () => clearInterval(interval);
-  }, [currentReviewIndex]);
+  }, [nextReview]); // Only depend on nextReview function
+
+  // Safety check for empty reviews
+  if (!reviews || reviews.length === 0) {
+    return (
+      <div className="text-center text-gray-400 p-8">
+        No reviews available
+      </div>
+    );
+  }
 
   const currentReview = reviews[currentReviewIndex];
 
-  return (
-    <div className="relative bg-purple-700 p-8 rounded-2xl shadow-lg w-full max-w-xl mx-auto flex items-center mb-24 overflow-hidden">
-      {/* Left Arrow */}
-      <button
-        onClick={prevReview}
-        className="absolute top-1/2 left-[-40px] sm:left-[-56px] transform -translate-y-1/2 p-2 bg-gray-800 rounded-full text-white z-20 hover:bg-gray-700 transition duration-200"
-      >
-        <ChevronLeft size={30} />
-      </button>
+  // Animation variants for smooth transitions
+  const slideVariants = {
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+    }),
+  };
 
-      {/* Review Content */}
-      <div
-        className={`flex flex-col md:flex-row items-center md:items-start w-full transition-transform duration-300 ${
-          isSliding ? 'animate-fade-left' : ''
-        }`}
-      >
-        <div className="md:w-3/5 text-center md:text-left pr-0 md:pr-4 mb-4 md:mb-0">
-          <p className="text-gray-200 text-sm mb-4">{currentReview.text}</p>
-          <h3 className="text-xl font-bold mb-2">Client Review</h3>
-          <div className="flex justify-center md:justify-start">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                size={20}
-                className={`${
-                  i < currentReview.rating ? 'text-yellow-400 fill-current' : 'text-gray-400'
-                }`}
-              />
-            ))}
-          </div>
+  return (
+    <div className="relative w-full max-w-4xl mx-auto px-4">
+      <div className="relative bg-gradient-to-br from-purple-700 to-indigo-700 p-6 sm:p-8 rounded-2xl shadow-2xl overflow-hidden">
+        
+        {/* Background decoration */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12" />
+
+        {/* Left Arrow */}
+        <motion.button
+          onClick={prevReview}
+          className="absolute top-1/2 -left-6 sm:-left-8 transform -translate-y-1/2 p-3 bg-gray-800/90 backdrop-blur-sm rounded-full text-white z-30 hover:bg-gray-700 transition-colors duration-200 shadow-lg"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Previous review"
+        >
+          <ChevronLeft size={24} />
+        </motion.button>
+
+        {/* Review Content with AnimatePresence for smooth transitions */}
+        <div className="relative min-h-[200px] flex items-center">
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentReviewIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              className="w-full"
+            >
+              <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-8">
+                
+                {/* Text Content */}
+                <div className="flex-1 text-center lg:text-left space-y-4">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <blockquote className="text-gray-100 text-base sm:text-lg leading-relaxed mb-6 italic">
+                      "{currentReview.text}"
+                    </blockquote>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="space-y-3"
+                  >
+                    <h3 className="text-xl sm:text-2xl font-bold text-white">
+                      {currentReview.name || 'Client Review'}
+                    </h3>
+                    
+                    {currentReview.company && (
+                      <p className="text-purple-200 font-medium">
+                        {currentReview.company}
+                      </p>
+                    )}
+
+                    {/* Star Rating */}
+                    <div className="flex justify-center lg:justify-start gap-1">
+                      {[...Array(5)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, scale: 0 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.4 + i * 0.1 }}
+                        >
+                          <Star
+                            size={20}
+                            className={`${
+                              i < (currentReview.rating || 5)
+                                ? 'text-yellow-400 fill-yellow-400'
+                                : 'text-gray-400'
+                            } transition-colors duration-200`}
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Client Image */}
+                <motion.div
+                  className="flex-shrink-0"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.1 }}
+                >
+                  <div className="relative">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-xl blur opacity-30" />
+                    <img
+                      src={currentReview.image}
+                      alt={currentReview.name || 'Client'}
+                      className="relative w-32 h-32 sm:w-36 sm:h-36 object-cover rounded-xl shadow-lg"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'https://placehold.co/150x150/6366F1/FFFFFF?text=Client';
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
-        <div className="md:w-2/5 flex justify-center">
-          <img
-            src={currentReview.image}
-            alt="Client"
-            className="rounded-xl shadow-md w-36 h-28 object-cover"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = 'https://placehold.co/150x100/0A0A0A/FFFFFF?text=Image+Error';
-            }}
-          />
+
+        {/* Right Arrow */}
+        <motion.button
+          onClick={nextReview}
+          className="absolute top-1/2 -right-6 sm:-right-8 transform -translate-y-1/2 p-3 bg-gray-800/90 backdrop-blur-sm rounded-full text-white z-30 hover:bg-gray-700 transition-colors duration-200 shadow-lg"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Next review"
+        >
+          <ChevronRight size={24} />
+        </motion.button>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center space-x-2 mt-6">
+          {reviews.map((_, index) => (
+            <motion.button
+              key={index}
+              onClick={() => {
+                setDirection(index > currentReviewIndex ? 1 : -1);
+                setCurrentReviewIndex(index);
+              }}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentReviewIndex
+                  ? 'bg-white scale-110'
+                  : 'bg-white/40 hover:bg-white/60'
+              }`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+              aria-label={`Go to review ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
-
-      {/* Right Arrow */}
-      <button
-        onClick={nextReview}
-        className="absolute top-1/2 right-[-40px] sm:right-[-56px] transform -translate-y-1/2 p-2 bg-gray-800 rounded-full text-white z-20 hover:bg-gray-700 transition duration-200"
-      >
-        <ChevronRight size={30} />
-      </button>
     </div>
   );
 };

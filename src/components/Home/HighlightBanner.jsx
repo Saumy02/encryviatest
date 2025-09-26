@@ -1,62 +1,24 @@
-
-
-// import React, { useState } from 'react';
-
-// const HighlightBanner = ({ slides }) => {
-//   const [hoveredIndex, setHoveredIndex] = useState(null);
-
-//   if (!slides || !Array.isArray(slides) || slides.length === 0) {
-//     return null;
-//   }
-
-//   return (
-//     <section className="relative py-16 px-4 text-white flex flex-col items-center overflow-hidden">
-//       <div className="flex flex-wrap justify-center items-start gap-8 max-w-7xl mx-auto pb-4">
-//         {slides.map((slide, index) => (
-//           <div
-//             key={index}
-//             className={`flex flex-col items-center text-center p-4 flex-shrink-0 transition-all duration-300 ease-in-out transform ${
-//               hoveredIndex === index ? 'scale-105' : hoveredIndex !== null ? 'scale-95' : ''
-//             }`}
-//             onMouseEnter={() => setHoveredIndex(index)}
-//             onMouseLeave={() => setHoveredIndex(null)}
-//           >
-//             <div
-//               className={`rounded-full overflow-hidden flex items-center justify-center bg-gray-800 shadow-xl mb-4 transition-all duration-300 ease-in-out ${
-//                 hoveredIndex === index
-//                   ? 'w-[280px] h-[440px] sm:w-[288px] sm:h-[456px]'
-//                   : 'w-[200px] h-[320px] sm:w-[238px] sm:h-[377px]'
-//               }`}
-//             >
-//               <img
-//                 src={slide.imageUrl}
-//                 alt={slide.title}
-//                 className="w-full h-full object-cover"
-//                 onError={(e) => {
-//                   e.target.onerror = null;
-//                   e.target.src = "https://placehold.co/288x456/2A2A2A/FFFFFF?text=Image";
-//                 }}
-//               />
-//             </div>
-//             <p className="text-xl font-semibold">{slide.title}</p>
-//           </div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default HighlightBanner;
-
-
-
-import React, { useEffect } from 'react';
-import { useAnimation, motion } from 'framer-motion';
+import React, { useEffect, useMemo, useCallback, useState } from 'react';
+import { useAnimation, motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const HighlightBanner = ({ slides }) => {
   const controls = useAnimation();
-  const [ref, inView] = useInView({ triggerOnce: true });
+  // We'll detect the custom scroll container and give it to useInView as `root`.
+  const [scrollRoot, setScrollRoot] = useState(null);
+
+  useEffect(() => {
+    const root = typeof window !== 'undefined' ? document.querySelector('[data-smooth-scroll-container]') : null;
+    setScrollRoot(root);
+  }, []);
+
+  // useInView with dynamic root (the custom scroll container)
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.05,
+    root: scrollRoot || undefined,
+    rootMargin: '200px 0px'
+  });
 
   useEffect(() => {
     if (inView) {
@@ -64,62 +26,178 @@ const HighlightBanner = ({ slides }) => {
     }
   }, [inView, controls]);
 
-  // Animation variants for scroll reveal + zoom pop-in
+  const memoizedSlides = useMemo(() => slides, [slides]);
+
   const cardVariants = {
     hidden: {
-      scale: 0.8,
       opacity: 0,
+      y: 20,
+      scale: 0.98
     },
     visible: (i) => ({
-      scale: [1.2, 1], // Zoom in and settle
       opacity: 1,
+      y: 0,
+      scale: 1,
       transition: {
-        delay: i * 0.3,
-        duration: 0.6,
-        ease: 'easeOut',
+        delay: i * 0.08,
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+        opacity: { duration: 0.6 },
+        y: { duration: 0.8 },
+        scale: { duration: 0.8 }
       },
     }),
   };
 
-  if (!slides || !Array.isArray(slides) || slides.length === 0) return null;
+  const handleVideoError = useCallback((e) => {
+    e.target.style.display = 'none';
+    const fallback = document.createElement('div');
+    fallback.className = 'w-full h-full bg-gray-800 flex items-center justify-center';
+    fallback.textContent = 'Video not available';
+    e.target.parentNode.appendChild(fallback);
+  }, []);
+
+  const handleImageError = useCallback((e) => {
+    e.target.onerror = null;
+    e.target.src = 'https://placehold.co/288x456/2A2A2A/FFFFFF?text=Image';
+  }, []);
+
+  if (!memoizedSlides || !Array.isArray(memoizedSlides) || memoizedSlides.length === 0) return null;
 
   return (
     <section
       ref={ref}
-      className="relative py-16 px-4 text-white flex flex-col items-center overflow-hidden"
+      className="relative py-10 px-4 text-white flex flex-col items-center overflow-hidden"
+      style={{
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+        perspective: '1000px',
+        transformStyle: 'preserve-3d',
+        willChange: 'transform, opacity'
+      }}
     >
-      <div className="flex flex-wrap justify-center items-start gap-8 max-w-7xl mx-auto pb-4">
-        {slides.map((slide, index) => (
-          <motion.div
-            key={index}
-            className="flex flex-col items-center text-center p-4 flex-shrink-0"
-            custom={index}
-            initial="hidden"
-            animate={controls}
-            variants={cardVariants}
-            whileHover={{ scale: 1.08 }} // 👈 Hover zoom-in
-            transition={{ type: 'spring', stiffness: 200 }}
-          >
-            <div className="rounded-full overflow-hidden flex items-center justify-center bg-gray-800 shadow-xl mb-4 w-[238px] h-[377px]">
-              <img
-                src={slide.imageUrl}
-                alt={slide.title}
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
-                    'https://placehold.co/288x456/2A2A2A/FFFFFF?text=Image';
+      <div className="flex flex-wrap justify-center items-start gap-6 max-w-7xl mx-auto pb-2">
+        <AnimatePresence>
+          {memoizedSlides.map((slide, index) => (
+            <motion.div
+              key={`${slide.url}-${index}`}
+              className="flex flex-col items-center text-center p-4 flex-shrink-0"
+              custom={index}
+              initial="hidden"
+              animate={controls}
+              variants={cardVariants}
+              whileHover={{
+                scale: 1.1,
+                zIndex: 10,
+                transition: {
+                  type: 'spring',
+                  stiffness: 400,
+                  damping: 20,
+                  mass: 0.8
+                },
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+              }}
+              transition={{
+                type: 'spring',
+                stiffness: 300,
+                damping: 20,
+                mass: 0.5
+              }}
+              style={{
+                willChange: 'transform, opacity',
+                transform: 'translateZ(0)'
+              }}
+            >
+              <motion.div
+                className="rounded-full overflow-hidden flex items-center justify-center bg-gray-800 shadow-2xl mb-4 w-[238px] h-[377px]"
+                whileHover={{
+                  scale: 1.05,
+                  transition: {
+                    duration: 0.3,
+                    ease: 'easeOut'
+                  }
                 }}
-              />
-            </div>
-            <p className="text-xl font-semibold">{slide.title}</p>
-          </motion.div>
-        ))}
+                style={{
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                  willChange: 'transform'
+                }}
+              >
+                {slide.type === 'video' ? (
+                  <video
+                    src={slide.url}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
+                    className="w-full h-full object-cover"
+                    style={{
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      willChange: 'transform',
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d',
+                      WebkitFontSmoothing: 'antialiased',
+                      WebkitBackfaceVisibility: 'hidden',
+                      WebkitPerspective: 1000,
+                      WebkitTransform: 'translate3d(0,0,0)'
+                    }}
+                    onLoadedData={(e) => {
+                      const video = e.target;
+                      // Force hardware acceleration
+                      video.style.transform = 'translate3d(0,0,0)';
+
+                      const playPromise = video.play();
+                      if (playPromise !== undefined) {
+                        playPromise.catch(() => {
+                          // Try play on next user interaction
+                          document.addEventListener('click', function playVideo() {
+                            video.play().catch(() => {});
+                            document.removeEventListener('click', playVideo);
+                          }, { once: true });
+                        });
+                      }
+                    }}
+                    onError={handleVideoError}
+                    onPlay={() => {
+                      // Force repaint for smoother playback
+                      const video = event?.target;
+                      if (video) {
+                        video.style.transform = 'translateZ(0)';
+                        requestAnimationFrame(() => {
+                          video.style.transform = 'translateZ(0.1px)';
+                          requestAnimationFrame(() => {
+                            video.style.transform = 'translateZ(0)';
+                          });
+                        });
+                      }
+                    }}
+                  />
+                ) : (
+                  <img
+                    src={slide.url}
+                    alt={slide.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                    style={{
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      willChange: 'transform'
+                    }}
+                    onError={handleImageError}
+                  />
+                )}
+              </motion.div>
+              <p className="text-xl font-semibold">{slide.title}</p>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );
 };
 
-export default HighlightBanner;
-
-
+export default React.memo(HighlightBanner);

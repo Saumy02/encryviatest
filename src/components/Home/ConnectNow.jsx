@@ -9,19 +9,21 @@ const ConnectNow = () => {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <div className="w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
       <div className="max-w-6xl mx-auto">
         <div className="relative group">
           {/* Background glow */}
           <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-500"></div>
           
-          {/* Main container */}
-          <div className="relative bg-gradient-to-r from-indigo-900/80 via-purple-900/80 to-indigo-900/80 backdrop-blur-xl border border-white/20 p-8 sm:p-12 lg:p-16 rounded-3xl shadow-2xl">
+          {/* Main container (glassmorphism) */}
+          <div className="relative bg-transparent supports-[backdrop-filter]:bg-transparent backdrop-blur-sm supports-[backdrop-filter]:backdrop-blur-sm border-2 border-white/30 ring-1 ring-white/10 p-8 sm:p-10 lg:p-12 rounded-3xl shadow-2xl shadow-black/50">
             
             {/* Background pattern */}
-            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30 rounded-3xl"></div>
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30 rounded-3xl"></div>
+            {/* Glass highlight overlay */}
+            <div className="pointer-events-none absolute inset-px rounded-3xl bg-gradient-to-b from-white/12 via-white/5 to-transparent"></div>
             
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10">
               
               {/* Text Content */}
               <div className="text-center lg:text-left flex-1 space-y-6">

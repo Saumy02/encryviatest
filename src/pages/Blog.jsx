@@ -117,7 +117,7 @@ const floatingVariants = {
 
 const Blog = () => (
   <motion.div 
-    className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-indigo-900 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8"
+    className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ duration: 1 }}
@@ -244,8 +244,8 @@ const Blog = () => (
           <motion.p 
             className="text-xl lg:text-2xl xl:text-3xl text-gray-300 leading-relaxed"
             variants={textVariants}
-            variants={floatingVariants}
-            animate="animate"
+            animate={{ y: [-10, 10, -10] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           >
             Our blog page is under construction. Stay tuned!
           </motion.p>
@@ -253,9 +253,8 @@ const Blog = () => (
           <motion.p 
             className="text-lg lg:text-xl text-gray-400 leading-relaxed"
             variants={textVariants}
-            variants={floatingVariants}
-            animate="animate"
-            transition={{ delay: 0.5 }}
+            animate={{ y: [-10, 10, -10] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
           >
             We're working hard to bring you insightful content about web development, cybersecurity, and digital marketing.
           </motion.p>

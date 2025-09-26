@@ -4,26 +4,26 @@
     "emoji": "🚀",
     "title": "Web Development that Works as Hard as You Do",
     "hook": "Turn your ideas into secure, scalable platforms that look great — and perform even better.",
-    "description": "From dynamic SaaS dashboards to high-converting eCommerce sites, we design and build digital products engineered for speed, security, and user experience. Every line of code serves a purpose: helping your business grow.",
-    "cta": "Build, protect, and grow your business — all with one agile partner. Let’s talk about your next project.",
-    "imageUrl": "https://placehold.co/630x630/2A2A2A/FFFFFF?text=Web+Development"
+    "description": "We craft everything from totally awesome SaaS dashboards to stunning eCommerce websites, all of which are built to be fast, secure, and easy to use. Each line of code has a purpose: it's all about making your business successful.",
+    "cta": "Build, Secure, and Grow your business — all with one agile partner. So, let's talk about your next project.",
+    "imageUrl": "/image/Web Development.webp"
   },
   {
     "service": "Cybersecurity",
     "emoji": "🔒",
-    "title": "Cyber Security Built In — Not Bolted On",
-    "hook": "Protect your business, data, and reputation with proactive audits and 24/7 managed security.",
-    "description": "We combine deep technical expertise with plain-English reporting, so you always know your real risks and how to fix them. Startups and SMEs trust us to spot vulnerabilities before attackers do — and keep systems secure as you scale.",
-    "cta": "Build, protect, and grow your business — all with one agile partner. Let’s talk about your next project.",
-    "imageUrl": "https://placehold.co/630x630/2A2A2A/FFFFFF?text=Cyber+Security"
+    "title": "Cyber Security Built In - Not Bolted On",
+    "hook": "Secure your business, data, and reputation through constant audits and constant security management.",
+    "description": "We combine serious tech expertise with accessible reporting, so you always know what's actually happening with your risks and how to address them. Startups and SMEs trust us to spot vulnerabilities before attackers do — and keep systems secure as you scale.",
+    "cta": "Build, Secure, and Grow your business — all with one agile partner. So, let's talk about your next project.",
+    "imageUrl": "/image/Cybersecurity.webp"
   },
   {
     "service": "Digital Marketing & Ads",
     "emoji": "📊",
-    "title": "Digital Marketing That Moves the Needle",
-    "hook": "Stop guessing — start growing with data-driven campaigns built to deliver measurable ROI.",
-    "description": "From SEO strategies that lift you above competitors, to paid ads that actually convert, we craft and optimize campaigns that align with your business goals — and adapt as your market evolves.",
-    "cta": "Build, protect, and grow your business — all with one agile partner. Let’s talk about your next project.",
-    "imageUrl": "https://placehold.co/630x630/2A2A2A/FFFFFF?text=SEO+%26+Ads"
+    "title": "SEO, Ads & AI-Powered Growth",
+    "hook": "While competitors chase yesterday's keywords, we're capturing tomorrow's AI customers - discovered by both Google AND ChatGPT.",
+    "description": "The future of search is here, and it's powered by AI. Our revolutionary approach combines battle-tested SEO, high-converting paid campaigns, and pioneering GEO (Generative Engine Optimization) - ensuring your brand dominates not just Google rankings, but AI assistant responses. When customers search traditionally OR ask ChatGPT for recommendations, you'll be the answer they find.",
+    "cta": "Build, Secure, and Grow your business — all with one agile partner. So, let's talk about your next project.",
+    "imageUrl": "/image/Digital Marketing & Ads.webp"
   }
 ]

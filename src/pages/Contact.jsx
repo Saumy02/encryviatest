@@ -1,25 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-// Icons (SVGs)
+// Icons (Corrected SVGs)
 const OfficeIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-blue-400">
-    <rect x="2" y="7" width="20" height="15" rx="2" ry="2" strokeWidth="2" />
-    <path d="M12 22V7M6 17v-1.5a1.5 1.5 0 013 0V17M15 17v-1.5a1.5 1.5 0 013 0V17M7 2h10M12 7h.01" strokeWidth="2" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
   </svg>
 );
 
 const PhoneIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-blue-400">
-    <path d="M22 16.92v3a2 2 0 01-2.18 2A19.79 19.79 0 0111.19 19.85a19.5 19.5 0 01-3.07-8.63A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z" strokeWidth="2" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
   </svg>
 );
 
 const MailIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-blue-400">
-    <rect x="2" y="4" width="20" height="16" rx="2" ry="2" strokeWidth="2" />
-    <path d="M22 6L12 13 2 6" strokeWidth="2" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
   </svg>
 );
 
@@ -29,20 +27,16 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
       delayChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50,
-    scale: 0.95
-  },
-  visible: { 
-    opacity: 1, 
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -54,13 +48,9 @@ const itemVariants = {
 };
 
 const textVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 30,
-    scale: 0.9
-  },
-  visible: { 
-    opacity: 1, 
+  hidden: { opacity: 0, y: 30, scale: 0.9 },
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -71,32 +61,10 @@ const textVariants = {
   }
 };
 
-const imageVariants = {
-  hidden: { 
-    opacity: 0, 
-    scale: 0.8,
-    rotateY: -15
-  },
-  visible: { 
-    opacity: 1, 
-    scale: 1,
-    rotateY: 0,
-    transition: {
-      type: "spring",
-      stiffness: 100,
-      damping: 20
-    }
-  }
-};
-
 const formVariants = {
-  hidden: { 
-    opacity: 0, 
-    x: 50,
-    scale: 0.95
-  },
-  visible: { 
-    opacity: 1, 
+  hidden: { opacity: 0, x: 50, scale: 0.95 },
+  visible: {
+    opacity: 1,
     x: 0,
     scale: 1,
     transition: {
@@ -116,9 +84,7 @@ const buttonVariants = {
       stiffness: 300
     }
   },
-  tap: {
-    scale: 0.95
-  }
+  tap: { scale: 0.95 }
 };
 
 // Animated section wrapper
@@ -144,361 +110,361 @@ const AnimatedSection = ({ children, className = "", delay = 0 }) => {
 };
 
 const Contact = () => {
+  // Form state management
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    number: '',
+    messages: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  // from link with bacekend
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate locally if needed here
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://encryvia-backend.vercel.app/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.fullName,   // matches your backend field 'name'
+          email: formData.email,
+          number: formData.number,
+          messages: formData.messages
+        })
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to submit');
+      }
+
+      const data = await response.json();
+      setSubmitStatus('success');
+      setFormData({ fullName: '', email: '', number: '', messages: '' });   // reset data from frontend after submitting 
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setSubmitStatus(null), 3000);
+    }
+  };
+
   return (
-    <motion.div 
-      className="min-h-screen text-white bg-gradient-to-br from-black via-gray-900 to-indigo-900"
+    <motion.div
+      className="min-h-screen text-white"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      
-      {/* Hero Section - Enhanced spacing and typography */}
-      <AnimatedSection className="flex flex-col items-center justify-center py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 text-center">
-        <motion.div 
-          className="max-w-4xl mx-auto space-y-8"
-          variants={containerVariants}
-        >
-          <motion.h1 
+
+      {/* Hero Section */}
+      <AnimatedSection className="py-56 sm:py-32 lg:py-40 xl:py-48  px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto space-y-6">
+          <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
             variants={textVariants}
           >
-            <motion.span 
-              className="text-indigo-500"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-            >
-              "
-            </motion.span>
-            Our <motion.span 
-              className="text-indigo-500"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              Contact Us
-            </motion.span> Page
-            <motion.span 
-              className="text-indigo-500"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
-            >
-              "
-            </motion.span>
+            Let's <span className="text-indigo-500">Connect</span> and Build Together
           </motion.h1>
-          <motion.p 
-            className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          <motion.p
+            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
             variants={textVariants}
           >
-            Let's build something together — talk to our web, security, or marketing team today.
+            Have a project in mind or just want to learn more? Talk to our web, security, or marketing team today. We're here to help you achieve your goals.
           </motion.p>
-        </motion.div>
+        </div>
       </AnimatedSection>
 
-      {/* Contact Section - Improved layout and spacing */}
-      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8" delay={0.2}>
-        <motion.div 
-          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
-          variants={containerVariants}
-        >
+      {/* Contact Section */}
+      <AnimatedSection className="py-12 sm:py-16 lg:py-24 xl:py-24 px-4 sm:px-6 lg:px-8" delay={0.2}>
+        <motion.div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 lg:space-y-20" variants={containerVariants}>
 
-          {/* Heading with Line - Enhanced visual design */}
-          <motion.div 
-            className="flex items-center justify-center"
-            variants={itemVariants}
-          >
-            <motion.div 
-              className="border-t border-gray-600 flex-grow max-w-xs lg:max-w-sm"
+          {/* Heading */}
+          <motion.div className="flex flex-col sm:flex-row items-center justify-center gap-4" variants={itemVariants}>
+            <motion.div
+              className="border-t border-gray-600 flex-grow max-w-xs lg:max-w-sm hidden sm:block"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             />
-            <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold mx-6 text-blue-400"
+            <motion.h2
+              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-400"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
               Contact Us
             </motion.h2>
-            <motion.div 
-              className="border-t border-gray-600 flex-grow max-w-xs lg:max-w-sm"
+            <motion.div
+              className="border-t border-gray-600 flex-grow max-w-xs lg:max-w-sm hidden sm:block"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             />
           </motion.div>
 
-          {/* Header Image - Enhanced presentation */}
-          <motion.div 
-            className="w-full"
-            variants={imageVariants}
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          >
-            <div className="rounded-3xl overflow-hidden shadow-2xl">
-              <motion.img
-                src="https://placehold.co/1203x630/555555/EEEEEE?text=Contact+Us+Header+Image"
-                alt="Contact Us"
-                className="w-full h-auto object-cover"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6 }}
-              />
-            </div>
-          </motion.div>
+          {/* Text + Form */}
+          <div className="flex flex-col lg:flex-row gap-10 sm:gap-12 lg:gap-16 xl:gap-20 items-start">
 
-          {/* Text + Form Section - Improved layout */}
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-20 items-start">
+            {/* Text */}
+            <motion.div className="flex-1 space-y-8 lg:space-y-10 text-center lg:text-left" variants={containerVariants}>
+              <motion.h3 className="text-2xl sm:text-3xl lg:text-5xl font-bold leading-tight" variants={textVariants}>
+                Stay Connected with Us
+              </motion.h3>
+              <motion.p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed" variants={textVariants}>
+                Got SEO, GEO, AI Optimization, International Search Strategies, Web Design, or Marketing issues? Looking for partnership opportunities? Reach out — we're here to help you beat those web goals.
+              </motion.p>
 
-            {/* Left: Text Content - Enhanced typography and spacing */}
-            <motion.div 
-              className="flex-1 space-y-8 lg:space-y-10"
-              variants={containerVariants}
-            >
-              <motion.div 
-                className="space-y-6"
-                variants={itemVariants}
-              >
-                <motion.h3 
-                  className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight"
-                  variants={textVariants}
-                >
-                  Stay Connected with Us
-                </motion.h3>
-
-                <motion.p 
-                  className="text-lg lg:text-xl text-gray-300 leading-relaxed"
-                  variants={textVariants}
-                >
-                  Got SEO, international search strategies, web design, or internet marketing issues? Looking for partnership opportunities, need some custom keyword research, or need help with your next campaign? Reach out to us—we're here to help you beat those web goals.
-                </motion.p>
-              </motion.div>
-
-              <motion.div 
-                className="space-y-6"
-                variants={itemVariants}
-              >
-                <motion.h4 
-                  className="text-xl lg:text-2xl font-semibold text-white"
-                  variants={textVariants}
-                >
-                  How may we help you?
-                </motion.h4>
-                <motion.ul 
-                  className="list-disc list-inside text-gray-300 space-y-3 text-lg"
-                  variants={containerVariants}
-                >
-                  {[
-                    "SEO consulting, keyword research consulting, and competitor analysis consulting",
-                    "Guidelines for international SEO and web design trends",
-                    "Backing for your online marketing plan",
-                    "Professional guidance on cyber security issues for your company"
-                  ].map((item, index) => (
-                    <motion.li 
-                      key={index}
-                      variants={itemVariants}
-                      whileHover={{ x: 10 }}
-                      transition={{ type: "spring", stiffness: 300 }}
-                    >
-                      {item}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              </motion.div>
-
-              <motion.div 
-                className="space-y-4"
-                variants={itemVariants}
-              >
-                <motion.p 
-                  className="text-md text-gray-400"
-                  variants={textVariants}
-                >
-                  We answer all questions within 24 hours. Your goals and privacy are our priorities.
-                </motion.p>
-
-                <div className="space-y-4">
-                  <motion.h4 
-                    className="text-lg lg:text-xl font-semibold text-blue-400"
-                    variants={textVariants}
+              <motion.ul className="list-disc list-inside text-gray-300 space-y-3 text-sm sm:text-base lg:text-lg text-left" variants={containerVariants}>
+                {[
+                  "SEO consulting and competitor analysis",
+                  "Guidelines for international SEO & web design",
+                  "Backing for your online marketing plan",
+                  "Professional guidance on cyber security issues"
+                ].map((item, index) => (
+                  <motion.li
+                    key={index}
+                    variants={itemVariants}
+                    whileHover={{ x: 10, color: "#60a5fa" }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="cursor-pointer"
                   >
-                    Why Contact Us?
-                  </motion.h4>
-                  <motion.p 
-                    className="text-md lg:text-lg text-gray-300 leading-relaxed"
-                    variants={textVariants}
-                  >
-                    Instant expert assistance and valuable SEO advice. Support from an experienced analyst in web development and online marketing.
-                    <br /><br />
-                    Today's tactics are aligned with 2025 and beyond. Let's get connected and drive your business forward!
-                  </motion.p>
-                </div>
-              </motion.div>
+                    {item}
+                  </motion.li>
+                ))}
+              </motion.ul>
+
+              <motion.p className="text-sm sm:text-base text-gray-400" variants={textVariants}>
+                We answer all questions within 24 hours. Your goals and privacy are our priorities.
+              </motion.p>
             </motion.div>
 
-            {/* Right: Contact Form - Enhanced styling and spacing */}
-            <motion.div 
-              className="flex-1 bg-indigo-950/70 p-8 lg:p-10 rounded-2xl shadow-2xl border border-indigo-500/20"
+            {/* Enhanced Form */}
+            <motion.div
+              className="flex-1 w-full bg-gradient-to-br from-indigo-950/70 to-purple-950/50 p-6 sm:p-8 lg:p-8 rounded-2xl shadow-2xl border border-indigo-500/30 backdrop-blur-sm"
               variants={formVariants}
-              whileHover={{ 
-                boxShadow: "0 25px 50px rgba(99, 102, 241, 0.2)",
-                borderColor: "rgba(99, 102, 241, 0.4)"
-              }}
-              transition={{ type: "spring", stiffness: 200 }}
             >
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 {[
-                  { id: 'fullName', label: 'Full Name', type: 'text', placeholder: 'Enter your full name' },
-                  { id: 'email', label: 'Email', type: 'email', placeholder: 'Enter your email' },
-                  { id: 'number', label: 'Number', type: 'tel', placeholder: 'Enter your phone number' },
-                  { id: 'location', label: 'Location', type: 'text', placeholder: 'Enter your location' }
-                ].map(({ id, label, type, placeholder }, index) => (
-                  <motion.div 
-                    key={id} 
+                  { id: 'fullName', label: 'Full Name', type: 'text', placeholder: 'Enter your full name', required: true },
+                  { id: 'email', label: 'Email', type: 'email', placeholder: 'Enter your email', required: true },
+                  { id: 'number', label: 'Phone Number', type: 'tel', placeholder: 'Enter your phone number', required: true },
+                  { id: 'messages', label: 'Message', type: 'textarea', placeholder: 'Enter your message', required: false }
+                ].map(({ id, label, type, placeholder, required }, index) => (
+                  <motion.div
+                    key={id}
                     className="space-y-2"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + index * 0.1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    <label htmlFor={id} className="block text-sm font-medium text-gray-300">{label}</label>
-                    <motion.input
-                      id={id}
-                      type={type}
-                      placeholder={placeholder}
-                      className="w-full px-4 py-3 rounded-lg bg-gray-200 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300"
-                      whileFocus={{ 
-                        scale: 1.02,
-                        boxShadow: "0 0 0 3px rgba(59, 130, 246, 0.3)"
-                      }}
-                    />
+                    <label htmlFor={id} className="block text-sm font-medium text-gray-300">
+                      {label} {required && <span className="text-red-400">*</span>}
+                    </label>
+
+                    {type === "textarea" ? (
+                      <textarea
+                        id={id}
+                        name={id}
+                        placeholder={placeholder}
+                        value={formData[id]}
+                        onChange={handleInputChange}
+                        required={required}
+                        disabled={isSubmitting}
+                        rows={4}
+                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 text-white placeholder-gray-400 border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 disabled:opacity-50"
+                      />
+                    ) : (
+                      <input
+                        id={id}
+                        name={id}
+                        type={type}
+                        placeholder={placeholder}
+                        value={formData[id]}
+                        onChange={(e) => {
+                          let value = e.target.value;
+                          if (id === "number") {
+                            // Allow only digits
+                            value = value.replace(/\D/g, "");
+                            // Limit length to 10 digits
+                            if (value.length > 10) value = value.slice(0, 10);
+                          }
+                          handleInputChange({ target: { name: id, value } });
+                        }}
+                        required={required}
+                        disabled={isSubmitting}
+                        pattern={id === "number" ? "\\d{10}" : undefined}
+                        title={id === "number" ? "Please enter a valid 10-digit phone number" : undefined}
+                        className="w-full px-4 py-3 rounded-lg bg-gray-800/50 text-white placeholder-gray-400 border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 disabled:opacity-50"
+                      />
+                    )}
                   </motion.div>
                 ))}
-                <motion.div 
-                  className="pt-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
+
+                {/* Submit Button */}
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting || !formData.fullName || !formData.email}
+                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  variants={buttonVariants}
+                  whileHover={!isSubmitting ? "hover" : {}}
+                  whileTap={!isSubmitting ? "tap" : {}}
                 >
-                  <motion.button 
-                    type="submit" 
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 shadow-lg"
-                    variants={buttonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <motion.div
+                        className="w-5 h-5 border-2 border-white border-t-transparent rounded-full"
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                      />
+                      Submitting...
+                    </span>
+                  ) : (
+                    "Submit"
+                  )}
+                </motion.button>
+
+                {/* Status Messages */}
+                {submitStatus && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`text-center p-3 rounded-lg ${submitStatus === 'success'
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                      : 'bg-red-500/20 text-red-400 border border-red-500/30'
+                      }`}
                   >
-                    Submit
-                  </motion.button>
-                </motion.div>
+                    {submitStatus === 'success'
+                      ? '✅ Message sent successfully! We\'ll get back to you soon.'
+                      : '❌ Something went wrong. Please try again. or check all the fields'
+                    }
+                  </motion.div>
+                )}
               </form>
             </motion.div>
           </div>
         </motion.div>
       </AnimatedSection>
 
-      {/* Contact Info + Map Section - Enhanced layout */}
-      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8" delay={0.4}>
-        <motion.div 
-          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
+      {/* Contact Info Section */}
+      <AnimatedSection className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8" delay={0.4}>
+        <motion.div
+          className="max-w-6xl mx-auto"
           variants={containerVariants}
         >
-          
-          {/* Contact Info and Image */}
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 xl:gap-20 items-center">
-            
-            {/* Image - Enhanced presentation */}
-            <motion.div 
-              className="w-full lg:w-1/2"
-              variants={imageVariants}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200 }}
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16">
+
+            {/* Mobile Image */}
+            <motion.div
+              className="w-full sm:w-2/3 lg:w-1/2 flex justify-center items-center"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
             >
-              <div className="rounded-[120px] overflow-hidden shadow-2xl">
+              <div className="relative">
+                <motion.div
+                  className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-[50px] blur-xl"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [0.5, 0.8, 0.5]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
                 <motion.img
-                  src="https://placehold.co/480x645/555555/EEEEEE?text=Mobile+Phone+Icon"
+                  src="./image/Contact_US/mobilicon.png"
                   alt="Mobile Phone"
-                  className="w-full h-auto object-cover rounded-[100px]"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.6 }}
+                  className="relative z-10 w-full max-w-sm h-auto object-cover rounded-[40px] shadow-2xl"
+                  whileHover={{ scale: 1.02, rotateY: 5 }}
+                  transition={{ duration: 0.3 }}
                 />
               </div>
             </motion.div>
 
-            {/* Contact Information - Enhanced spacing and typography */}
-            <motion.div 
-              className="w-full lg:w-1/2 space-y-12 text-center lg:text-right"
-              variants={containerVariants}
+            {/* Contact Info */}
+            <motion.div
+              className="w-full lg:w-1/2 space-y-10 text-center lg:text-left"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
             >
               {[
                 {
                   icon: <OfficeIcon />,
                   title: 'Office Address',
-                  lines: ['New Delhi, India']
+                  lines: ['Noida & New Delhi, India'],
+                  link: null
                 },
                 {
                   icon: <PhoneIcon />,
                   title: 'Phone Number',
-                  lines: ['+911234567890', '+911234567890']
+                  lines: ['+91 6390215426'],
+                  link: 'tel:+916390215426'
                 },
                 {
                   icon: <MailIcon />,
                   title: 'Email Address',
-                  lines: ['encryvia@gmail.com', 'info@encryvia.com']
+                  lines: ['info@encryvia.com'],
+                  link: 'mailto:info@encryvia.com'
                 }
-              ].map(({ icon, title, lines }, idx) => (
-                <motion.div 
-                  key={idx} 
-                  className="space-y-3"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, x: 10 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+              ].map(({ icon, title, lines, link }, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.6, delay: idx * 0.15 }}
+                  whileHover={{ scale: 1.02, x: 5 }}
+                  className="group cursor-pointer"
                 >
-                  <motion.div 
-                    className="flex justify-center lg:justify-end items-center gap-3"
-                    whileHover={{ gap: 4 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
+                  <div className="flex items-center justify-center lg:justify-start gap-4 mb-3">
                     <motion.div
-                      whileHover={{ rotate: 360, scale: 1.2 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                      className="p-2 bg-blue-500/20 rounded-full"
                     >
                       {icon}
                     </motion.div>
-                    <h4 className="text-xl lg:text-2xl font-semibold text-white">{title}</h4>
-                  </motion.div>
+                    <h4 className="text-lg sm:text-xl lg:text-2xl font-semibold group-hover:text-blue-400 transition-colors duration-300">
+                      {title}
+                    </h4>
+                  </div>
                   {lines.map((line, i) => (
-                    <motion.p 
-                      key={i} 
-                      className="text-gray-300 text-lg"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + i * 0.1 }}
-                    >
-                      {line}
-                    </motion.p>
+                    <p key={i} className="text-sm sm:text-base lg:text-lg text-gray-300 group-hover:text-white transition-colors duration-300">
+                      {link ? (
+                        <a href={link} className="hover:text-blue-400 transition-colors duration-300">
+                          {line}
+                        </a>
+                      ) : (
+                        line
+                      )}
+                    </p>
                   ))}
                 </motion.div>
               ))}
             </motion.div>
           </div>
-
-          {/* Map - Enhanced presentation */}
-          <motion.div 
-            className="w-full"
-            variants={imageVariants}
-            whileHover={{ scale: 1.02 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          >
-            <div className="rounded-[40px] overflow-hidden shadow-2xl">
-              <motion.img
-                src="https://placehold.co/1138x787/555555/EEEEEE?text=Map+of+New+Delhi"
-                alt="Map of New Delhi"
-                className="w-full h-auto object-cover"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.6 }}
-              />
-            </div>
-          </motion.div>
         </motion.div>
       </AnimatedSection>
+
     </motion.div>
   );
 };

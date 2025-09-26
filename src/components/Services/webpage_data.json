@@ -1,0 +1,18 @@
+ [
+            {
+                "title": "Idea to Implementation",
+                "description": "An entire product designed in-house, from initial strategy to end product. Everything we do is designed with a purpose, built to the best standards."
+              },
+              {
+                "title": "Full Stack Expertise",
+                "description": "We have experts and generalists all under one roof, from UI development to interaction design, CMS installation and technical development."
+              },
+              {
+                "title": "Technology Neutral",
+                "description": "The best tech is the tech that solves your problem. We're always learning and adapting, so we can recommend the perfect solution for your business needs."
+              },
+              {
+                "title": "Seamlessly Integrated",
+                "description": "We place your site at the center of your digital ecosystem, with secure API connections and automated processes integrated into your business infrastructure."
+              } 
+]

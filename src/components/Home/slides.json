@@ -1,18 +1,22 @@
 [
   {
-    "title": "Slide",
-    "imageUrl": "https://placehold.co/238x377/000000/FFFFFF?text=Slide+1%0ACoding"
+    "title": "Web Development",
+    "url": "slide/slide1.webm",
+    "type": "video"
   },
   {
-    "title": "Slide",
-    "imageUrl": "https://placehold.co/238x377/000000/FFFFFF?text=Slide+2%0ADigital"
+    "title": "Cyber Security",
+    "url": "slide/slide2.webm",
+    "type": "video"
   },
   {
-    "title": "Slide",
-    "imageUrl": "https://placehold.co/238x377/000000/FFFFFF?text=Slide+3%0ALaptop"
+    "title": "Digital Marketing & Ads",
+    "url": "slide/slide3.webm",
+    "type": "video"
   },
   {
-    "title": "Slide",
-    "imageUrl": "https://placehold.co/238x377/000000/FFFFFF?text=Slide+4%0AAnalytics"
+    "title": "Analytics",
+    "url": "slide/slide4.webm",
+    "type": "video"
   }
 ] 

@@ -119,13 +119,15 @@ const AutoSwappingClientReview = ({ testimonials, reviews, interval = 5000 }) =>
 
   return (
     <motion.section 
-      className="py-20 px-6 text-white relative"
+      className="py-10 px-6 text-white relative"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-center">
-        <div className="relative w-full rounded-3xl overflow-hidden bg-gradient-to-br from-indigo-900 to-black shadow-xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between">
+      <div className="max-w-4xl mx-auto flex items-center justify-center">
+        <div className="relative w-full rounded-3xl overflow-hidden bg-transparent supports-[backdrop-filter]:bg-transparent backdrop-blur-2xl supports-[backdrop-filter]:backdrop-blur-2xl border-2 border-white/30 ring-1 ring-white/10 shadow-2xl shadow-black/50 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between">
+          {/* Glass highlight overlay */}
+          <div className="pointer-events-none absolute inset-px rounded-3xl bg-gradient-to-b from-white/12 via-white/5 to-transparent"></div>
           {/* Left arrow */}
           <motion.button
             onClick={() => setCurrentIndex((prev) => (prev - 1 + data.length) % data.length)}

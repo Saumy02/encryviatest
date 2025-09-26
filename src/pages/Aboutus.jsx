@@ -1,9 +1,8 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-// SVG Icons for the cards (simplified versions)
+// SVG Icons for the cards
 const LightbulbIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
     <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.8-2.2 2-3.4a10 10 0 0 0-2.3-2.6C16.4 5.3 15 4 11 4 7 4 5.6 5.3 4.5 6.5A10 10 0 0 0 2 9.4c.2 1.2 1 2.5 2 3.4.8.8 1.3 1.5 1.5 2.5"></path>
@@ -21,6 +20,7 @@ const LayoutGridIcon = () => (
     <rect x="3" y="14" width="7" height="7"></rect>
   </svg>
 );
+4
 const NetworkIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
     <rect x="16" y="2" width="6" height="6" rx="1"></rect>
@@ -28,9 +28,9 @@ const NetworkIcon = () => (
     <path d="M16 8v3a1 1 0 0 0 1 1h3"></path>
     <path d="M8 16h3a1 1 0 0 1 1 1v3"></path>
     <path d="M12 12v.01"></path>
-    <path d="M22 16c0 1.1-9 6-9 6s-9-4.9-9-6V8c0-1.1 9-6 9-6s9 4.9 9 6Z"></path>
   </svg>
 );
+
 const LayersIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-blue-400">
     <path d="m12.83 2.18-.3.9a4.37 4.37 0 0 0-4.65 6.36l.51.53c.8-.08 1.45-.63 1.6-1.4.3-.9-1.2-2.13-2.1-3-.8.74-1.3 1.68-1.64 2.76-.52 1.57-.96 4.41-.96 7.07 0 4.07.82 5.67 3.02 6.78.38.19.78.33 1.18.45"></path>
@@ -39,116 +39,26 @@ const LayersIcon = () => (
   </svg>
 );
 
-// Helper component to animate a string of text character by character.
-// It generates and stores random transform values for each character
-// to simulate a "falling" effect on hover.
-const AnimatedText = ({ text, isAnimating, baseClassName, onMouseEnter, onMouseLeave }) => {
-  // useRef is used to store the randomly generated transform properties for each character.
-  // This ensures that the random values are generated only once per character
-  // when the component mounts (or text changes) and persist across re-renders,
-  // making the animation consistent for each hover/unhover cycle.
-  const charTransformData = useRef([]);
-
-  // useEffect hook to initialize or re-initialize random transform values.
-  // This runs once when the component mounts and again if the 'text' prop changes.
-  useEffect(() => {
-    charTransformData.current = text.split('').map(() => ({
-      // Random horizontal translation (x-axis) between -50px and 50px for a slight drift.
-      x: Math.random() * 100 - 50, // Range: -50 to +50
-
-      // Random vertical translation (y-axis) downwards, between 50px and 150px.
-      // This creates the primary "falling" motion.
-      y: Math.random() * 100 + 50, // Range: +50 to +150
-
-      // Random rotation in degrees between -360 and 360 degrees for a subtle spin.
-      rotate: Math.random() * 720 - 360, // Range: -360 to +360
-
-      // Random scale factor between 0.5 and 0.8.
-      // Characters shrink slightly as they fall into the distance.
-      scale: Math.random() * 0.3 + 0.5, // Range: 0.5 to 0.8
-
-      // Random delay for each character's animation start, between 0 and 0.3 seconds.
-      // This adds to the chaotic "falling" effect, making them drop at slightly different times.
-      delay: Math.random() * 0.3, // Max delay for falling out
-    }));
-  }, [text]); // Dependency array: re-run if 'text' prop changes.
-
-  // Define the maximum possible random delay used for character animation.
-  // This value is crucial for correctly calculating the reversed delay during reassembly.
-  const MAX_ANIMATION_DELAY = 0.3; // Should match the max value in Math.random() * 0.3 above.
-
-  return (
-    // Wrap the mapped characters in a span to attach hover handlers to the entire text segment.
-    <span
-      className={`inline-block whitespace-nowrap ${baseClassName}`} // Use inline-block to allow hover on whole segment, whitespace-nowrap to prevent line breaks
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-    >
-      {/* Map over each character in the text to create individual span elements. */}
-      {text.split('').map((char, charIndex) => {
-        // Retrieve the pre-generated random transform data for the current character.
-        // Fallback to default values if data isn't ready (e.g., during initial render before useEffect).
-        const transform = charTransformData.current[charIndex] || { x: 0, y: 0, rotate: 0, scale: 1, delay: 0 };
-
-        return (
-          <span
-            key={charIndex} // Unique key for React list rendering.
-            className={`char-span`} // Apply base class for char-span only
-            style={{
-              // Conditional transformation:
-              // If 'isAnimating' (hovered) is true, apply the random falling transform.
-              // If 'isAnimating' is false (not hovered), reset to 'none' (original position/size).
-              transform: isAnimating
-                ? `translate(${transform.x}px, ${transform.y}px) rotate(${transform.rotate}deg) scale(${transform.scale})`
-                : 'none',
-
-              // Conditional opacity:
-              // If 'isAnimating' (hovered) is true, fade out completely (opacity 0).
-              // If 'isAnimating' is false (not hovered), stay fully visible (opacity 1).
-              opacity: isAnimating ? 0 : 1,
-
-              // Transition duration: How long the animation takes for each character.
-              // Set to 0.7 seconds for a noticeable falling speed.
-              transitionDuration: '0.7s',
-
-              // Conditional transition delay:
-              // On hover ('isAnimating' true): use the random delay, making characters fall chaotically.
-              // On unhover ('isAnimating' false): use a reversed random delay. This ensures characters that
-              // started falling later will return faster, creating a fluid "un-falling" effect.
-              transitionDelay: isAnimating
-                ? `${transform.delay}s`
-                : `${(MAX_ANIMATION_DELAY - transform.delay)}s`,
-            }}
-          >
-            {/* Render a non-breaking space for actual spaces to maintain layout. */}
-            {char === ' ' ? '\u00A0' : char}
-          </span>
-        );
-      })}
-    </span>
-  );
-};
-
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
       delayChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 50,
     scale: 0.95
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -160,13 +70,13 @@ const itemVariants = {
 };
 
 const textVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 30,
     scale: 0.9
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
     transition: {
@@ -178,27 +88,27 @@ const textVariants = {
 };
 
 const cardVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 50,
-    scale: 0.9,
-    rotateY: -15
+  hidden: {
+    opacity: 0,
+    y: 40,
+    scale: 0.95,
+    filter: 'blur(6px)'
   },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
     scale: 1,
-    rotateY: 0,
+    filter: 'blur(0px)',
     transition: {
       type: "spring",
-      stiffness: 100,
-      damping: 20
+      stiffness: 120,
+      damping: 18
     }
   },
   hover: {
-    scale: 1.05,
-    rotateY: 5,
-    boxShadow: "0 25px 50px rgba(0, 0, 0, 0.3)",
+    scale: 1.02,
+    y: -5,
+    boxShadow: "0 25px 50px rgba(99, 102, 241, 0.2)",
     transition: {
       type: "spring",
       stiffness: 200
@@ -206,16 +116,111 @@ const cardVariants = {
   }
 };
 
-const iconVariants = {
-  hover: {
-    scale: 1.2,
-    rotate: 360,
+const imageVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.8,
+    rotateY: -15
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotateY: 0,
     transition: {
       type: "spring",
-      stiffness: 300
+      stiffness: 100,
+      damping: 20
     }
   }
 };
+
+// Data for sections
+const aboutSections = [
+  {
+    title: "Holistic Approach: All Development, Security, and Modern Marketing Under One Roof",
+    image: "./image/About_US/Holistic.webp",
+    imageAlt: "Holistic Development Approach",
+    description: "Why juggle multiple vendors when one partner can do it all? EncryVia integrates web development, security, and AI-powered marketing under one roof—creating synergy where security builds trust, architecture enhances SEO/GEO performance, and AI optimization drives future-ready business growth.",
+    listTitle: "Why One Partner Changes Everything:",
+    items: [
+      "Seamless Integration - All services work together, not separately",
+      "Unified Strategy - Aligned objectives, not competing priorities",
+      "Single Contact - One team, faster decisions",
+      "Cross-Optimization - Each service enhances the others",
+      "Complete Solutions - Maximum results, minimum oversight"
+    ],
+    reverse: false
+  },
+  {
+    title: "Transparent Processes and Measurable Outcomes",
+    image: "./image/About_US/Flexible Packages That Scale With Your Business.webp",
+    imageAlt: "Development Process",
+    description: "No guesswork, no surprises. Every EncryVia project delivers clear expectations, defined metrics, and regular updates that translate complex tech into actionable business insights—tracking development, security, SEO, and conversions for trusted growth decisions.",
+    listTitle: "Complete Project Transparency & Accountability:",
+    items: [
+      "Milestone-Driven Progress - Clear deliverables with defined timelines",
+      "Real-Time Dashboards - Live project status and performance metrics",
+      "Business-Focused Analytics - Technical data translated into ROI insights",
+      "Budget Transparency - Detailed cost breakdowns, no hidden fees",
+      "Guaranteed Results - Measurable outcomes with performance commitments"
+    ],
+    reverse: true
+  },
+  {
+    title: "Flexible Packages That Scale With Your Business",
+    image: "./image/About_US/Holistic.webp",
+    imageAlt: "Holistic Development Approach",
+    description: "Start small, scale smart. Our modular services grow with you—from startup security basics to enterprise-grade defense. Add services as needed, pivot when markets shift, and build digital capabilities without restrictive contracts or vendor lock-in.",
+    listTitle: "Scalable Solutions That Grow With You:",
+    items: [
+      "Modular Architecture - Add or modify services without disruption",
+      "Growth-Stage Optimization - Tailored strategies for every business size",
+      "Flexible Engagement - Project, retainer, or hybrid arrangements",
+      "NNo Vendor Lock-in - Complete freedom to scale or pivot",
+      "Future-Ready Planning - Strategies for rapid growth and emerging tech"
+    ],
+    reverse: false
+  },
+   {
+    title: "Future-Ready with Generative Engine Optimization (GEO)",
+    image: "./image/About_US/Flexible Packages That Scale With Your Business.webp",
+    imageAlt: "Development Process",
+    description: "While others optimize for yesterday's search, we prepare you for tomorrow's AI discovery. EncryVia's GEO expertise gets you found when customers ask ChatGPT, Gemini, and other AI assistants—positioning your business to lead where search is heading.",
+    listTitle: " AI-Powered Search Domination:",
+    items: [
+      "AI-First Content - Optimized for comprehension across all AI platforms",
+      "First-Mover Advantage - Establish authority before competitors discover GEO",
+      "Conversational Query Mastery - Content structured for natural language search",
+      "Multi-Platform Coverage - Visibility across ChatGPT, Gemini, Claude, and emerging AI",
+      "Integrated SEO + GEO - Combined traditional and AI optimization for maximum exposure"
+    ],
+    reverse: true
+  },
+];
+
+// Cards Data for the Extraordinary Digital Products section
+const digitalProductsCards = [
+  {
+    icon: <LightbulbIcon className="w-8 h-8 text-indigo-400" />,
+    title: "Vision‑driven",
+    description: "Here at EncryVia, we construct digital businesses that grow companies, not websites and advertisements. Every plan, line of code, and campaign is customized to help real businesses  simplify, secure, and scale."
+  },
+  {
+    icon: <LayoutGridIcon className="w-8 h-6 text-indigo-400" />,
+    title: "Problem‑solving Focus",
+    description: "We think technology should solve, not create, problems. That's why EncryVia provides open solutions, secure solutions, and innovative campaigns – so your business performs, protects, and thrives."
+  },
+  {
+    icon: <NetworkIcon className="w-8 h-8 text-indigo-400" />,
+    title: "Human + Data",
+    description: "We combine data-driven precision with human-centered creativity. From cybersecurity threat analysis to ROI-boosting marketing, we build solutions that not only get the job done – but get it done better for your business."
+  },
+  {
+    icon: <LayersIcon className="w-8 h-8 text-indigo-400" />,
+    title: "Partnership Tone ",
+    description: "Rather than an agency, EncryVia is an extension of your team – crafting sites, protecting networks, and powering marketing that propels you forward. Transparent. Proactive. Fueled by your success."
+  }
+];
 
 // Animated section wrapper
 const AnimatedSection = ({ children, className = "", delay = 0 }) => {
@@ -239,115 +244,70 @@ const AnimatedSection = ({ children, className = "", delay = 0 }) => {
   );
 };
 
-function OurTeam() { // Renamed from App to OurTeam
-  // State to track which part of the H3 (section 3) is currently being hovered over.
-  const [hoveredH3PartIndex, setHoveredH3PartIndex] = useState(null); // Reverted to track individual parts.
-
-  // Define the structure of the heading for the animated text in Section 3 (H3).
-  // Now broken into parts for individual animation.
-  const animatedH3HeadingParts = [
-    { type: 'text', content: 'Built with ' },
-    { type: 'span', content: 'Security', className: 'text-purple-400' },
-    { type: 'text', content: ', ' },
-    { type: 'span', content: 'Speed', className: 'text-purple-400' },
-    { type: 'text', content: ', and ' },
-    { type: 'span', content: 'Salability', className: 'text-purple-400'},
-    {type: 'text', content: 'in Mind'}
-  ];
-
+function OurTeam() {
   return (
-    <motion.div 
-      className="min-h-screen text-white relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-indigo-900"
+    <motion.div
+      className="min-h-screen text-white relative overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      {/* Link to Google Fonts to import the 'Inter' font. */}
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
-      {/* Custom CSS for the animation and font styling. */}
-      <style>
-        {`
-          /* Apply the 'Inter' font family to elements with 'font-inter' class. */
-          .font-inter {
-            font-family: 'Inter', sans-serif;
-          }
-
-          /* Base styles for each individual character span. */
-          .char-span {
-            display: inline-block; /* Essential for applying transforms and transitions. */
-            transition-property: opacity, transform;
-            will-change: opacity, transform;
-            transition-timing-function: ease-out; /* Smooth transition timing */
-          }
-
-          /* Tailwind's 'purple-400' color definition. */
-          .text-purple-400 {
-            color: #c084fc;
-          }
-          /* Tailwind's 'blue-400' color definition. */
-          .text-blue-400 {
-            color: #60a5fa;
-          }
-        `}
-      </style>
-
-      {/* First section: Hero Text - Enhanced spacing and typography */}
+      {/* Hero Section */}
       <AnimatedSection className="flex items-center justify-center py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 min-h-[60vh]">
-        <motion.div 
-          className="relative z-10 max-w-5xl mx-auto text-center"
+        <motion.div
+          className="relative z-10 max-w-5xl text-center"
           variants={containerVariants}
         >
-          <motion.h1 
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8 lg:mb-12"
+          <motion.h1
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mt-24 sm:mt-8 mb-8 lg:mb-12"
             variants={textVariants}
           >
-            <motion.span 
+            <motion.span
               className="text-indigo-500"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
             >
-              " Who We Are: 
+              " Who We Are:
             </motion.span>
-            A startup digital team blending creative hustle and data‑driven precision to build secure, scalable solutions.
-            <motion.span 
+            A startup digital team blending creative hustle and data‑driven precision to build secure, scalable solutions."
+            <motion.span
               className="text-indigo-500"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
             >
-              "
             </motion.span>
           </motion.h1>
         </motion.div>
       </AnimatedSection>
 
-      {/* Second section: Tailored Websites - Enhanced layout and spacing */}
+
+      {/* About Section */}
       <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.2}>
-        <motion.div 
+        <motion.div
           className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
           variants={containerVariants}
         >
-          
-          {/* "About Us" heading with lines - Enhanced visual design */}
-          <motion.div 
+          {/* Section Header */}
+          <motion.div
             className="flex items-center justify-center"
             variants={itemVariants}
           >
-            <motion.div 
+            <motion.div
               className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ delay: 0.3, duration: 0.8 }}
             />
-            <motion.h2 
-              className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mx-6 text-blue-400"
+            <motion.h2
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mx-6 text-indigo-500 whitespace-nowrap"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              About Encryvia
+              About EncryVia
             </motion.h2>
-            <motion.div 
+            <motion.div
               className="flex-grow border-t border-gray-600 max-w-xs lg:max-w-sm"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -355,264 +315,287 @@ function OurTeam() { // Renamed from App to OurTeam
             />
           </motion.div>
 
-          {/* Main title for this section - Enhanced typography */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-center max-w-5xl mx-auto">
-            Tailored Websites That Work Harder for Your Business
-          </h3>
+          {/* Main Title */}
+          <motion.h3
+            className="text-3xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-center max-w-4xl mx-auto"
+            variants={textVariants}
+          >
+            Great Tech, Built for Great Teams
+          </motion.h3>
 
-          {/* New structure for this section: Image then Text, both centered - Enhanced spacing */}
-          <div className="flex flex-col items-center gap-16 lg:gap-20">
-            
-            {/* Image Placeholder - Centered, larger resolution - Enhanced presentation */}
-            <div className="w-full flex justify-center">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-[1.02]" style={{ maxWidth: '1195px', height: '568px' }}>
-                <img src="https://placehold.co/1195x568/555555/EEEEEE?text=Tailored+Websites+Image" alt="Tailored Websites Image" className="w-full h-full object-cover rounded-[130px]" />
+          {/* Main Content */}
+          <div className="flex flex-col items-center gap-12 lg:gap-16">
+            {/* Hero Image - Consistent with CyberSecurity sizing */}
+            <motion.div
+              className="w-full flex justify-center"
+              variants={imageVariants}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-3 shadow-2xl w-full max-w-4xl h-[300px] sm:h-[300px] lg:h-[400px] flex items-center justify-center overflow-hidden border border-gray-700/50">
+                <img
+                  src="./image/About_US/headimg.png"
+                  alt="About EncryVia Team"
+                  className="w-full h-full object-cover rounded-2xl"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://placehold.co/800x500/4F46E5/ffffff?text=About+EncryVia";
+                  }}
+                />
               </div>
-            </div>
+            </motion.div>
 
-            {/* Description Text - Now below the image and centered - Enhanced typography and spacing */}
-            <div className="w-full max-w-4xl text-center mx-auto space-y-12">
-              
-              {/* Top Paragraph - Enhanced spacing */}
-              <div className="space-y-8">
-                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
-                  At Encryvia, we believe technology should solve problems—not create new ones. That's why we focus on purpose-driven solutions, crafted with precision and always keeping people at the heart of what we build—whether it's code, campaigns, or cybersecurity protocols.
-                </p>
-                <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
-                  By deeply understanding how businesses grow and adapt in real-world markets, we design and deliver digital tools that are more than just websites, dashboards, or ads—they become engines of growth. They simplify complex workflows, protect what matters most, and scale effortlessly as your business evolves.
-                </p>
-              </div>
+            {/* Content */}
+            <div className="w-full max-w-5xl text-center mx-auto space-y-4">
+              {/* Description Paragraphs */}
+              <motion.div className="space-y-8" variants={containerVariants}>
+                <motion.p
+                  className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300"
+                  variants={textVariants}
+                >
+                  At EncryVia, we believe technology should solve problems—not create new ones. That's why we focus on purpose-driven solutions, crafted with precision and always keeping people at the heart of what we build—whether it's code, campaigns, or cybersecurity protocols.
+                </motion.p>
+                <motion.p
+                  className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300"
+                  variants={textVariants}
+                >
+                  By deeply understanding how businesses grow and adapt in real-world markets, we design and deliver digital tools that are more than just websites, dashboards, or ads—they become engines of growth. <span className="font-bold text-indigo-400">We make complex operations simple, secure what is most important, and evolve with your business effortlessly.</span>
+                </motion.p>
+              </motion.div>
 
-              {/* What we deliver - Two Column List - Enhanced layout */}
-              <div className="space-y-8">
-                <h4 className="text-xl lg:text-2xl font-bold text-white">What we deliver:</h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 lg:gap-12 text-left text-lg lg:text-xl text-gray-300">
-                  <ul className="list-disc list-inside space-y-4">
-                    <li>✅ 100% in-house team of developers, analysts, and cybersecurity experts</li>
-                    <li>🧠 Decades of combined experience spanning SaaS platforms, eCommerce sites, and enterprise-grade systems</li>
-                    <li>📊 Results-first mindset focused on ROI and measurable impact, not vanity metrics</li>
-                    <li>🛡 Trusted by startups, SMEs, and global brands for reliable and scalable digital solutions</li>
-                  </ul>
-                  <ul className="list-disc list-inside space-y-4">
-                    <li>🚀 Agile approach that adapts to your business as it grows, ensuring long-term success</li>
-                    <li>💡 Seamless integration of web development, cybersecurity, and marketing strategies under one roof</li>
-                    <li>🤝 Commitment to transparent communication, so you're always informed at every stage</li>
-                  </ul>
+              {/* What We Deliver */}
+              <motion.div className="space-y-8" variants={containerVariants}>
+                <motion.h4
+                  className="text-2xl lg:text-3xl font-bold text-white mt-8 lg:mt-20"
+                  variants={textVariants}
+                >
+                  What we deliver:
+                </motion.h4>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 text-left">
+                  <motion.ul
+                    className=" list-none space-y-4 text-base lg:text-lg text-gray-300 "
+                    variants={containerVariants}
+                  >
+                    {[
+                      "👥 We have a fully in-house staff of analysts, developers, and cybersecurity professionals.",
+                      "💼 We have extensive experience in SaaS platforms, eCommerce websites, and enterprise-scale software.",
+                      "📈 Results-focused mindset that cares about ROI and real effect, not pretty figures.",
+                      "🌟 Startups, small businesses, and large brands completely rely on us for robust and scalable digital solutions!"
+                    ].map((item, index) => (
+                      <motion.li
+                        key={index}
+                        className="flex items-start gap-3 list-none"
+                        variants={itemVariants}
+                      >
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                  <motion.ul
+                    className="space-y-4 text-base lg:text-lg text-gray-300 list-none"
+                    variants={containerVariants}
+                  >
+                    {[
+                      "🔄 Flexible strategy that expands with your business as you do, with long-lasting success",
+                      "🔗 Seamless integration of web development, cybersecurity, and advertising strategies in one place.",
+                      "💬 Commitment to transparent communication, so you’re always informed at every stage",
+                      "🤖 Industry-first GEO expertise that positions you ahead of competitors in AI-powered search."
+                    ].map((item, index) => (
+                      <motion.li
+                        key={index}
+                        className="flex items-start gap-3"
+                        variants={itemVariants}
+                      >
+                        <span>{item}</span>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Vision & Mission - Enhanced spacing and typography */}
-              <div className="space-y-12">
-                <div className="space-y-6">
-                  <h4 className="text-2xl lg:text-3xl font-bold">Our <span className='text-indigo-500 bold'>Vision</span></h4>
+              {/* Vision & Mission */}
+              <motion.div
+                className="flex flex-col lg:flex-row items-stretch justify-center py-4 lg:py-40 gap-8 lg:gap-16 pt-16"
+                variants={containerVariants}
+              >
+                <motion.div
+                  className="flex-1 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 space-y-6 flex flex-col"
+                  variants={cardVariants}
+                  whileHover="hover"
+                >
+                  <h4 className="text-3xl lg:text-4xl font-bold">
+                    Our <span className="text-indigo-500 font-bold">Vision</span>
+                  </h4>
                   <p className="text-lg lg:text-xl text-gray-300 leading-relaxed">
-                    To empower businesses with digital products that combine security, usability, and measurable growth so they can compete confidently in any market.
+                    To empower businesses with AI-ready digital solutions that combine security, performance,
+                    and future-proof growth strategies—ensuring they dominate both today's search landscape and
+                    tomorrow's AI-powered customer discovery.
                   </p>
-                </div>
-                <div className="space-y-6">
-                  <h2 className="text-2xl lg:text-3xl font-bold">Our <span className='text-indigo-500 bold'> Mission</span></h2>
+                </motion.div>
+
+                <motion.div
+                  className="flex-1 bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 space-y-6 flex flex-col"
+                  variants={cardVariants}
+                  whileHover="hover"
+                >
+                  <h4 className="text-3xl lg:text-4xl font-bold">
+                    Our <span className="text-indigo-500 font-bold">Mission</span>
+                  </h4>
                   <p className="text-lg lg:text-xl text-gray-300 leading-relaxed">
-                    To deliver end-to-end digital solutions—web development, cybersecurity, and marketing—that are crafted in-house, performance-driven, and tailored to real business needs.
+                    To deliver end-to-end digital transformation—web development, cybersecurity, and pioneering
+                    SEO & GEO marketing—that are crafted in-house, performance-driven, and designed to capture
+                    customers across every search channel, from Google rankings to ChatGPT conversations.
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </motion.div>
       </AnimatedSection>
 
-      {/* Third section: Security, Speed, and Scalability - Enhanced layout */}
-      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.3}>
-        <motion.div 
-          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
-          variants={containerVariants}
+      {/* Service Detail Sections */}
+      {aboutSections.map((section, index) => (
+        <AnimatedSection
+          key={index}
+          className="py-8 lg:py-14 px-4 sm:px-6 lg:px-8"
+          delay={0.3 + index * 0.1}
         >
-          
-          {/* Title for this section with the new animation - Enhanced typography */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left mb-12 lg:mb-16 cursor-pointer font-inter">
-            {animatedH3HeadingParts.map((part, partIndex) => {
-              if (part.type === 'text' || part.type === 'span') {
-                return (
-                  <AnimatedText
-                    key={partIndex}
-                    text={part.content}
-                    isAnimating={hoveredH3PartIndex === partIndex}
-                    baseClassName={part.className || ''}
-                    onMouseEnter={() => setHoveredH3PartIndex(partIndex)}
-                    onMouseLeave={() => setHoveredH3PartIndex(null)}
+          <motion.div
+            className="max-w-7xl mx-auto space-y-8 lg:space-y-12"
+            variants={containerVariants}
+          >
+            {/* Section Title */}
+            <motion.h3
+              className="text-3xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight text-center"
+              variants={textVariants}
+            >
+              {section.title}
+            </motion.h3>
+
+            {/* Content Layout */}
+            <div className={`flex flex-col items-center gap-12 lg:gap-16 ${section.reverse ? "lg:flex-row-reverse" : "lg:flex-row"}`}>
+
+              {/* Image */}
+              <motion.div
+                className="lg:w-1/2 flex justify-center"
+                variants={imageVariants}
+                whileHover={{ scale: 1.02, rotate: section.reverse ? -1 : 1 }}
+              >
+                <div className="relative">
+                  <motion.div
+                    className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-[140px] blur-xl"
+                    animate={{
+                      scale: [1, 1.1, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
                   />
-                );
-              }
-              return null;
-            })}
-          </h3>
+                <img
+                      src={section.image}
+                      alt={section.imageAlt}
+                      className="relative z-10 rounded-3xl shadow-2xl h-[400px] w-full max-w-md border-2 border-cyan-400/30 object-cover"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = "https://placehold.co/400x400/4F46E5/ffffff?text=About+EncryVia";
+                      }}
+                    />
+                </div>
+              </motion.div>
 
-          {/* Content layout - Enhanced spacing and alignment */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-16 lg:gap-20">
-            
-            {/* Description Text - Left-aligned, vertically centered - Enhanced typography */}
-            <div className="flex-1 w-full text-center lg:text-left">
-              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
-                Modern websites face real-world pressure—from performance expectations to
-                security threats. We code with purpose and precision, using the right tech
-                stack to ensure your site runs fast, stays secure, and grows with your
-                business.
-              </p>
+              {/* Content */}
+              <motion.div
+                className="lg:w-1/2 text-center lg:text-left space-y-8"
+                variants={containerVariants}
+              >
+                <motion.p
+                  className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300"
+                  variants={textVariants}
+                >
+                  {section.description}
+                </motion.p>
+
+                {/* Optional List */}
+                {section.listTitle && section.items.length > 0 && (
+                  <motion.div
+                    className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 space-y-4"
+                    variants={itemVariants}
+                  >
+                    <h4 className="text-xl lg:text-xl font-bold text-indigo-400">
+                      {section.listTitle}
+                    </h4>
+                    <ul className="space-y-3">
+                      {section.items.map((item, i) => (
+                        <motion.li
+                          key={i}
+                          className="flex items-start gap-3 text-gray-300"
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="w-2 h-2 bg-indigo-400 rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-base sm:text-lg">{item}</span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                )}
+              </motion.div>
             </div>
+          </motion.div>
+        </AnimatedSection>
+      ))}
 
-            {/* Image/Card Placeholder - Maintained size and corner radius, right-aligned - Enhanced presentation */}
-            <div className="flex-1 w-full flex justify-center lg:justify-end">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-105" style={{ maxWidth: '559px', height: '568px' }}>
-                <img src="https://placehold.co/559x568/555555/EEEEEE?text=Code+Security" alt="Code Security" className="w-full h-full object-cover rounded-[130px]" />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </AnimatedSection>
-
-      {/* Fourth section: A Smarter Development Process - Enhanced layout */}
-      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.4}>
-        <motion.div 
-          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
+      {/* Extraordinary Digital Products Cards Section */}
+      <AnimatedSection className="py-16 lg:py-20 xl:py-24 px-4 sm:px-6 lg:px-8 relative" delay={0.6}>
+        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/30 via-purple-900/30 to-indigo-900/30 backdrop-blur-sm -z-10"></div>
+        <motion.div
+          className="max-w-7xl mx-auto space-y-12 lg:space-y-16"
           variants={containerVariants}
         >
-          
-          {/* Title for this section - Enhanced typography */}
-          <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left mb-12 lg:mb-16">
-            A Smarter Development Process That Keeps You In the Loop
-          </h3>
-
-          {/* Content layout - Enhanced spacing and alignment */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-center gap-16 lg:gap-20">
-            
-            {/* Image Placeholder - Left-aligned, original size/radius - Enhanced presentation */}
-            <div className="flex-1 w-full flex justify-center lg:justify-start">
-              <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-105" style={{ maxWidth: '559px', height: '568px' }}>
-                <img src="https://placehold.co/559x568/555555/EEEEEE?text=Development+Process" alt="Development Process" className="w-full h-full object-cover rounded-[130px]" />
-              </div>
-            </div>
-
-            {/* Description Text - Right-aligned and vertically centered - Enhanced typography and spacing */}
-            <div className="flex-1 w-full text-center lg:text-right space-y-8">
-              <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300">
-                No mystery, no black box. We run a lean, transparent development cycle
-                with built-in checkpoints so you stay in control at every stage. From
-                kick-off to post-launch support, you're part of the process—and we're
-                accountable for every click, line, and deadline.
-              </p>
-              
-              <div className="space-y-6">
-                <h4 className="text-xl lg:text-2xl font-bold text-white">What to expect:</h4>
-                <ul className="list-disc list-inside text-lg lg:text-xl text-gray-300 space-y-4 text-center lg:text-right">
-                  <li>Weekly progress shared dashboards</li>
-                  <li>Clear timelines, no vague deliveries</li>
-                  <li>CMS training for your team</li>
-                  <li>Post-launch support, updates, and optimization packs</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      </AnimatedSection>
-
-      {/* New section for the large image placeholder above "Extraordinary digital products" - Enhanced presentation */}
-      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 relative z-10" delay={0.5}>
-        <motion.div 
-          className="max-w-7xl mx-auto"
-          variants={containerVariants}
-        >
-          <div className="w-full flex justify-center">
-            <div className="bg-gray-800 rounded-[140px] p-6 shadow-2xl w-full flex items-center justify-center text-gray-400 text-lg overflow-hidden transition-transform duration-500 hover:scale-[1.02]" style={{ maxWidth: '1203px', height: '630px' }}>
-              <img src="https://placehold.co/1203x630/555555/EEEEEE?text=Extraordinary+Products+Image" alt="Extraordinary Products Image Placeholder" className="w-full h-full object-cover rounded-[130px]" />
-            </div>
-          </div>
-        </motion.div>
-      </AnimatedSection>
-
-      {/* Fifth section: Extraordinary Digital Products Cards - Enhanced layout and spacing */}
-      <AnimatedSection className="py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8" delay={0.6}>
-        <motion.div 
-          className="max-w-7xl mx-auto space-y-16 lg:space-y-20"
-          variants={containerVariants}
-        >
-          
-          {/* Section header - Enhanced typography */}
-          <div className="space-y-8">
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-left">
-              Extraordinary digital products
+          {/* Section Header */}
+          <motion.div className="space-y-6" variants={textVariants}>
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
+              Extraordinary Digital Products
             </h3>
             <p className="text-lg sm:text-xl lg:text-2xl leading-relaxed text-gray-300 max-w-5xl">
-              We play to our strengths: For over years we've been ideating, creating and
-              shipping wonderful things on the internet.
+              We play to our strengths: For years we've been ideating, creating and shipping wonderful things on the internet.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Cards grid - Enhanced spacing and presentation */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Card 1 - Enhanced styling */}
-            <motion.div 
-              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
-              variants={cardVariants}
-              whileHover="hover"
-            >
-              <div className="flex items-center gap-4">
-                <LightbulbIcon className="w-8 h-8 text-indigo-400" />
-                <h4 className="text-2xl lg:text-3xl font-bold">Vision‑driven</h4>
-              </div>
-              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
-                Great Technology, Designed to Grow — We build digital solutions that grow businesses.
-                Every plan, line of code, and campaign is tailored to help you simplify, secure, and scale.
-              </p>
-            </motion.div>
-
-            {/* Card 2 - Enhanced styling */}
-            <motion.div 
-              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
-              variants={cardVariants}
-              whileHover="hover"
-            >
-              <div className="flex items-center gap-4">
-                <LayoutGridIcon className="w-8 h-8 text-indigo-400" />
-                <h4 className="text-2xl lg:text-3xl font-bold">Problem‑solving Focus</h4>
-              </div>
-              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
-                Solving Real Business Problems — Technology should solve, not cause problems.
-                That's why we offer robust security, transparent solutions, and campaigns that deliver results.
-              </p>
-            </motion.div>
-
-            {/* Card 3 - Enhanced styling */}
-            <motion.div 
-              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
-              variants={cardVariants}
-              whileHover="hover"
-            >
-              <div className="flex items-center gap-4">
-                <NetworkIcon className="w-8 h-8 text-indigo-400" />
-                <h4 className="text-2xl lg:text-3xl font-bold">Human + Data</h4>
-              </div>
-              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
-                Where Data and Human Insight Converge — From cybersecurity audits to ROI-focused marketing,
-                we blend data with creativity to build solutions that work better for your business.
-              </p>
-            </motion.div>
-
-            {/* Card 4 - Enhanced styling */}
-            <motion.div 
-              className="bg-gray-800 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:transform hover:scale-105 transition-all duration-300 border border-gray-700/50"
-              variants={cardVariants}
-              whileHover="hover"
-            >
-              <div className="flex items-center gap-4">
-                <LayersIcon className="w-8 h-8 text-indigo-400" />
-                <h4 className="text-2xl lg:text-3xl font-bold">Your Growth Partner</h4>
-              </div>
-              <p className="text-gray-300 text-lg lg:text-xl leading-relaxed">
-                Not just an agency — EncryVia acts as an extension of your team.
-                We build, protect, and grow with transparency, speed, and your success in mind.
-              </p>
-            </motion.div>
-          </div>
+          {/* Cards Grid */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
+            variants={containerVariants}
+          >
+            {digitalProductsCards.map((card, index) => (
+              <motion.div
+                key={index}
+                className="bg-white/5 backdrop-blur-sm border-2 border-white/20 rounded-2xl p-8 lg:p-10 shadow-2xl flex flex-col items-start space-y-6 hover:border-white/40 group"
+                variants={cardVariants}
+                whileHover="hover"
+              >
+                <div className="flex items-center gap-4">
+                  <motion.div
+                    whileHover={{ scale: 1.2, rotate: 360 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    {card.icon}
+                  </motion.div>
+                  <h4 className="text-xl lg:text-2xl font-bold group-hover:text-indigo-400 transition-colors duration-300">
+                    {card.title}
+                  </h4>
+                </div>
+                <p className="text-gray-300 text-base lg:text-lg leading-relaxed">
+                  {card.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
       </AnimatedSection>
     </motion.div>
