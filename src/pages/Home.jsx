@@ -2,6 +2,7 @@ import React, { Suspense, lazy, useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ErrorBoundary } from 'react-error-boundary';
+import SEO from '../components/SEO';
 
 // Lazy-loaded components with error handling
 const Hero = lazy(() => 
@@ -207,6 +208,15 @@ const SmoothScroll = ({ children }) => {
 
 const Home = () => {
   return (
+     <>
+      {/* Add SEO component here */}
+      <SEO 
+        title="EncryVia | Web Development, Security & SEO Services in India"
+        description="3-in-1 digital solutions: web development, cybersecurity & AI-driven marketing in India. Fast websites, secure systems, higher rankings. Packages from ₹25K."
+        keywords="web development India, cybersecurity services, SEO services India, digital solutions provider, AI-driven marketing, custom website development, integrated IT services"
+        ogUrl="https://encryvia.com"
+      />
+
     <motion.div
       className="min-h-screen bg-transparent overflow-x-hidden"
       initial={{ opacity: 0 }}
@@ -291,8 +301,7 @@ const Home = () => {
         </div>
       </AnimatedSection>
 
-
-      {/* Client Reviews */}
+       {/* Client Reviews */}
       <AnimatedSection className="relative py-16 lg:py-20" delay={0.7}>
         <div className="relative z-10">
           <motion.div
@@ -311,6 +320,7 @@ const Home = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
+              {/* Passing testimonials to AutoSwappingClientReview */}
               <AutoSwappingClientReview testimonials={testimonials} />
             </motion.div>
           </motion.div>
@@ -331,6 +341,7 @@ const Home = () => {
         </div>
       </AnimatedSection>
     </motion.div>
+     </>
   );
 };
 

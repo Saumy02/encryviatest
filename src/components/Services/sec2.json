@@ -1,7 +1,7 @@
 [
   {
     "title": "Custom Websites That Do More for Your Business",
-    "image": "../image/Web_dev/Built_with_security.png",
+    "image": "../image/Web_dev/Built_with_security.webp",
     "imageAlt": "Custom Website Development",
     "description": "We don't just build websites to look pretty—we create digital workhorses. Each website is handcrafted to showcase your brand, guide your users, and deliver measurable results. From mobile responsiveness to high-conversion design, we transform your site into an asset, not just an address.",
     "listTitle": "What we deliver:",
@@ -15,7 +15,7 @@
   },
   {
     "title": "Built with Security, Performance, and Scalability in Mind",
-    "image": "../image/Web_dev/A Smarter.png",
+    "image": "../image/Web_dev/A Smarter.webp",
     "imageAlt": "Secure Development Process",
     "description": "Websites today face real-world pressures—from performance expectations to security threats. We code with purpose and precision, using proven tech stacks to ensure your site loads fast, stays secure, and grows with your business.",
     "listTitle": "How we do it:",
@@ -29,7 +29,7 @@
   },
   {
     "title": "A Smarter Development Process That Keeps You In the Loop",
-    "image": "../image/Web_dev/Custom_Websites.png",
+    "image": "../image/Web_dev/Custom_Websites.webp",
     "imageAlt": "Collaborative Development Process",
     "description": "No black boxes, no surprises. We keep our development process transparent and collaborative, with regular check-ins so you're in control every step of the way. From kickoff to launch and beyond, you're part of the journey—and we're accountable for every pixel, line of code, and deadline.",
     "listTitle": "What to expect:",

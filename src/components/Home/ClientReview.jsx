@@ -1,34 +1,47 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import reviews from '../data/clientReviews.json';
 
 const ClientReview = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
-  const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
+  const [direction, setDirection] = useState(1);
+  const [reviewKey, setReviewKey] = useState(0);
+  const autoSlide = useRef();
 
-  // Memoized functions to prevent useEffect dependency issues
-  const nextReview = useCallback(() => {
-    setDirection(1);
-    setCurrentReviewIndex((prevIndex) =>
-      prevIndex === reviews.length - 1 ? 0 : prevIndex + 1
-    );
-  }, [reviews.length]);
-
-  const prevReview = useCallback(() => {
-    setDirection(-1);
-    setCurrentReviewIndex((prevIndex) =>
-      prevIndex === 0 ? reviews.length - 1 : prevIndex - 1
-    );
-  }, [reviews.length]);
-
-  // Auto-slide effect
   useEffect(() => {
-    const interval = setInterval(nextReview, 5000);
-    return () => clearInterval(interval);
-  }, [nextReview]); // Only depend on nextReview function
+    if (autoSlide.current) clearInterval(autoSlide.current);
+    autoSlide.current = setInterval(() => handleNext(), 5000);
+    return () => clearInterval(autoSlide.current);
+  }, [currentReviewIndex]);
 
-  // Safety check for empty reviews
+  const handleNext = useCallback(() => {
+    setDirection(1);
+    setCurrentReviewIndex(prev => {
+      const newIndex = prev === reviews.length - 1 ? 0 : prev + 1;
+      setReviewKey(k => k + 1);
+      return newIndex;
+    });
+  }, [reviews.length]);
+
+  const handlePrev = useCallback(() => {
+    setDirection(-1);
+    setCurrentReviewIndex(prev => {
+      const newIndex = prev === 0 ? reviews.length - 1 : prev - 1;
+      setReviewKey(k => k + 1);
+      return newIndex;
+    });
+  }, [reviews.length]);
+
+  const handleDotClick = (index) => {
+    if (index === currentReviewIndex) return;
+    setDirection(index > currentReviewIndex ? 1 : -1);
+    setCurrentReviewIndex(() => {
+      setReviewKey(k => k + 1);
+      return index;
+    });
+  };
+
   if (!reviews || reviews.length === 0) {
     return (
       <div className="text-center text-gray-400 p-8">
@@ -39,7 +52,6 @@ const ClientReview = () => {
 
   const currentReview = reviews[currentReviewIndex];
 
-  // Animation variants for smooth transitions
   const slideVariants = {
     enter: (direction) => ({
       x: direction > 0 ? 1000 : -1000,
@@ -60,14 +72,14 @@ const ClientReview = () => {
   return (
     <div className="relative w-full max-w-4xl mx-auto px-4">
       <div className="relative bg-gradient-to-br from-purple-700 to-indigo-700 p-6 sm:p-8 rounded-2xl shadow-2xl overflow-hidden">
-        
+
         {/* Background decoration */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12" />
 
         {/* Left Arrow */}
         <motion.button
-          onClick={prevReview}
+          onClick={handlePrev}
           className="absolute top-1/2 -left-6 sm:-left-8 transform -translate-y-1/2 p-3 bg-gray-800/90 backdrop-blur-sm rounded-full text-white z-30 hover:bg-gray-700 transition-colors duration-200 shadow-lg"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
@@ -76,11 +88,11 @@ const ClientReview = () => {
           <ChevronLeft size={24} />
         </motion.button>
 
-        {/* Review Content with AnimatePresence for smooth transitions */}
+        {/* Review Content */}
         <div className="relative min-h-[200px] flex items-center">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
-              key={currentReviewIndex}
+              key={reviewKey}
               custom={direction}
               variants={slideVariants}
               initial="enter"
@@ -93,7 +105,7 @@ const ClientReview = () => {
               className="w-full"
             >
               <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 lg:gap-8">
-                
+
                 {/* Text Content */}
                 <div className="flex-1 text-center lg:text-left space-y-4">
                   <motion.div
@@ -172,7 +184,7 @@ const ClientReview = () => {
 
         {/* Right Arrow */}
         <motion.button
-          onClick={nextReview}
+          onClick={handleNext}
           className="absolute top-1/2 -right-6 sm:-right-8 transform -translate-y-1/2 p-3 bg-gray-800/90 backdrop-blur-sm rounded-full text-white z-30 hover:bg-gray-700 transition-colors duration-200 shadow-lg"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
@@ -186,10 +198,7 @@ const ClientReview = () => {
           {reviews.map((_, index) => (
             <motion.button
               key={index}
-              onClick={() => {
-                setDirection(index > currentReviewIndex ? 1 : -1);
-                setCurrentReviewIndex(index);
-              }}
+              onClick={() => handleDotClick(index)}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentReviewIndex
                   ? 'bg-white scale-110'

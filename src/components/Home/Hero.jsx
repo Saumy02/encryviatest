@@ -39,21 +39,6 @@ const Hero = () => {
     tap: { scale: 0.95 }
   };
 
-  // Image floating animation
-  const floatingVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9, rotate: 5 },
-    visible: {
-      opacity: 1,
-      y: [0, 15, 0, 15, 0],
-      scale: [1, , 1],
-      transition: {
-        duration: 6,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }
-    }
-  };
-
   // Right column fade-in
   const visualVariants = {
     hidden: { opacity: 0, scale: 0.8 },
@@ -67,8 +52,8 @@ const Hero = () => {
       initial="hidden"
       animate="visible"
     >
-      <div className="relative  flex flex-col lg:flex-row items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8 ">
-        <div className="max-w-7xl mx-auto w-full ">
+      <div className="relative flex flex-col lg:flex-row items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto w-full">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
             {/* Left Column */}
@@ -97,20 +82,19 @@ const Hero = () => {
                   className="text-xl sm:text-2xl lg:text-3xl font-medium text-gray-300 leading-relaxed max-w-2xl mx-auto lg:mx-0"
                   variants={textVariants}
                 >
-                  "Build, Protect & Grow — Web Development, Cybersecurity, and SEO & Ads strategies designed for
+                  Build, Protect & Grow — Web Development, Cybersecurity, and SEO & Ads strategies designed for
                   <motion.span
                     className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 font-semibold"
                     whileHover={{ scale: 1.05 }}
                   >
                     {" "}real-world impact
-                  </motion.span>."
+                  </motion.span>.
                 </motion.p>
               </motion.div>
 
               {/* CTA Buttons */}
-
               <motion.div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start" variants={containerVariants}>
-                <Link to="">
+                <Link to="/contact" aria-label="Get started with EncryVia services">
                   <motion.button
                     className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl"
                     variants={buttonVariants}
@@ -121,7 +105,7 @@ const Hero = () => {
                   </motion.button>
                 </Link>
 
-                <Link to="/about">
+                <Link to="/about-us" aria-label="Learn more about EncryVia">
                   <motion.button
                     className="group px-8 py-4 border-2 border-indigo-500/50 text-indigo-400 font-semibold rounded-xl hover:bg-indigo-500/10 hover:border-indigo-400"
                     variants={buttonVariants}
@@ -129,7 +113,7 @@ const Hero = () => {
                     whileTap={{ scale: 0.95 }}
                   >
                     <span className="flex items-center justify-center gap-2">
-                      Learn More
+                     Go Deepper
                     </span>
                   </motion.button>
                 </Link>
@@ -155,13 +139,16 @@ const Hero = () => {
             {/* Right Column: Hero Image */}
             <motion.div className="flex justify-center lg:justify-end relative" variants={visualVariants}>
               <motion.img
-                src="/image/hero_image.png"
-                alt="Hero Visual"
-                className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[480px] xl:w-[520px] object-contain drop-shadow-2xl" s
-                onError={(e) => { e.currentTarget.src = "https://placehold.co/500x500/0a0a0a/FFF?text=Hero+Image"; }}
+                src="/image/hero_image.webp"
+                alt="EncryVia - Web Development, Cybersecurity and SEO Solutions"
+                className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[480px] xl:w-[520px] object-contain drop-shadow-2xl"
+                width="520"
+                height="520"
+                loading="eager"
+                decoding="async"
+                onError={(e) => { e.currentTarget.src = "https://placehold.co/520x520/0a0a0a/FFF?text=Hero+Image"; }}
               />
             </motion.div>
-
           </div>
         </div>
       </div>

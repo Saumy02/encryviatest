@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../../assets/logo.svg";
+import logo from "/image/encryvia-logo.png";
 
 const Header = () => {
   const location = useLocation();
@@ -19,34 +19,6 @@ const Header = () => {
   
   // refs
   const dropdownRef = useRef(null);
-
-  // --- 1) TIME + VISITOR: update time every second, increment visitor once per session/tab ---
-  useEffect(() => {
-    const timer = setInterval(() => setDateTime(new Date()), 1000);
-    
-    try {
-      // Use sessionStorage to ensure we only increment once per browser tab/session.
-      const alreadyIncremented = sessionStorage.getItem("encryvia-visitor-incremented");
-      if (!alreadyIncremented) {
-        const raw = localStorage.getItem("encryvia-visitor-count");
-        const current = Number.isNaN(parseInt(raw, 10)) ? 0 : parseInt(raw, 10);
-        const next = current + 1;
-        localStorage.setItem("encryvia-visitor-count", String(next));
-        sessionStorage.setItem("encryvia-visitor-incremented", "1");
-        setVisitorCount(next);
-      } else {
-        // read current count
-        const raw = localStorage.getItem("encryvia-visitor-count");
-        const current = Number.isNaN(parseInt(raw, 10)) ? 0 : parseInt(raw, 10);
-        setVisitorCount(current);
-      }
-    } catch (err) {
-      // storage access may fail in some environments, avoid breaking UI
-      console.error("storage error:", err);
-    }
-
-    return () => clearInterval(timer);
-  }, []);
 
   // --- 2) Prevent page scroll when mobile menu is open ---
   useEffect(() => {
@@ -137,24 +109,18 @@ const Header = () => {
               </span>
             </Link>
 
-            {/* Desktop nav */}
+            {/* Desktop nav - Updated sequence: About Us, Services, Projects, Blog */}
             <div className="hidden md:flex items-center space-x-4 mx-auto">
-              {[
-                { path: "/about", label: "About Us" },
-                { path: "/projects", label: "Projects" },
-                { path: "/blog", label: "Blog" },
-              ].map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  onClick={closeAllMenus}
-                  className={`px-4 py-2 rounded-full font-semibold transition ${
-                    isActive(item.path) ? "bg-indigo-700 text-white" : "hover:bg-indigo-700 hover:text-white"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {/* About Us */}
+              <Link
+                to="/about-us"
+                onClick={closeAllMenus}
+                className={`px-4 py-2 rounded-full font-semibold transition ${
+                  isActive("/about-us") ? "bg-indigo-700 text-white" : "hover:bg-indigo-700 hover:text-white"
+                }`}
+              >
+                About Us
+              </Link>
 
               {/* Services dropdown */}
               <div className="relative" ref={dropdownRef}>
@@ -198,14 +164,32 @@ const Header = () => {
                   )}
                 </AnimatePresence>
               </div>
+
+              {/* Projects */}
+              <Link
+                to="/projects"
+                onClick={closeAllMenus}
+                className={`px-4 py-2 rounded-full font-semibold transition ${
+                  isActive("/projects") ? "bg-indigo-700 text-white" : "hover:bg-indigo-700 hover:text-white"
+                }`}
+              >
+                Projects
+              </Link>
+
+              {/* Blog */}
+              <Link
+                to="/blog"
+                onClick={closeAllMenus}
+                className={`px-4 py-2 rounded-full font-semibold transition ${
+                  isActive("/blog") ? "bg-indigo-700 text-white" : "hover:bg-indigo-700 hover:text-white"
+                }`}
+              >
+                Blog
+              </Link>
             </div>
 
-            {/* Right side: time + contact */}
+            {/* Right side: contact */}
             <div className="hidden md:flex items-center space-x-4">
-              <div className="flex flex-col text-xs text-gray-300 font-mono">
-                <span>{dateTime.toLocaleTimeString()}</span>
-                <span className="text-indigo-400">Visitors: {visitorCount}</span>
-              </div>
               <Link 
                 to="/contact" 
                 onClick={closeAllMenus} 
@@ -227,7 +211,7 @@ const Header = () => {
         </nav>
       </motion.header>
 
-      {/* Mobile menu (overlay) */}
+      {/* Mobile menu (overlay) - Updated sequence: About Us, Services, Projects, Blog */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -239,27 +223,21 @@ const Header = () => {
             aria-modal="true"
             role="dialog"
           >
-            {[
-              { path: "/about", label: "About Us" },
-              { path: "/projects", label: "Projects" },
-              { path: "/blog", label: "Blog" },
-              { path: "/contact", label: "Contact", isButton: true },
-            ].map((item) => (
-              <motion.div key={item.path} variants={menuItemVariants}>
-                <Link
-                  to={item.path}
-                  onClick={closeAllMenus}
-                  className={`text-2xl font-bold ${
-                    isActive(item.path) ? "text-indigo-400" : "text-white hover:text-indigo-400"
-                  } ${item.isButton ? "bg-indigo-600 px-4 py-2 rounded-lg" : ""}`}
-                >
-                  {item.label}
-                </Link>
-              </motion.div>
-            ))}
+            {/* About Us */}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/about-us"
+                onClick={closeAllMenus}
+                className={`text-2xl font-bold ${
+                  isActive("/about-us") ? "text-indigo-400" : "text-white hover:text-indigo-400"
+                }`}
+              >
+                About Us
+              </Link>
+            </motion.div>
 
             {/* Mobile services */}
-            <div className="text-center">
+            <motion.div className="text-center" variants={menuItemVariants}>
               <button onClick={toggleMobileServices} className="flex items-center text-2xl text-white">
                 Services
                 <motion.div animate={{ rotate: isMobileServicesOpen ? 180 : 0 }} className="ml-2">
@@ -292,7 +270,44 @@ const Header = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
+
+            {/* Projects */}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/projects"
+                onClick={closeAllMenus}
+                className={`text-2xl font-bold ${
+                  isActive("/projects") ? "text-indigo-400" : "text-white hover:text-indigo-400"
+                }`}
+              >
+                Projects
+              </Link>
+            </motion.div>
+
+            {/* Blog */}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/blog"
+                onClick={closeAllMenus}
+                className={`text-2xl font-bold ${
+                  isActive("/blog") ? "text-indigo-400" : "text-white hover:text-indigo-400"
+                }`}
+              >
+                Blog
+              </Link>
+            </motion.div>
+
+            {/* Contact */}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/contact"
+                onClick={closeAllMenus}
+                className="text-2xl font-bold bg-indigo-600 px-4 py-2 rounded-lg text-white hover:text-indigo-400"
+              >
+                Contact
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

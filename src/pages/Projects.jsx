@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
 import ProjectCard from '../components/Project/ProjectCard';
 import projectsData from '../components/Project/projects.json';
+import SEO from '../components/SEO';
 
 // Animation variants
 const containerVariants = {
@@ -156,6 +157,13 @@ const Project = () => {
   }, [activeFilter]);
 
   return (
+     <>
+      <SEO 
+        title="EncryVia Portfolio | Web, Security & SEO Projects"
+        description="View our portfolio: custom websites, e-commerce stores, cybersecurity solutions & successful SEO campaigns. Real results for real businesses."
+        keywords="web development portfolio, cybersecurity case studies, SEO success stories, e-commerce development projects, digital marketing portfolio, website design examples, IT solutions showcase"
+        ogUrl="https://encryvia.com/projects"
+      />
     <motion.div 
       className="text-white min-h-screen font-inter"
       initial={{ opacity: 0 }}
@@ -163,13 +171,13 @@ const Project = () => {
       transition={{ duration: 1 }}
     >
       {/* Hero Section */}
-      <AnimatedSection className="flex items-center justify-center py-20 lg:py-28 xl:py-32 px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-80px)]">
+      <AnimatedSection className="flex items-center justify-center py-12 lg:py-12 px-4 sm:px-6 lg:px-8 text-center">
         <motion.div 
           className="relative z-10 max-w-6xl text-center"
           variants={containerVariants}
         >
           <motion.h1 
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-8"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-8"
             variants={textVariants}
           >
             This is{' '}
@@ -364,7 +372,7 @@ const Project = () => {
                     Start Your Project
                   </motion.button>
                 </Link>
-                <Link to="/about">
+                <Link to="/about-us">
                   <motion.button 
                     className="px-8 lg:px-10 py-4 lg:py-5 bg-transparent text-white border-2 border-white/30 rounded-full text-lg lg:text-xl font-semibold hover:bg-white hover:text-gray-900 transition-all duration-300"
                     whileHover={{ 
@@ -383,6 +391,7 @@ const Project = () => {
         </AnimatedSection>
       </div>
     </motion.div>
+    </>
   );
 };
 

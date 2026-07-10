@@ -8,11 +8,11 @@ import { motion } from "framer-motion";
 // Links
 const usefulLinks = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
+  { to: "/about-us", label: "About" },
   { to: "/projects", label: "Projects" },
   { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
-  { to: "/privacy-policy", label: "Privacy Policy" },
+  { to: "/privacy-policy-&-terms", label: "Privacy Policy & Terms" },
 ];
 
 // Services links
@@ -25,7 +25,7 @@ const serviceLinks = [
 // Social icons
 const socialIcons = [
    {
-    href: "https://www.instagram.com/encryvia_official/",
+    href: "https://www.instagram.com/encryvia/",
     label: "Instagram",
     icon: (
       <svg
@@ -41,7 +41,7 @@ const socialIcons = [
     ),
   },
   {
-    href: "https://facebook.com/encryvia",
+    href: "https://www.facebook.com/people/EncryVia/61581619425819/",
     label: "Facebook",
     icon: (
       <svg fill="currentColor" className="w-6 h-6" viewBox="0 0 24 24">
@@ -59,7 +59,7 @@ const socialIcons = [
     ),
   },
   {
-    href: "https://linkedin.com/company/encryvia",
+    href: "https://www.linkedin.com/company/encryvia",
     label: "LinkedIn",
     icon: (
       <svg fill="currentColor" className="w-6 h-6" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@ const socialIcons = [
     ),
   },
   {
-    href: "https://www.youtube.com/@EncryViaOfficial",
+    href: "https://www.youtube.com/@EncryVia",
     label: "Youtube",
     icon: (
       <svg fill="currentColor" className="w-6 h-6" viewBox="0 0 24 24">
@@ -100,20 +100,11 @@ const socialIcons = [
     ),
   },
    {
-    href: "https://medium.com/@encryvia_official/",
+    href: "https://medium.com/@encryvia",
     label: "Medium",
     icon: (
        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
             <path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/>
-        </svg>
-    ),
-  },
- {
-    href: "https://www.quora.com/profile/EncryVia",
-    label: "Quora",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M16.002 17.041h-.998c-.47 0-.799-.219-.997-.659L9.798 8.003H9.8c-.359.179-.719.279-1.078.458-.998.518-1.078 1.316-1.078 2.095 0 .698.06 2.554.06 2.554s-.12 1.316-.84 1.316c-.84 0-.899-1.078-.899-1.078s.06-2.174.06-3.552c0-1.437-.06-3.612-.06-3.612s.06-1.078.899-1.078c.719 0 .84 1.316.84 1.316s-.06 1.856-.06 2.554c0 .779.08 1.577 1.078 2.095.359.179.719.279 1.078.458h-.002l4.207 8.379c.198.44.527.659.997.659h.998c.588 0 1.077-.367 1.077-.877 0-.169-.048-.329-.128-.467L12.13 9.96c-.08-.138-.128-.298-.128-.467 0-.509.489-.877 1.077-.877h2.923c.588 0 1.077.368 1.077.877v7.548c0 .51-.489.877-1.077.877z"/>
         </svg>
     ),
   },
@@ -197,12 +188,28 @@ const Footer = () => {
               >
                 <Phone size={20} className="text-indigo-400 flex-shrink-0" />
                 <a
-                  href="tel:+916390215426"
+                  href="tel:+91 8796051145"
                   className="text-gray-300 hover:text-white transition-colors duration-300"
                 >
-                  +91 6390215426, 882678535
+                  +91 8796051145
                 </a>
               </motion.div>
+              
+                <motion.div 
+                className="flex items-center space-x-3 text-base"
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <Phone size={20} className="text-indigo-400 flex-shrink-0" />
+                <a
+                  href="tel:+91 6390215426"
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  +91 6390215426
+                </a>
+              </motion.div>
+
+              
               
               <motion.div 
                 className="flex items-start space-x-3 text-base"
@@ -309,9 +316,6 @@ const Footer = () => {
               © {new Date().getFullYear()} EncryVia. All rights reserved. Crafted with ❤️ in India.
             </p>
             <div className="flex flex-wrap gap-6 text-sm text-gray-400">
-              <Link to="/privacy-policy" className="hover:text-white transition-colors duration-300">
-                Privacy Policy
-              </Link>
               <Link to="/sitemap" className="hover:text-white transition-colors duration-300">
                 Sitemap
               </Link>

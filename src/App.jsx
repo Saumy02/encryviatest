@@ -133,7 +133,7 @@ const AnimatedRoutes = () => {
             <Home />
           </AnimatedPage>
         } />
-        <Route path="/about" element={
+        <Route path="/about-us" element={
           <AnimatedPage>
             <OurTeam />
           </AnimatedPage>
@@ -158,7 +158,7 @@ const AnimatedRoutes = () => {
             <MoreBlog />
           </AnimatedPage>
         } />
-        <Route path="/privacy-policy" element={
+        <Route path="/privacy-policy-&-terms" element={
           <AnimatedPage>
             <PrivacyPolicy />
           </AnimatedPage>
