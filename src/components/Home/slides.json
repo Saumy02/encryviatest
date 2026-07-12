@@ -1,22 +1,22 @@
 [
   {
-    "title": "Web Development",
-    "url": "slide/slide1.webm",
-    "type": "video"
+    "title": "Web/App Development",
+    "url": "slide/slide1.webp",
+    "type": "image"
   },
   {
     "title": "Cyber Security",
-    "url": "slide/slide2.webm",
-    "type": "video"
+    "url": "slide/slide2.webp",
+    "type": "image"
   },
   {
-    "title": "Digital Marketing & Ads",
-    "url": "slide/slide4.webm",
-    "type": "video"
+    "title": "SEO/GEO & Ads",
+    "url": "slide/slide4.webp",
+    "type": "image"
   },
   {
     "title": "Analytics",
-    "url": "slide/slide3.webm",
-    "type": "video"
+    "url": "slide/slide3.webp",
+    "type": "image"
   }
 ] 

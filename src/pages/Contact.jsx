@@ -443,9 +443,10 @@ const Contact = () => {
                   {
                     icon: <MailIcon />,
                     title: 'Email Address',
-                    lines: ['info@encryvia.com'],
-                    link: 'mailto:info@encryvia.com'
+                   lines: ['info@encryvia.com', 'support@encryvia.com'],
+    link: (line) => `mailto:${line}`
                   }
+                  
                 ].map(({ icon, title, lines, link }, idx) => (
                   <motion.div
                     key={idx}

@@ -13,10 +13,6 @@ const Header = () => {
   const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   
-  // info
-  const [visitorCount, setVisitorCount] = useState(0);
-  const [dateTime, setDateTime] = useState(new Date());
-  
   // refs
   const dropdownRef = useRef(null);
 
@@ -86,23 +82,18 @@ const Header = () => {
 
   return (
     <>
-      <motion.header
-        className="fixed top-0 left-0 right-0 w-full z-50 backdrop-blur-md bg-black/30 border-b border-white/20"
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+      <header
+        className="fixed top-0 left-0 right-0 w-full z-50 bg-black/85 border-b border-white/10"
         aria-label="Main header"
       >
         <nav className="w-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center">
             {/* Logo */}
             <Link to="/" onClick={closeAllMenus} className="flex items-center space-x-2">
-              <motion.img
+              <img
                 src={logo}
                 alt="EncryVia Logo"
                 className="w-10 h-10 rounded-full"
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
               />
               <span className="text-xl font-bold">
                 Encry<span className="text-indigo-500">Via</span>
@@ -146,9 +137,9 @@ const Header = () => {
                       role="menu"
                     >
                       {[
-                        { path: "/services/web-development", label: "Web Development" },
-                        { path: "/services/cyber-security", label: "Cyber Security" },
-                        { path: "/services/seo-ads", label: "SEO & Ads" },
+                        { path: "/services/web-and-app-development", label: "Web/App Development" },
+                        { path: "/services/cybersecurity", label: "CyberSecurity" },
+                        { path: "/services/seo-geo-and-ads", label: "SEO-GEO And Ads" },
                       ].map((s) => (
                         <Link
                           key={s.path}
@@ -209,13 +200,13 @@ const Header = () => {
             </button>
           </div>
         </nav>
-      </motion.header>
+      </header>
 
       {/* Mobile menu (overlay) - Updated sequence: About Us, Services, Projects, Blog */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-black/90 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-6"
+            className="fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center space-y-6"
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"
@@ -254,9 +245,9 @@ const Header = () => {
                     className="mt-4 space-y-2"
                   >
                     {[
-                      { path: "/services/web-development", label: "Web Development" },
-                      { path: "/services/cyber-security", label: "Cyber Security" },
-                      { path: "/services/seo-ads", label: "SEO & Ads" },
+                      { path: "/services/web-and-app-development", label: "Web Development" },
+                      { path: "/services/cybersecurity", label: "Cyber Security" },
+                      { path: "/services/seo-geo-and-ads", label: "SEO & Ads" },
                     ].map((s) => (
                       <Link 
                         key={s.path} 

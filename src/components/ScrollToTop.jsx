@@ -1,23 +1,23 @@
 // src/components/ScrollToTop.jsx
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function ScrollToTop() {
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    const root = document.getElementById("root"); // React root container
+  useLayoutEffect(() => {
+    const root = document.getElementById("root");
+
     if (root) {
-      root.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } else {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      root.scrollTo(0, 0);
+      root.scrollTop = 0;
     }
+
+    // Also reset window/html/body in case overflow behavior changes
+    // on certain pages or screen sizes.
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
 
   return null;

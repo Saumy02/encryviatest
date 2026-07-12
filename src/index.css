@@ -32,7 +32,6 @@ html, body, #root {
 
 /* Enhanced Typography and Spacing */
 html {
-  scroll-behavior: smooth;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   line-height: 1.6;
 }
@@ -54,7 +53,7 @@ html, body, #root {
 html {
   min-height: 100vh;
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Blurred background image layer */
@@ -62,10 +61,10 @@ html::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: url('./bg.jpg') no-repeat center center fixed;
+  background: url('./bg.jpg') no-repeat center center;
   background-size: cover;
-  filter: blur(9px); /* ~45% stronger blur */
-  transform: scale(1.03); /* prevent edge clipping from blur */
+  filter: blur(4px);
+  transform: scale(1.01);
   z-index: -1;
 }
 
@@ -461,4 +460,3 @@ body {
     color: black !important;
   }
 }
-

@@ -365,10 +365,10 @@ function SEOAds() {
               </motion.h3>
 
               {/* Content Layout - Image and Text in One Line */}
-              <div className={`flex flex-col items-stretch gap-8 lg:gap-12 ${section.reverse ? "lg:flex-row-reverse" : "lg:flex-row"}`}>
+              <div className={`flex flex-col items-stretch justify-center gap-8 lg:gap-12 ${section.reverse ? "lg:flex-row-reverse" : "lg:flex-row"}`}>
                 {/* Image Container - Equal width */}
                 <motion.div
-                  className="lg:w-1/2 w-full flex justify-center lg:justify-start"
+                  className="lg:w-2/6 w-full flex justify-center lg:justify-start"
                   variants={imageVariants}
                   whileHover={{ scale: 1.01 }}
                 >

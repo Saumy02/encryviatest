@@ -52,14 +52,14 @@ const NewsletterSubscribe = () => {
   };
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div
+      className="w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-14"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '520px' }}
+    >
       <div className="max-w-5xl mx-auto">
-        <div className="relative group">
-          {/* Background glow */}
-          <div className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-
+        <div className="relative">
           {/* Main container (glassmorphism) */}
-          <div className="relative bg-white/5 backdrop-blur-sm border border-white/20 ring-1 ring-white/10 p-6 sm:p-8 lg:p-12 rounded-3xl shadow-2xl shadow-black/50">
+          <div className="relative bg-black/20 border border-white/20 p-6 sm:p-8 lg:p-12 rounded-3xl shadow-2xl shadow-black/40">
             {/* Glass highlight overlay */}
             <div className="pointer-events-none absolute inset-px rounded-3xl bg-gradient-to-b from-white/10 via-white/5 to-transparent"></div>
 
@@ -132,7 +132,7 @@ const NewsletterSubscribe = () => {
                   <button
                     onClick={handleSubscribe}
                     disabled={isLoading || !email.trim() || !email.includes("@")}
-                    className="group relative px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+                    className="group relative px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     aria-label="Subscribe to newsletter"
                   >
                     <span className="relative z-10 flex items-center gap-2">
@@ -198,11 +198,6 @@ const NewsletterSubscribe = () => {
                 We respect your privacy. Unsubscribe at any time. No spam, ever.
               </p>
             </div>
-
-            {/* Floating elements */}
-            <div className="absolute top-4 right-4 lg:top-6 lg:right-6 w-3 h-3 lg:w-4 lg:h-4 bg-purple-400 rounded-full animate-pulse"></div>
-            <div className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 w-2 h-2 lg:w-3 lg:h-3 bg-pink-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-            <div className="absolute top-1/2 left-6 lg:left-8 w-1.5 h-1.5 lg:w-2 lg:h-2 bg-indigo-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
           </div>
         </div>
       </div>

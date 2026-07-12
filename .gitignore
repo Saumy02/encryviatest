@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+rohan
+*.pem
+id_rsa
+id_ed25519

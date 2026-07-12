@@ -3,9 +3,11 @@ import SEO from '../SEO' ;
 
 
 
+
 const EncryViaPrivacyPolicy = () => {
   return (
     <>
+
       {/* Add SEO component here */}
       <SEO 
         title="Privacy Policy & Terms | EncryVia Data Protection"
