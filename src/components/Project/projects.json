@@ -1,52 +1,68 @@
 [
   {
     "id": 1,
-    "title": "EncryVia Website",
-    "description": "A modern, responsive corporate website built with React and Tailwind CSS. Features include dynamic animations, contact forms, service showcases, and optimized performance. The site includes advanced SEO optimization and secure contact handling.",
-    "category": "Web Development",
-    "imageUrl": "./image/projects/encryvia-website.webp",
+    "title": "DrugIntelHub",
+    "client": "DrugIntelHub",
+    "description": "A searchable web application for drug and medicine information, built to give users clear answers quickly from a large and varied dataset. Features a dual-database architecture with MongoDB for flexible records and MySQL for relational data, backed by a high-performance Python engine.",
+    "category": "Web Application",
+    "imageUrl": "/image/projects/drugintelhub.webp",
     "direction": "left",
-    "technologies": ["React", "Tailwind CSS", "Framer Motion", "Node.js", "MongoDB"],
-    "completedDate": "September 2025"
+    "technologies": ["React.js", "Python", "MongoDB", "MySQL", "REST API", "JavaScript", "HTML5", "CSS3"],
+    "completedDate": "June 2026"
   },
   {
     "id": 2,
-    "title": "Network Security Management Dashboard",
-    "description": "A unified platform that combines network monitoring with real-time security intelligence for IT administrators. Delivers continuous network health visibility, automated threat detection and blocking, proactive vulnerability identification, and 99.9% uptime reliability. Generates compliance-ready reports while reducing operational complexity through integrated diagnostics and security management in a single solution.",
-    "category": "Cyber Security",
-    "imageUrl": "./image/projects/security-platform.webp",
+    "title": "Hindustan Franchise",
+    "client": "Hindustan Franchise",
+    "description": "A franchise directory website that helps prospective investors browse, compare and enquire about franchise opportunities. Features category-based listings, streamlined enquiry forms with notifications, on-page SEO foundation, and intuitive WordPress CMS management.",
+    "category": "Web Development",
+    "imageUrl": "/image/projects/hindustan-franchise.webp",
     "direction": "right",
-    "technologies": ["Python", "Django", "PostgreSQL", "Redis", "Docker"],
-    "completedDate": "February 2024"
+    "technologies": ["WordPress", "PHP", "MySQL", "Yoast SEO", "JavaScript", "HTML5", "CSS3"],
+    "completedDate": "January 2026"
   },
   {
     "id": 3,
-    "title": "Audbaba E-commerce Platform",
-    "description": "AudBaba is a comprehensive multi-vendor marketplace platform designed to connect businesses with professional service providers. Built on WordPress with WooCommerce and Dokan integration, this project delivers a scalable B2B marketplace solution.",
-    "category": "E-commerce",
-    "imageUrl": "./image/projects/audbaba.webp",
+    "title": "MyStikWrap",
+    "client": "MyStikWrap",
+    "description": "A full website re-design for an existing brand that needed a cleaner look and faster pages. Rebuilt from the ground up in React.js, optimizing Core Web Vitals, responsive layouts, cross-browser performance, and conversion-guided user flows.",
+    "category": "Web Development",
+    "imageUrl": "/image/projects/mystikwrap.webp",
     "direction": "left",
-    "technologies": ["Wordpress", "Stripe", "PHP", "MySQL", "Dokan", "WooCommerce"],
-    "completedDate": "July 2024"
+    "technologies": ["React.js", "Tailwind CSS", "JavaScript", "HTML5", "CSS3"],
+    "completedDate": "December 2025"
   },
   {
     "id": 4,
-    "title": "DriveLite - Privacy-First Cloud Storage Platform",
-    "description": "DriveLite is a fast, minimalist, and privacy-focused file storage application designed for developers and privacy-conscious users. Positioned as (The Suparbase for File Storage) it combines enterprise-grade security with developer-friendly APIs and self-hosting capabilities.",
-    "category": "Web Development",
-    "imageUrl": "./image/projects/drivelite.webp",
+    "title": "SksInfosystems",
+    "client": "SKS Infosystems",
+    "description": "A corporate website for a cybersecurity company, built to communicate security services clearly and earn trust quickly. Hardened setup with HTTPS, fast pages, and an accessible structure that explains offensive and defensive services without jargon.",
+    "category": "Cyber Security",
+    "imageUrl": "/image/projects/sksinfosystems.webp",
     "direction": "right",
-    "technologies": ["SvelteKit", "TailwindCSS", "TypeScript", "FastAPI", "Machine Learning"],
-    "completedDate": "January 2024"
-   },
+    "technologies": ["React.js", "Tailwind CSS", "SSL/HTTPS", "JavaScript", "HTML5", "CSS3"],
+    "completedDate": "June 2026"
+  },
   {
     "id": 5,
-    "title": "AI-Powered SEO Analytics Dashboard",
-    "description": "Advanced SEO analytics platform with AI-driven insights, keyword tracking, competitor analysis, and automated reporting. Integrates with Google Analytics, Search Console, and social media APIs.",
-    "category": "SEO & Marketing",
-    "imageUrl": "./image/projects/seo-dashboard.webp",
+    "title": "EcomBizGrow",
+    "client": "EcomBizGrow",
+    "description": "An e-commerce website built to make buying simple, from finding a product to checking out. Includes an organized product catalogue, payment and shipping integration, search-optimized pages, and high mobile speed on WooCommerce.",
+    "category": "E-commerce",
+    "imageUrl": "/image/projects/ecombizgrow.webp",
     "direction": "left",
-    "technologies": ["Vue.js", "Chart.js", "Python", "FastAPI", "Machine Learning"],
-    "completedDate": "January 2024"
+    "technologies": ["WordPress", "WooCommerce", "PHP", "MySQL", "JavaScript", "HTML5", "CSS3"],
+    "completedDate": "January 2026"
+  },
+  {
+    "id": 6,
+    "title": "Tacitine",
+    "client": "Tacitine",
+    "description": "Next-generation unified network security and deep packet inspection (DPI) platform engineered for enterprise defense against zero-day exploits, advanced intrusions, and zero-trust policy orchestration in a high-throughput appliance.",
+    "category": "Cyber Security",
+    "imageUrl": "/image/projects/tacitine.webp",
+    "direction": "right",
+    "technologies": ["AI Threat Engine", "Deep Packet Inspection", "Zero-Trust ZTNA", "Linux Kernel", "Python", "React.js", "NGFW Hardware"],
+    "completedDate": "May 2026"
   }
 ]

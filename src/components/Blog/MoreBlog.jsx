@@ -23,7 +23,7 @@ const MoreBlog = () => {
         "AI in Cybersecurity: The Double-Edged Sword"
       </h1>
       <p className="text-lg text-gray-300 mb-6">
-        Artificial Intelligence is reshaping cybersecurity — but it’s not just defenders who are benefitting. Hackers are leveraging AI in sophisticated and dangerous new ways. Here’s what you need to know.
+        Artificial Intelligence is reshaping cybersecurity but it’s not just defenders who are benefitting. Hackers are leveraging AI in sophisticated and dangerous new ways. Here’s what you need to know.
       </p>
 
       {/* Blog Sections */}
@@ -32,7 +32,7 @@ const MoreBlog = () => {
           <h2 className="text-2xl font-bold mb-2">1. AI for the Good Guys</h2>
           <p>
             AI helps security teams detect threats faster, automate responses, and reduce human error.
-            Tools like anomaly detection can flag suspicious behavior in real time. Machine learning models are trained to identify patterns in large datasets—something humans just can’t do fast enough.
+            Tools like anomaly detection can flag suspicious behavior in real time. Machine learning models are trained to identify patterns in large datasets something humans just can’t do fast enough.
           </p>
         </section>
 
@@ -46,14 +46,14 @@ const MoreBlog = () => {
         <section>
           <h2 className="text-2xl font-bold mb-2">3. Deepfake Phishing</h2>
           <p>
-            One of the scariest developments is the rise of deepfake phishing. Imagine getting a video call from your CEO asking for sensitive data—it looks and sounds just like them, but it’s an AI-generated fake.
+            One of the scariest developments is the rise of deepfake phishing. Imagine getting a video call from your CEO asking for sensitive data it looks and sounds just like them, but it’s an AI-generated fake.
           </p>
         </section>
 
         <section>
           <h2 className="text-2xl font-bold mb-2">4. Automated Password Cracking</h2>
           <p>
-            AI models trained on password leaks can predict and crack passwords with terrifying speed. This means using strong, unique passwords and MFA isn’t just best practice—it’s essential.
+            AI models trained on password leaks can predict and crack passwords with terrifying speed. This means using strong, unique passwords and MFA isn’t just best practice it’s essential.
           </p>
         </section>
 
@@ -67,7 +67,7 @@ const MoreBlog = () => {
         <section>
           <h2 className="text-2xl font-bold mb-2">Final Thoughts</h2>
           <p>
-            AI is the future of cybersecurity—but it’s also the future of cybercrime. The key is to stay ahead of the curve by embracing automation, continuous learning, and strong security hygiene.
+            AI is the future of cybersecurity but it’s also the future of cybercrime. The key is to stay ahead of the curve by embracing automation, continuous learning, and strong security hygiene.
           </p>
         </section>
 

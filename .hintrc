@@ -10,6 +10,15 @@
           "link[fetchpriority]"
         ]
       }
+    ],
+    "compat-api/css": [
+      "default",
+      {
+        "ignore": [
+          "-webkit-mask",
+          "-webkit-mask"
+        ]
+      }
     ]
   }
 }

@@ -28,3 +28,9 @@ rohan
 *.pem
 id_rsa
 id_ed25519
+
+# Docs and local html exports
+*.docx
+*.html.bak
+EncryVia _ Web Development*
+build_faq_page.py

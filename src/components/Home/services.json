@@ -1,29 +1,38 @@
 [
   {
-    "service": "Web Development",
-    "emoji": "🚀",
+    "service": "Web and App Development",
+    "highlightWord": "Web Development",
+    "titleRest": " that Works as Hard as You Do",
     "title": "Web Development that Works as Hard as You Do",
-    "hook": "Turn your ideas into secure, scalable platforms that look great — and perform even better.",
+    "hook": "Turn your ideas into secure, scalable platforms that look great and perform even better.",
     "description": "We craft everything from totally awesome SaaS dashboards to stunning eCommerce websites, all of which are built to be fast, secure, and easy to use. Each line of code has a purpose: it's all about making your business successful.",
-    "cta": "Build, Secure, and Grow your business — all with one agile partner. So, let's talk about your next project.",
-    "imageUrl": "/image/Web Development.webp"
+    "imageUrl": "/image/Web_dev/WEB_Development.webp",
+    "imageAlt": "Web Development that Works as Hard as You Do",
+    "link": "/services/web-and-app-development",
+    "ctaText": "Explore Service Page"
   },
   {
     "service": "Cybersecurity",
-    "emoji": "🔒",
+    "highlightWord": "Cyber Security",
+    "titleRest": " Built In - Not Bolted On",
     "title": "Cyber Security Built In - Not Bolted On",
     "hook": "Secure your business, data, and reputation through constant audits and constant security management.",
-    "description": "We combine serious tech expertise with accessible reporting, so you always know what's actually happening with your risks and how to address them. Startups and SMEs trust us to spot vulnerabilities before attackers do — and keep systems secure as you scale.",
-    "cta": "Build, Secure, and Grow your business — all with one agile partner. So, let's talk about your next project.",
-    "imageUrl": "/image/Cybersecurity.webp"
+    "description": "We combine serious tech expertise with accessible reporting, so you always know what's actually happening with your risks and how to address them. Startups and SMEs trust us to spot vulnerabilities before attackers do and keep systems secure as you scale.",
+    "imageUrl": "/image/CyberSecurity/Security.webp",
+    "imageAlt": "Cyber Security Built In - Not Bolted On",
+    "link": "/services/cybersecurity",
+    "ctaText": "Explore Service Page"
   },
   {
-    "service": "Digital Marketing & Ads",
-    "emoji": "📊",
+    "service": "SEO, Ads with AI-Powered Growth",
+    "highlightWord": "SEO, Ads",
+    "titleRest": " & AI-Powered Growth",
     "title": "SEO, Ads & AI-Powered Growth",
     "hook": "While competitors chase yesterday's keywords, we're capturing tomorrow's AI customers - discovered by both Google AND ChatGPT.",
     "description": "The future of search is here, and it's powered by AI. Our revolutionary approach combines battle-tested SEO, high-converting paid campaigns, and pioneering GEO (Generative Engine Optimization) - ensuring your brand dominates not just Google rankings, but AI assistant responses. When customers search traditionally OR ask ChatGPT for recommendations, you'll be the answer they find.",
-    "cta": "Build, Secure, and Grow your business — all with one agile partner. So, let's talk about your next project.",
-    "imageUrl": "/image/Digital Marketing & Ads.webp"
+    "imageUrl": "/image/SEO_page/SEO_GEO.webp",
+    "imageAlt": "SEO, Ads & AI-Powered Growth",
+    "link": "/services/seo-geo-and-ads",
+    "ctaText": "Explore Service Page"
   }
 ]

@@ -1,22 +1,17 @@
 // src/components/Header/Header.jsx
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "/image/encryvia-logo.png";
+import logo from "/image/encryvia-logo.webp";
 
 const Header = () => {
   const location = useLocation();
   
   // UI state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDesktopServicesOpen, setIsDesktopServicesOpen] = useState(false);
-  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  
-  // refs
-  const dropdownRef = useRef(null);
 
-  // --- 2) Prevent page scroll when mobile menu is open ---
+  // --- Prevent page scroll when mobile menu is open ---
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "auto";
     return () => {
@@ -24,51 +19,32 @@ const Header = () => {
     };
   }, [isMobileMenuOpen]);
 
-  // --- 3) Click outside to close desktop dropdown ---
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setIsDesktopServicesOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  // --- 4) Close menus on Esc ---
+  // --- Close menus on Esc ---
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
         setIsMobileMenuOpen(false);
-        setIsDesktopServicesOpen(false);
-        setIsMobileServicesOpen(false);
       }
     };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
-  // --- 5) When route changes: close menus ---
+  // --- When route changes: close menus ---
   useEffect(() => {
     setIsMobileMenuOpen(false);
-    setIsDesktopServicesOpen(false);
-    setIsMobileServicesOpen(false);
   }, [location.pathname]);
 
   // helpers
   const toggleMobileMenu = () => setIsMobileMenuOpen((s) => !s);
-  const toggleDesktopServices = () => setIsDesktopServicesOpen((s) => !s);
-  const toggleMobileServices = () => setIsMobileServicesOpen((s) => !s);
 
   const closeAllMenus = useCallback(() => {
     setIsMobileMenuOpen(false);
-    setIsDesktopServicesOpen(false);
-    setIsMobileServicesOpen(false);
   }, []);
 
   const isActive = (path) => location.pathname === path;
 
-  // animation variants (kept lightweight)
+  // animation variants
   const mobileMenuVariants = {
     hidden: { opacity: 0, x: "100%" },
     visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 200, damping: 25 } },
@@ -83,108 +59,110 @@ const Header = () => {
   return (
     <>
       <header
-        className="fixed top-0 left-0 right-0 w-full z-50 bg-black/85 border-b border-white/10"
+        className="fixed top-0 left-0 right-0 w-full z-50 bg-[#070312]/80 border-b border-purple-500/20 backdrop-blur-xl"
         aria-label="Main header"
       >
         <nav className="w-full">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center">
-            {/* Logo */}
-            <Link to="/" onClick={closeAllMenus} className="flex items-center space-x-2">
-              <img
-                src={logo}
-                alt="EncryVia Logo"
-                className="w-10 h-10 rounded-full"
-              />
-              <span className="text-xl font-bold">
-                Encry<span className="text-indigo-500">Via</span>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+            {/* Dramatic & Aesthetic Brand Logo */}
+            <Link to="/" onClick={closeAllMenus} className="group flex items-center space-x-2.5 flex-shrink-0">
+              <div className="relative flex items-center justify-center">
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-indigo-500 to-pink-500 rounded-full blur-sm opacity-50 group-hover:opacity-100 transition-all duration-300 -z-10" />
+                <img
+                  src={logo}
+                  alt="EncryVia Logo"
+                  className="w-10 h-10 rounded-full border border-purple-400/30 group-hover:scale-105 transition-transform duration-300 shadow-lg"
+                />
+              </div>
+              <span className="text-2xl sm:text-[26px] font-black tracking-[-0.03em] select-none flex items-center">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-100 to-purple-200 group-hover:text-white transition-colors duration-300">
+                  Encry
+                </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 drop-shadow-[0_0_16px_rgba(192,132,252,0.65)] group-hover:drop-shadow-[0_0_24px_rgba(216,180,254,0.95)] transition-all duration-300 font-black">
+                  Via
+                </span>
               </span>
             </Link>
 
-            {/* Desktop nav - Updated sequence: About Us, Services, Projects, Blog */}
-            <div className="hidden md:flex items-center space-x-4 mx-auto">
+            {/* Desktop nav */}
+            <div className="hidden lg:flex items-center space-x-1 xl:space-x-2.5 mx-auto">
               {/* About Us */}
               <Link
                 to="/about-us"
                 onClick={closeAllMenus}
-                className={`px-4 py-2 rounded-full font-semibold transition ${
-                  isActive("/about-us") ? "bg-indigo-700 text-white" : "hover:bg-indigo-700 hover:text-white"
+                className={`px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-bold tracking-wide transition whitespace-nowrap ${
+                  isActive("/about-us") ? "bg-[rgb(168,85,247)] text-white shadow-md shadow-purple-500/30" : "hover:bg-[rgb(168,85,247)] hover:text-white text-gray-100"
                 }`}
               >
                 About Us
               </Link>
 
-              {/* Services dropdown */}
-              <div className="relative" ref={dropdownRef}>
-                <button
-                  onClick={toggleDesktopServices}
-                  className="flex items-center px-4 py-2 rounded-full font-semibold hover:bg-indigo-700 hover:text-white transition"
-                  aria-haspopup="true"
-                  aria-expanded={isDesktopServicesOpen}
-                >
-                  Services
-                  <motion.div animate={{ rotate: isDesktopServicesOpen ? 180 : 0 }} className="ml-1">
-                    <ChevronDown size={16} />
-                  </motion.div>
-                </button>
-
-                <AnimatePresence>
-                  {isDesktopServicesOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      className="absolute top-full mt-2 w-56 bg-black/40 border border-white/20 rounded-lg shadow-lg backdrop-blur-md"
-                      role="menu"
-                    >
-                      {[
-                        { path: "/services/web-and-app-development", label: "Web/App Development" },
-                        { path: "/services/cybersecurity", label: "CyberSecurity" },
-                        { path: "/services/seo-geo-and-ads", label: "SEO-GEO And Ads" },
-                      ].map((s) => (
-                        <Link
-                          key={s.path}
-                          to={s.path}
-                          onClick={closeAllMenus}
-                          className="block px-4 py-2 text-sm hover:bg-indigo-700 rounded-lg"
-                          role="menuitem"
-                        >
-                          {s.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Projects */}
+              {/* Services */}
               <Link
-                to="/projects"
+                to="/services"
                 onClick={closeAllMenus}
-                className={`px-4 py-2 rounded-full font-semibold transition ${
-                  isActive("/projects") ? "bg-indigo-700 text-white" : "hover:bg-indigo-700 hover:text-white"
+                className={`px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-bold tracking-wide transition whitespace-nowrap ${
+                  isActive("/services") || location.pathname.startsWith("/services")
+                    ? "bg-[rgb(168,85,247)] text-white shadow-md shadow-purple-500/30"
+                    : "hover:bg-[rgb(168,85,247)] hover:text-white text-gray-100"
                 }`}
               >
-                Projects
+                Services
+              </Link>
+
+              {/* Innovations / Products */}
+              <Link
+                to="/innovations"
+                onClick={closeAllMenus}
+                className={`px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-bold tracking-wide transition whitespace-nowrap ${
+                  isActive("/innovations") || isActive("/products") ? "bg-[rgb(168,85,247)] text-white shadow-md shadow-purple-500/30" : "hover:bg-[rgb(168,85,247)] hover:text-white text-gray-100"
+                }`}
+              >
+                Innovations
+              </Link>
+
+              {/* Clients & Projects */}
+              <Link
+                to="/clients-and-projects"
+                onClick={closeAllMenus}
+                className={`px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-bold tracking-wide transition whitespace-nowrap ${
+                  isActive("/clients-and-projects") || isActive("/our-clients-and-projects") || isActive("/clients-projects") || isActive("/projects")
+                    ? "bg-[rgb(168,85,247)] text-white shadow-md shadow-purple-500/30"
+                    : "hover:bg-[rgb(168,85,247)] hover:text-white text-gray-100"
+                }`}
+              >
+                Clients and Projects
+              </Link>
+
+              {/* FAQ */}
+              <Link
+                to="/faq"
+                onClick={closeAllMenus}
+                className={`px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-bold tracking-wide transition whitespace-nowrap ${
+                  isActive("/faq") ? "bg-[rgb(168,85,247)] text-white shadow-md shadow-purple-500/30" : "hover:bg-[rgb(168,85,247)] hover:text-white text-gray-100"
+                }`}
+              >
+                FAQ
               </Link>
 
               {/* Blog */}
               <Link
                 to="/blog"
                 onClick={closeAllMenus}
-                className={`px-4 py-2 rounded-full font-semibold transition ${
-                  isActive("/blog") ? "bg-indigo-700 text-white" : "hover:bg-indigo-700 hover:text-white"
+                className={`px-2.5 xl:px-3.5 py-1.5 xl:py-2 rounded-full text-xs xl:text-sm font-bold tracking-wide transition whitespace-nowrap ${
+                  isActive("/blog") ? "bg-[rgb(168,85,247)] text-white shadow-md shadow-purple-500/30" : "hover:bg-[rgb(168,85,247)] hover:text-white text-gray-100"
                 }`}
               >
                 Blog
               </Link>
             </div>
 
-            {/* Right side: contact */}
-            <div className="hidden md:flex items-center space-x-4">
+            {/* Right side: contact button in purple */}
+            <div className="hidden lg:flex items-center space-x-4 flex-shrink-0">
               <Link 
                 to="/contact" 
                 onClick={closeAllMenus} 
-                className="bg-indigo-600 px-4 py-2 rounded-lg text-white hover:bg-indigo-700"
+                className="bg-purple-600 px-5 py-2 rounded-xl text-sm font-extrabold text-white hover:bg-[rgb(168,85,247)] transition shadow-lg hover:shadow-purple-500/30 hover:scale-105"
               >
                 Contact
               </Link>
@@ -192,7 +170,7 @@ const Header = () => {
 
             {/* Mobile toggle */}
             <button 
-              className="md:hidden ml-auto text-white" 
+              className="lg:hidden ml-auto text-white p-2 rounded-lg hover:bg-white/10" 
               onClick={toggleMobileMenu} 
               aria-label="Toggle mobile menu"
             >
@@ -202,11 +180,11 @@ const Header = () => {
         </nav>
       </header>
 
-      {/* Mobile menu (overlay) - Updated sequence: About Us, Services, Projects, Blog */}
+      {/* Mobile menu (overlay) */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            className="fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center space-y-6"
+            className="fixed inset-0 bg-[#070312]/98 backdrop-blur-2xl z-40 flex flex-col items-center justify-center space-y-5 overflow-y-auto py-12 px-6"
             variants={mobileMenuVariants}
             initial="hidden"
             animate="visible"
@@ -219,60 +197,67 @@ const Header = () => {
               <Link
                 to="/about-us"
                 onClick={closeAllMenus}
-                className={`text-2xl font-bold ${
-                  isActive("/about-us") ? "text-indigo-400" : "text-white hover:text-indigo-400"
+                className={`text-xl font-extrabold ${
+                  isActive("/about-us") ? "text-[rgb(168,85,247)]" : "text-white hover:text-[rgb(168,85,247)]"
                 }`}
               >
                 About Us
               </Link>
             </motion.div>
 
-            {/* Mobile services */}
-            <motion.div className="text-center" variants={menuItemVariants}>
-              <button onClick={toggleMobileServices} className="flex items-center text-2xl text-white">
-                Services
-                <motion.div animate={{ rotate: isMobileServicesOpen ? 180 : 0 }} className="ml-2">
-                  <ChevronDown size={20} />
-                </motion.div>
-              </button>
-
-              <AnimatePresence>
-                {isMobileServicesOpen && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -10 }} 
-                    animate={{ opacity: 1, y: 0 }} 
-                    exit={{ opacity: 0, y: -10 }} 
-                    className="mt-4 space-y-2"
-                  >
-                    {[
-                      { path: "/services/web-and-app-development", label: "Web Development" },
-                      { path: "/services/cybersecurity", label: "Cyber Security" },
-                      { path: "/services/seo-geo-and-ads", label: "SEO & Ads" },
-                    ].map((s) => (
-                      <Link 
-                        key={s.path} 
-                        to={s.path} 
-                        onClick={closeAllMenus} 
-                        className="block text-lg text-gray-200 hover:text-indigo-400"
-                      >
-                        {s.label}
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-
-            {/* Projects */}
+            {/* Services */}
             <motion.div variants={menuItemVariants}>
               <Link
-                to="/projects"
+                to="/services"
                 onClick={closeAllMenus}
-                className={`text-2xl font-bold ${
-                  isActive("/projects") ? "text-indigo-400" : "text-white hover:text-indigo-400"
+                className={`text-xl font-extrabold ${
+                  isActive("/services") || location.pathname.startsWith("/services")
+                    ? "text-[rgb(168,85,247)]"
+                    : "text-white hover:text-[rgb(168,85,247)]"
                 }`}
               >
-                Projects
+                Services
+              </Link>
+            </motion.div>
+
+            {/* Innovations */}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/innovations"
+                onClick={closeAllMenus}
+                className={`text-xl font-extrabold ${
+                  isActive("/innovations") || isActive("/products") ? "text-[rgb(168,85,247)]" : "text-white hover:text-[rgb(168,85,247)]"
+                }`}
+              >
+                Innovations
+              </Link>
+            </motion.div>
+
+            {/* Clients & Projects */}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/clients-and-projects"
+                onClick={closeAllMenus}
+                className={`text-xl font-extrabold ${
+                  isActive("/clients-and-projects") || isActive("/our-clients-and-projects") || isActive("/clients-projects") || isActive("/projects")
+                    ? "text-[rgb(168,85,247)]"
+                    : "text-white hover:text-[rgb(168,85,247)]"
+                }`}
+              >
+                Clients and Projects
+              </Link>
+            </motion.div>
+
+            {/* FAQ */}
+            <motion.div variants={menuItemVariants}>
+              <Link
+                to="/faq"
+                onClick={closeAllMenus}
+                className={`text-xl font-extrabold ${
+                  isActive("/faq") ? "text-[rgb(168,85,247)]" : "text-white hover:text-[rgb(168,85,247)]"
+                }`}
+              >
+                FAQ
               </Link>
             </motion.div>
 
@@ -281,8 +266,8 @@ const Header = () => {
               <Link
                 to="/blog"
                 onClick={closeAllMenus}
-                className={`text-2xl font-bold ${
-                  isActive("/blog") ? "text-indigo-400" : "text-white hover:text-indigo-400"
+                className={`text-xl font-extrabold ${
+                  isActive("/blog") ? "text-[rgb(168,85,247)]" : "text-white hover:text-[rgb(168,85,247)]"
                 }`}
               >
                 Blog
@@ -294,7 +279,7 @@ const Header = () => {
               <Link
                 to="/contact"
                 onClick={closeAllMenus}
-                className="text-2xl font-bold bg-indigo-600 px-4 py-2 rounded-lg text-white hover:text-indigo-400"
+                className="text-xl font-extrabold bg-[rgb(168,85,247)] px-6 py-2.5 rounded-xl text-white hover:bg-[rgb(147,51,234)] transition"
               >
                 Contact
               </Link>

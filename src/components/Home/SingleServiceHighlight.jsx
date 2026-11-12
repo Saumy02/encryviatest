@@ -1,202 +1,129 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const highlightWords = new Set([
-  'web',
-  'development',
-  'cyber',
-  'security',
-  'digital',
-  'marketing',
-  'seo',
-  'ads',
-]);
+import { Link } from 'react-router-dom';
+import { Sparkles, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 const SingleServiceHighlight = ({
+  badge,
   title,
+  highlightWord,
+  middleWord,
+  highlightWord2,
+  titleRest,
   hook,
   description,
-  cta,
+  closingLine,
+  listTitle = "What We Deliver:",
+  items = [],
+  ctaText = "Explore Service Page",
   imageUrl,
-  imageOnRight = true,
+  imageAlt,
+  link = "/services",
+  imageOnRight = false,
 }) => {
-  const [showDescription, setShowDescription] = useState(false);
-  const [crackStarted, setCrackStarted] = useState(false);
-  const crackTimeoutRef = useRef(null);
-
-  useEffect(() => () => window.clearTimeout(crackTimeoutRef.current), []);
-
-  const highlightedTitle = useMemo(() =>
-    title.split(' ').map((word, i) => {
-      const clean = word.replace(/[^a-zA-Z]/g, '').toLowerCase();
-      const highlight = highlightWords.has(clean);
-      return (
-        <span
-          key={i}
-          className={
-            highlight
-              ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400'
-              : 'text-white'
-          }
-        >
-          {word + ' '}
-        </span>
-      );
-    }), [title]);
-
-  const handleCrack = () => {
-    if (crackStarted) return;
-    setCrackStarted(true);
-    window.clearTimeout(crackTimeoutRef.current);
-    crackTimeoutRef.current = window.setTimeout(() => {
-      setShowDescription(true);
-      setCrackStarted(false);
-    }, 400);
-  };
+  const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <section
-      className="py-8 lg:py-14 px-4 sm:px-6 lg:px-8 text-white relative"
-      style={{ contentVisibility: 'auto', containIntrinsicSize: '900px' }}
-    >
-      <div className="max-w-7xl mx-auto">
+    <div className="py-4 sm:py-6 text-white relative w-full overflow-visible">
+      <div className="max-w-7xl mx-auto overflow-visible">
         <div
-          className={`flex flex-col gap-8 lg:gap-12 ${
-            imageOnRight ? 'lg:flex-row' : 'lg:flex-row-reverse'
-          } items-center`}
+          className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 overflow-visible ${
+            imageOnRight ? 'lg:flex-row-reverse' : 'lg:flex-row'
+          }`}
         >
-          {/* Text Section */}
-          <div className="lg:w-1/2 text-center lg:text-left space-y-6">
-            {/* Title */}
-            <div className="space-y-3">
-              <h3 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                {highlightedTitle}
+          {/* Image Column (lg:w-1/2 matching Why Should You Trust Us) */}
+          <div className="lg:w-1/2 flex justify-center items-center w-full p-2 overflow-visible">
+            <Link to={link} className="relative group w-full h-full flex items-center justify-center block">
+              {/* Ambient Purple Glow */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl opacity-30 blur-xl group-hover:opacity-55 transition duration-500 pointer-events-none" />
+              <img
+                src={imageUrl}
+                alt={imageAlt || title}
+                className="rounded-3xl relative shadow-2xl object-cover border border-white/10 w-full h-full min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] max-h-[500px]"
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://placehold.co/600x600/4F46E5/ffffff?text=EncryVia+Service';
+                }}
+              />
+            </Link>
+          </div>
+
+          {/* Content Column (lg:w-1/2 text-left matching Why Should You Trust Us) */}
+          <div className="lg:w-1/2 text-left space-y-6 w-full">
+            <Link to={link} className="block group">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-left">
+                {highlightWord ? (
+                  <>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-pink-400">
+                      {highlightWord}
+                    </span>
+                    {middleWord && <span>{middleWord}</span>}
+                    {highlightWord2 && (
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-pink-400">
+                        {highlightWord2}
+                      </span>
+                    )}
+                    <span>{titleRest}</span>
+                  </>
+                ) : (
+                  title
+                )}
               </h3>
-              <p className="text-xl lg:text-2xl text-gray-300 italic font-medium leading-relaxed">
+            </Link>
+
+            {hook && (
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 italic leading-relaxed text-left">
                 {hook}
               </p>
-            </div>
+            )}
 
-            {/* Description animation */}
+            {/* Expandable Details Drawer */}
             <AnimatePresence>
-              {showDescription && (
+              {showDetails && (
                 <motion.div
-                  key="desc"
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: 'easeOut' }}
-                  className="space-y-6"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden space-y-4 pt-1 text-left"
                 >
-                  <p className="text-lg lg:text-lg leading-relaxed text-gray-300">
-                    {description}
-                  </p>
-                  <p className="text-base lg:text-lg text-indigo-300 font-semibold italic">
-                    {cta}
-                  </p>
+                  {description && (
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed text-left">
+                      {description}
+                    </p>
+                  )}
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* Interactive Button */}
-            <div className="pt-2">
-              {!showDescription ? (
-                <div className="relative w-fit mx-auto lg:mx-0">
-                  {/* Crack effect container */}
-                  <div className="relative overflow-hidden rounded-2xl">
-                    {/* Left Half */}
-                    <motion.div
-                      className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-l-2xl z-10"
-                      initial={false}
-                      animate={crackStarted ? { x: '-120%' } : { x: 0 }}
-                      transition={{ duration: 0.2, ease: 'easeInOut' }}
-                    />
-                    {/* Right Half */}
-                    <motion.div
-                      className="absolute inset-0 left-1/2 w-1/2 h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-r-2xl z-10"
-                      initial={false}
-                      animate={crackStarted ? { x: '120%' } : { x: 0 }}
-                      transition={{ duration: 0.2, ease: 'easeInOut' }}
-                    />
-                    {/* Button Label */}
-                    <button
-                      onClick={handleCrack}
-                      disabled={crackStarted}
-                      className="relative z-20 bg-transparent text-white font-bold py-4 px-8 rounded-2xl border-2 border-indigo-500/50 shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                    >
-                      <span className="flex items-center gap-2">
-                        View More
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
-                          ></path>
-                        </svg>
-                      </span>
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <motion.button
-                  onClick={() => setShowDescription(false)}
-                  className="group bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold py-4 px-8 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 mx-auto lg:mx-0"
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="flex items-center gap-2">
-                    View Less
-                    <svg
-                      className="w-5 h-5 group-hover:-translate-y-1 transition-transform duration-300"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 15l7-7 7 7"
-                      ></path>
-                    </svg>
-                  </span>
-                </motion.button>
-              )}
-            </div>
-          </div>
+            {/* Action Buttons: View Details + Explore Service Page */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
+              <button
+                onClick={() => setShowDetails(!showDetails)}
+                className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold px-6 py-3 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm sm:text-base cursor-pointer w-full sm:w-auto"
+                aria-expanded={showDetails}
+              >
+                <span>{showDetails ? 'Hide Details' : 'View Details'}</span>
+                <motion.div animate={{ rotate: showDetails ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                  <ChevronDown size={18} />
+                </motion.div>
+              </button>
 
-          {/* Image Section */}
-          <div className="lg:w-1/2 flex justify-center items-center relative">
-            <div className="relative group">
-              {/* Image container */}
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl">
-                <img
-                  src={imageUrl}
-                  alt={title}
-                  className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[550px] lg:h-[550px] object-cover"
-                  loading="lazy"
-                  decoding="async"
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src =
-                      'https://placehold.co/630x630/2A2A2A/FFFFFF?text=Image+Error';
-                  }}
-                />
-
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-              </div>
+              <Link
+                to={link}
+                className="bg-purple-950/40 hover:bg-purple-900/60 border border-purple-500/40 hover:border-purple-400/70 text-purple-100 hover:text-white font-bold px-6 py-3 rounded-2xl flex items-center justify-center gap-2 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm sm:text-base group w-full sm:w-auto"
+              >
+                <span>{ctaText || 'Explore Service Page'}</span>
+                <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </Link>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default SingleServiceHighlight;
+export default React.memo(SingleServiceHighlight);

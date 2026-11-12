@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 70" fill="none">
+  <!-- Hash Tag in Saffron / Indian Colors -->
+  <path d="M16 18L12 52M28 18L24 52" stroke="#FF9933" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M6 30L34 30M4 42L32 42" stroke="#138808" stroke-width="4.5" stroke-linecap="round"/>
+  
+  <!-- Startup Text -->
+  <text x="42" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#FFFFFF" letter-spacing="-0.5">startup</text>
+  
+  <!-- India Text with Orange Growth Arrow -->
+  <text x="122" y="38" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="22" fill="#FF9933" letter-spacing="-0.5">india</text>
+  
+  <!-- Growth Trajectory Curve -->
+  <path d="M125 44C150 48 165 42 178 30" stroke="#FF9933" stroke-width="2.5" stroke-linecap="round"/>
+  <polygon points="182,26 174,30 178,36" fill="#FF9933"/>
+
+  <!-- DPIIT Subtext -->
+  <text x="44" y="55" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="8.5" fill="#94A3B8" letter-spacing="1.5">#DPIIT RECOGNIZED</text>
+</svg>

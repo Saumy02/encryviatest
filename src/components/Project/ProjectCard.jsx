@@ -31,7 +31,8 @@ const ProjectCard = ({ project }) => {
 
   const imageVariants = {
     hover: {
-      scale: 1.05,
+      scale: 1.02,
+      y: -4,
       transition: { duration: 0.3 }
     }
   };
@@ -66,32 +67,38 @@ const ProjectCard = ({ project }) => {
             <motion.div
               className="absolute -inset-4 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
             />
-            <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 border border-gray-700/50 overflow-hidden ">
-              <img
-                src={imageUrl}
-                alt={title}
-                className="w-full h-64 sm:h-80 lg:h-96  rounded-xl "
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src = "https://placehold.co/600x400/4F46E5/ffffff?text=Project+Image";
-                }}
-              />
-              
-              {/* Overlay with quick actions */}
-              <div className="absolute inset-4 bg-black/70 backdrop-blur-sm rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-4">
+            <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-3 sm:p-4 border border-gray-700/50 group-hover:border-indigo-500/40 transition-colors duration-300">
+              <div className="relative rounded-xl overflow-hidden bg-gray-900/60 shadow-inner">
+                <img
+                  src={imageUrl}
+                  alt={title}
+                  loading="lazy"
+                  className="w-full h-auto block rounded-xl object-contain transition-transform duration-500 ease-out"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "https://placehold.co/600x400/4F46E5/ffffff?text=Project+Image";
+                  }}
+                />
+                
+                {/* Subtle sheen/gradient on hover that does NOT obscure the image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-xl" />
+
+                {/* Overlay with quick actions - ONLY rendered when liveUrl exists */}
                 {liveUrl && (
-                  <motion.a
-                    href={liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300"
-                    variants={buttonVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                  >
-                    <ExternalLink size={16} />
-                    View Live
-                  </motion.a>
+                  <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px] rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-4">
+                    <motion.a
+                      href={liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 font-medium shadow-lg transition-colors duration-300"
+                      variants={buttonVariants}
+                      whileHover="hover"
+                      whileTap="tap"
+                    >
+                      <ExternalLink size={16} />
+                      View Live
+                    </motion.a>
+                  </div>
                 )}
               </div>
             </div>
@@ -107,17 +114,24 @@ const ProjectCard = ({ project }) => {
           viewport={{ once: true }}
         >
           
-          {/* Category Badge */}
+          {/* Category & Client Badge */}
           <motion.div
-            className="flex items-center gap-2"
+            className="flex flex-wrap items-center justify-center gap-2.5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <Tag size={16} className="text-indigo-400" />
-            <span className="inline-block px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-medium border border-indigo-500/30">
-              {category}
-            </span>
+            <div className="flex items-center gap-1.5">
+              <Tag size={16} className="text-indigo-400" />
+              <span className="inline-block px-3 py-1 bg-indigo-500/20 text-indigo-300 rounded-full text-sm font-medium border border-indigo-500/30">
+                {category}
+              </span>
+            </div>
+            {project.client && (
+              <span className="inline-block px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm font-semibold border border-purple-500/30">
+                Client: {project.client}
+              </span>
+            )}
           </motion.div>
 
           {/* Title */}

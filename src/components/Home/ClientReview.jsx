@@ -129,7 +129,7 @@ const ClientReview = () => {
                     </h3>
                     
                     {currentReview.company && (
-                      <p className="text-purple-200 font-medium">
+                      <p className="text-[rgb(168,85,247)] font-medium">
                         {currentReview.company}
                       </p>
                     )}

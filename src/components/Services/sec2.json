@@ -1,44 +1,62 @@
 [
   {
-    "title": "Custom Websites That Do More for Your Business",
-    "image": "../image/Web_dev/Built_with_security.webp",
-    "imageAlt": "Custom Website Development",
-    "description": "We don't just build websites to look pretty—we create digital workhorses. Each website is handcrafted to showcase your brand, guide your users, and deliver measurable results. From mobile responsiveness to high-conversion design, we transform your site into an asset, not just an address.",
-    "listTitle": "What we deliver:",
+    "slug": "website-design",
+    "title": "Website Design",
+    "image": "/image/Web_dev/Custom_Websites.webp",
+    "imageAlt": "Website Design & Development",
+    "description": "We don't just build websites to look pretty — we create digital workhorses. Each website is handcrafted to showcase your brand, guide your users, and deliver measurable results. From mobile responsiveness to high-conversion design, we transform your site into an asset, not just an address.",
+    "listTitle": "What We Deliver:",
     "items": [
-      "Personalized UI/UX tailored to your brand and goals",
-      "Mobile-first responsive design",
-      "SEO-friendly structure with clean, scalable code",
-      "Built on WordPress, Shopify, or custom stacks as needed"
+      "Personalized UI/UX tailored to your brand and business goals",
+      "Mobile-first responsive design across all screen sizes",
+      "SEO-friendly architecture with clean, scalable code",
+      "Built on WordPress, Shopify, or modern custom stacks"
     ],
     "reverse": false
   },
   {
-    "title": "Built with Security, Performance, and Scalability in Mind",
-    "image": "../image/Web_dev/A Smarter.webp",
-    "imageAlt": "Secure Development Process",
-    "description": "Websites today face real-world pressures—from performance expectations to security threats. We code with purpose and precision, using proven tech stacks to ensure your site loads fast, stays secure, and grows with your business.",
-    "listTitle": "How we do it:",
+    "slug": "mobile-app-development",
+    "title": "Mobile App Development",
+    "image": "/image/Web_dev/WEB_Development.webp",
+    "imageAlt": "Mobile App Development",
+    "description": "Expand your reach into the hands of your users with high-performance native and cross-platform mobile applications. We build intuitive, secure iOS and Android apps with smooth 60fps interactions, offline capabilities, and instant API syncing.",
+    "listTitle": "Mobile Capabilities:",
     "items": [
-      "Enterprise-grade security features (SSL, firewalls, input validation)",
-      "Frontend and backend optimization for speed and reliability",
-      "Cloud-ready architecture and API-first integrations",
-      "Ongoing maintenance and technical support plans"
+      "Cross-platform mobile apps for iOS and Android",
+      "Intuitive mobile UI/UX and gesture-driven workflows",
+      "Real-time push notifications and background data sync",
+      "App Store and Google Play deployment & compliance"
     ],
     "reverse": true
   },
   {
-    "title": "A Smarter Development Process That Keeps You In the Loop",
-    "image": "../image/Web_dev/Custom_Websites.webp",
-    "imageAlt": "Collaborative Development Process",
-    "description": "No black boxes, no surprises. We keep our development process transparent and collaborative, with regular check-ins so you're in control every step of the way. From kickoff to launch and beyond, you're part of the journey—and we're accountable for every pixel, line of code, and deadline.",
-    "listTitle": "What to expect:",
+    "slug": "ecommerce-development",
+    "title": "E-Commerce Development",
+    "image": "/image/Web_dev/A Smarter.webp",
+    "imageAlt": "E-Commerce Development",
+    "description": "Turn visitors into repeat buyers with high-converting, lightning-fast e-commerce platforms. From custom Shopify stores and WooCommerce builds to enterprise headless commerce, we engineer seamless shopping carts, checkout funnels, and payment gateway integrations.",
+    "listTitle": "E-Commerce Solutions:",
     "items": [
-      "Weekly progress reports and collaborative dashboards",
-      "Clear timelines with concrete deliverables",
-      "Comprehensive CMS training for your team",
-      "Post-launch support, updates, and optimization roadmaps"
+      "Custom Shopify & WooCommerce storefront design",
+      "Frictionless checkout flows & multi-currency payment gateways",
+      "Inventory management, CRM, and automated shipping sync",
+      "Conversion rate optimization (CRO) tuned for mobile shoppers"
     ],
     "reverse": false
+  },
+  {
+    "slug": "secure-by-design",
+    "title": "Secure by Design",
+    "image": "/image/Web_dev/Built_with_security.webp",
+    "imageAlt": "Secure by Design",
+    "description": "Websites and apps today face constant pressure from performance expectations and security threats. We engineer with purpose and precision, embedding defense-in-depth architecture, SSL/HTTPS encryption, and hardened server configurations from day one.",
+    "listTitle": "How We Secure It:",
+    "items": [
+      "Enterprise-grade SSL/HTTPS encryption & secure header policies",
+      "Input sanitization, firewall configuration & DDoS protection",
+      "Cloud-ready architecture with automated encrypted backups",
+      "Ongoing security updates and vulnerability patching"
+    ],
+    "reverse": true
   }
 ]

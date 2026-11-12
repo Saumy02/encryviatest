@@ -1,48 +1,52 @@
 import React, { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, Send } from 'lucide-react';
 
 const NewsletterSubscribe = () => {
   const [email, setEmail] = useState("");
-  const [success, setSuccess] = useState(null); // null | "subscribed" | "already"
+  const [success, setSuccess] = useState(null); // null | "subscribed" | "already" | "invalid"
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubscribe = async () => {
-    if (email.trim() && email.includes("@")) {
-      setIsLoading(true);
+    if (!email.trim() || !email.includes("@")) {
+      setSuccess("invalid");
+      setTimeout(() => setSuccess(null), 3000);
+      return;
+    }
 
-      try {
-        const response = await fetch('https://encryvia-backend.vercel.app/api/email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        });
-        const data = await response.json();
+    setIsLoading(true);
 
-        if (response.ok) {
-          // Success response
-          setSuccess("subscribed");
-          setEmail("");
+    try {
+      const response = await fetch('https://encryvia-backend.vercel.app/api/email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await response.json();
+
+      if (response.ok) {
+        // Success response
+        setSuccess("subscribed");
+        setEmail("");
+      } else {
+        // Error response (e.g., email exists)
+        if (data.error && data.error === "Email already exists") {
+          setSuccess("exists");
         } else {
-          // Error response (e.g., email exists)
-          if (data.error && data.error === "Email already exists") {
-            setSuccess("exists");
-          } else {
-            // fallback for other errors
-            setSuccess("error");
-          }
+          // fallback for other errors
+          setSuccess("error");
         }
-      } catch (error) {
-        console.error('Network error:', error);
-        setSuccess("error");
-      } finally {
-        setIsLoading(false);
-        setTimeout(() => setSuccess(null), 4000);
       }
+    } catch (error) {
+      console.error('Network error:', error);
+      setSuccess("error");
+    } finally {
+      setIsLoading(false);
+      setTimeout(() => setSuccess(null), 4000);
     }
   };
-
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -53,31 +57,25 @@ const NewsletterSubscribe = () => {
 
   return (
     <div
-      className="w-full px-4 sm:px-6 lg:px-8 py-10 lg:py-14"
-      style={{ contentVisibility: 'auto', containIntrinsicSize: '520px' }}
+      className="w-full px-4 sm:px-6 lg:px-8 py-3 sm:py-4 lg:py-6"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="relative">
-          {/* Main container (glassmorphism) */}
-          <div className="relative bg-black/20 border border-white/20 p-6 sm:p-8 lg:p-12 rounded-3xl shadow-2xl shadow-black/40">
+          {/* Main container (pure ultra-transparent glassmorphism matching ConnectNow) */}
+          <div className="relative bg-white/[0.04] border border-white/20 p-8 sm:p-10 lg:p-12 rounded-3xl backdrop-blur-2xl shadow-2xl">
+            
+            {/* Background pattern */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%239C92AC\' fill-opacity=\'0.05\'%3E%3Ccircle cx=\'30\' cy=\'30\' r=\'1\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30 rounded-3xl"></div>
             {/* Glass highlight overlay */}
-            <div className="pointer-events-none absolute inset-px rounded-3xl bg-gradient-to-b from-white/10 via-white/5 to-transparent"></div>
+            <div className="pointer-events-none absolute inset-px rounded-3xl bg-gradient-to-b from-white/12 via-white/5 to-transparent"></div>
 
             <div className="relative z-10 text-center space-y-6 lg:space-y-8">
               {/* Header */}
               <div className="space-y-4 lg:space-y-6">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white leading-tight">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white leading-tight tracking-tight">
                   Stay Ahead of{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                    Threats
-                  </span>,
-                  <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-indigo-400">
-                    Trends
-                  </span>{' '}
-                  &{' '}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
-                    Tech
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
+                    Threats, Trends & Tech
                   </span>
                 </h3>
                 <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
@@ -126,16 +124,18 @@ const NewsletterSubscribe = () => {
                     onKeyPress={handleKeyPress}
                     placeholder="Enter your email address"
                     disabled={isLoading}
-                    className="flex-1 px-4 py-3 lg:px-6 lg:py-4 bg-gray-800/50 backdrop-blur-sm text-white placeholder-gray-400 rounded-2xl border border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 text-sm lg:text-base disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex-1 px-4 py-3 lg:px-6 lg:py-4 bg-white/[0.05] backdrop-blur-md text-white placeholder-gray-400 rounded-2xl border border-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-400/50 transition-all duration-300 text-sm lg:text-base disabled:opacity-50 disabled:cursor-not-allowed"
                     aria-label="Email address"
                   />
                   <button
                     onClick={handleSubscribe}
-                    disabled={isLoading || !email.trim() || !email.includes("@")}
-                    className="group relative px-6 py-3 lg:px-8 lg:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    disabled={isLoading}
+                    className="group relative px-8 py-3.5 sm:py-4 bg-gradient-to-r from-purple-500 via-indigo-500 to-pink-500 hover:from-purple-400 hover:via-indigo-400 hover:to-pink-400 text-white font-extrabold text-base rounded-2xl shadow-[0_0_25px_rgba(168,85,247,0.55)] hover:shadow-[0_0_35px_rgba(236,72,153,0.75)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 border border-white/30 cursor-pointer flex-shrink-0"
                     aria-label="Subscribe to newsletter"
                   >
-                    <span className="relative z-10 flex items-center gap-2">
+                    {/* Ambient Glow Halo */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 rounded-2xl opacity-60 blur-md group-hover:opacity-90 transition duration-300 pointer-events-none -z-10"></div>
+                    <span className="relative z-10 flex items-center gap-2 tracking-wide font-extrabold text-white">
                       {isLoading ? (
                         <>
                           <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -146,25 +146,32 @@ const NewsletterSubscribe = () => {
                         </>
                       ) : (
                         <>
-                          Subscribe
-                          <svg className="w-4 h-4 lg:w-5 lg:h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                          </svg>
+                          <span>Subscribe</span>
+                          <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-200" />
                         </>
                       )}
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
                 </div>
 
                 {/* Status Messages */}
                 <AnimatePresence>
+                  {success === "invalid" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                      className="text-amber-300 bg-amber-500/15 border border-amber-500/30 px-4 py-2.5 rounded-xl backdrop-blur-sm text-sm"
+                    >
+                      Please enter a valid email address.
+                    </motion.div>
+                  )}
                   {success === "subscribed" && (
                     <motion.div
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      className="text-green-400 bg-green-50 border border-green-200 px-4 py-3 rounded-lg"
+                      className="text-green-400 bg-green-500/10 border border-green-500/30 px-4 py-3 rounded-xl backdrop-blur-sm text-sm"
                     >
                       Email submitted successfully!
                     </motion.div>
@@ -174,7 +181,7 @@ const NewsletterSubscribe = () => {
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      className="text-yellow-400 bg-yellow-50 border border-yellow-200 px-4 py-3 rounded-lg"
+                      className="text-yellow-400 bg-yellow-500/10 border border-yellow-500/30 px-4 py-3 rounded-xl backdrop-blur-sm text-sm"
                     >
                       Email already exists.
                     </motion.div>
@@ -184,13 +191,12 @@ const NewsletterSubscribe = () => {
                       initial={{ opacity: 0, y: -10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                      className="text-red-400 bg-red-50 border border-red-200 px-4 py-3 rounded-lg"
+                      className="text-red-400 bg-red-500/10 border border-red-500/30 px-4 py-3 rounded-xl backdrop-blur-sm text-sm"
                     >
                       Something went wrong. Please try again later.
                     </motion.div>
                   )}
                 </AnimatePresence>
-
               </div>
 
               {/* Privacy note */}

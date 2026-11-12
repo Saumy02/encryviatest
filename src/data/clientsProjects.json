@@ -1,0 +1,206 @@
+[
+  {
+    "id": 1,
+    "title": "DrugIntelHub",
+    "client": "DrugIntelHub",
+    "clientLogo": "/image/drugintelhub-logo.webp",
+    "clientIndustry": "Healthcare & Medicine Intelligence",
+    "category": "Web Application",
+    "tagline": "Searchable Intelligence Platform for Drug & Medicine Information",
+    "description": "A searchable web application for drug and medicine information, built to give users clear answers quickly from a large and varied dataset. The React.js interface keeps searching and browsing fast, while a Python back end handles the data. Two databases are used on purpose: MongoDB for flexible drug records whose structure varies, and MySQL for relational data that needs strict consistency.",
+    "keyFeatures": [
+      "Fast search and browsing across medicine records",
+      "Clear, readable record pages on mobile, tablet and desktop",
+      "Dual-database architecture (MongoDB for flexible records, MySQL for structured data)",
+      "Python back end built to handle large volumes of data",
+      "Secure HTTPS deployment"
+    ],
+    "technologies": [
+      "React.js",
+      "Python",
+      "MongoDB",
+      "MySQL",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "REST API"
+    ],
+    "timeline": {
+      "started": "December 2025",
+      "duration": "6 months",
+      "completed": "June 2026"
+    },
+    "imageUrl": "/image/projects/drugintelhub.webp",
+    "imageAlt": "DrugIntelHub - Web Application for Drug & Medicine Information",
+    "direction": "left"
+  },
+  {
+    "id": 2,
+    "title": "Hindustan Franchise",
+    "client": "Hindustan Franchise",
+    "clientLogo": "/image/hindustan-franchise-logo.webp",
+    "clientIndustry": "Franchise Directory & Business Opportunities",
+    "category": "Web Development",
+    "tagline": "Interactive Investor Directory & Franchise Enquiry Portal",
+    "description": "A franchise directory website that helps prospective investors browse, compare and enquire about franchise opportunities. Structure came first: how listings are grouped, how visitors find the right category, and how few clicks it takes to go from interest to enquiry. Built on WordPress so the team can manage listings and content themselves.",
+    "keyFeatures": [
+      "Category-based franchise listings that are easy to browse and compare",
+      "Enquiry and lead forms with email notifications",
+      "Easy content management through the WordPress admin",
+      "On-page SEO foundation so listings can be found through search",
+      "Mobile-responsive design"
+    ],
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "MySQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Yoast SEO"
+    ],
+    "timeline": {
+      "started": "December 2025",
+      "duration": "5 weeks",
+      "completed": "January 2026"
+    },
+    "imageUrl": "/image/projects/hindustan-franchise.webp",
+    "imageAlt": "Hindustan Franchise - Directory & Enquiry Platform",
+    "direction": "right"
+  },
+  {
+    "id": 3,
+    "title": "MyStikWrap",
+    "client": "MyStikWrap",
+    "clientLogo": "/image/mystikwrap-logo.webp",
+    "clientIndustry": "Custom Wraps, Merchandise & Consumer Branding",
+    "category": "Web Development",
+    "tagline": "Full Website Re-Design, Architecture & Performance Tuning",
+    "description": "A full website re-design for an existing brand that needed a cleaner look and faster pages. We rebuilt it from the ground up in React.js, keeping the brand recognisable while improving layout, speed and how visitors move through the site.",
+    "keyFeatures": [
+      "Complete visual and structural re-design aligned with the brand",
+      "Performance tuning with Core Web Vitals in mind",
+      "Responsive layouts that hold up on small screens",
+      "Cross-browser testing across major browsers",
+      "Page layouts planned to guide visitors toward action"
+    ],
+    "technologies": [
+      "React.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS"
+    ],
+    "timeline": {
+      "started": "November 2025",
+      "duration": "1 Month",
+      "completed": "December 2025"
+    },
+    "imageUrl": "/image/projects/mystikwrap.webp",
+    "imageAlt": "MyStikWrap - Full Website Re-Design",
+    "direction": "left"
+  },
+  {
+    "id": 4,
+    "title": "SksInfosystems",
+    "client": "SksInfosystems",
+    "clientLogo": "/image/sks-logo.webp",
+    "clientIndustry": "Cybersecurity Services & Infrastructure Defense",
+    "category": "Cyber Security",
+    "tagline": "Hardened Corporate Security Platform & Service Showcase",
+    "description": "A corporate website for a cybersecurity company, built to communicate security services clearly and earn trust quickly. Since we work in cybersecurity ourselves, we treated security and credibility as part of the build: a hardened setup, fast pages, and a structure that explains each service without drowning visitors in jargon.",
+    "keyFeatures": [
+      "Dedicated, easy-to-navigate pages for each security service",
+      "Security-first configuration with HTTPS",
+      "Fast load times and a responsive layout",
+      "Professional, trust-focused design",
+      "SEO-ready page structure for service visibility"
+    ],
+    "technologies": [
+      "React.js",
+      "JavaScript",
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "SSL/HTTPS"
+    ],
+    "timeline": {
+      "started": "April 2026",
+      "duration": "2 Months",
+      "completed": "June 2026"
+    },
+    "imageUrl": "/image/projects/sksinfosystems.webp",
+    "imageAlt": "SksInfosystems - Corporate Cybersecurity Platform",
+    "direction": "right"
+  },
+  {
+    "id": 5,
+    "title": "EcomBizGrow",
+    "client": "EcomBizGrow",
+    "clientLogo": "/image/ecombizgrow-logo.webp",
+    "clientLogoBg": "bg-black/90 border border-white/20",
+    "clientIndustry": "E-Commerce, Digital Retail & Online Shopping",
+    "category": "E-commerce",
+    "tagline": "High-Conversion E-Commerce Storefront with Speed Optimization",
+    "description": "An e-commerce website built to make buying simple, from finding a product to checking out. The store has an organised product catalogue, payment and shipping set up, and product and category pages written with search in mind. It is tuned for speed because shoppers on mobile won't wait for slow pages.",
+    "keyFeatures": [
+      "Structured product catalogue with category pages",
+      "Payment gateway and shipping integration",
+      "SEO-optimised product and category pages",
+      "Speed-optimised, mobile-responsive storefront",
+      "Simple store management through WordPress"
+    ],
+    "technologies": [
+      "WordPress",
+      "WooCommerce",
+      "PHP",
+      "MySQL",
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
+    "timeline": {
+      "started": "January 2026",
+      "duration": "3 Weeks",
+      "completed": "January 2026"
+    },
+    "imageUrl": "/image/projects/ecombizgrow.webp",
+    "imageAlt": "EcomBizGrow - E-Commerce Storefront & Checkout",
+    "direction": "left"
+  },
+  {
+    "id": 6,
+    "title": "Tacitine",
+    "client": "Tacitine",
+    "clientLogo": "/image/tacitine-logo.webp",
+    "clientIndustry": "Next-Gen Network Security & Appliance Defense",
+    "category": "Cyber Security",
+    "tagline": "AI-Powered Deep Packet Inspection & Unified NGFW Security Platform",
+    "description": "A next-generation unified network security and deep packet inspection (DPI) platform engineered for hyper-connected enterprises. Defends enterprise digital infrastructure against zero-day exploits, advanced threats, and network intrusions with AI-powered DPI, real-time threat intelligence, and zero-trust policy compliance — all in a single, high-capacity scaling appliance.",
+    "keyFeatures": [
+      "AI-Powered Deep Packet Inspection (DPI) & zero-day exploit defense",
+      "Next-Generation Firewall (NGFW) with carrier-grade scalability",
+      "Zero-Trust network access (ZTNA) and policy orchestration",
+      "Real-time threat intelligence and automated breach containment",
+      "High availability architecture with 99.9% uptime and low latency"
+    ],
+    "technologies": [
+      "AI Threat Engine",
+      "Deep Packet Inspection",
+      "Zero-Trust ZTNA",
+      "Linux Kernel",
+      "Python",
+      "React.js",
+      "NGFW Appliance",
+      "REST API"
+    ],
+    "timeline": {
+      "started": "February 2026",
+      "duration": "4 Months",
+      "completed": "May 2026"
+    },
+    "imageUrl": "/image/projects/tacitine.webp",
+    "imageAlt": "Tacitine - Next-Gen Unified Network Security & NGFW Platform",
+    "direction": "right"
+  }
+]

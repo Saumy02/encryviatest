@@ -34,7 +34,7 @@ const ServiceCard = ({ service, index }) => {
 
         <button
           onClick={() => setShowMore(!showMore)}
-          className="mt-3 text-sm text-purple-400 hover:underline focus:outline-none"
+          className="mt-3 text-sm text-[rgb(168,85,247)] hover:underline focus:outline-none"
         >
           {showMore ? 'View Less' : 'View More'}
         </button>

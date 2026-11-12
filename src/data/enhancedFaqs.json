@@ -1,0 +1,557 @@
+[
+  {
+    "id": "geo-seo",
+    "title": "GEO & SEO Optimization",
+    "count": 16,
+    "faqs": [
+      {
+        "question": "What is Generative Engine Optimization (GEO)?",
+        "rawAnswerHtml": "<p><strong>Generative Engine Optimization (GEO)</strong> is the practice of structuring content so <em>AI answer engines</em> (ChatGPT, Gemini, Perplexity, Copilot, voice assistants) can <strong>parse, attribute, and cite</strong> your page in natural‑language results.</p>\n              <ul>\n                <li><strong>How it works:</strong> question–answer blocks, consistent <em>entity</em> naming (e.g., <em>EncryVia Digital Solutions</em>), schema markup, and source‑backed claims.</li>\n                <li><strong>Goal:</strong> earn citations/links in AI outputs and drive assisted conversions even when clicks are reduced.</li>\n              </ul>",
+        "paragraphs": [
+          "<strong>Generative Engine Optimization (GEO)</strong> is the practice of structuring content so <em>AI answer engines</em> (ChatGPT, Gemini, Perplexity, Copilot, voice assistants) can <strong>parse, attribute, and cite</strong> your page in natural‑language results."
+        ],
+        "bullets": [
+          "<strong>How it works:</strong> question–answer blocks, consistent <em>entity</em> naming (e.g., <em>EncryVia Digital Solutions</em>), schema markup, and source‑backed claims.",
+          "<strong>Goal:</strong> earn citations/links in AI outputs and drive assisted conversions even when clicks are reduced."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How is GEO different from SEO?",
+        "rawAnswerHtml": "<ul>\n                <li><strong>SEO:</strong> optimizes for ranked lists; focuses on keywords, links, and page experience.</li>\n                <li><strong>GEO:</strong> optimizes for <em>answers</em>; focuses on entities, Q&A structure, citations, and completeness.</li>\n                <li><strong>Together:</strong> GEO builds atop technical & semantic SEO don’t replace, <em>layer</em> it.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "<strong>SEO:</strong> optimizes for ranked lists; focuses on keywords, links, and page experience.",
+          "<strong>GEO:</strong> optimizes for <em>answers</em>; focuses on entities, Q&A structure, citations, and completeness.",
+          "<strong>Together:</strong> GEO builds atop technical & semantic SEO don’t replace, <em>layer</em> it."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How do I get my content cited by AI engines?",
+        "rawAnswerHtml": "<ul>\n                <li><strong>Publish definitive answers:</strong> lead with a 2–3 sentence summary, then bullets, examples, and <code>FAQPage</code> markup.</li>\n                <li><strong>Use entities & IDs:</strong> repeat <em>EncryVia Digital Solutions</em>, authors, products, locations; add <code>sameAs</code> links.</li>\n                <li><strong>Cite sources:</strong> link to primary docs, standards, or datasets; keep dates visible.</li>\n                <li><strong>Demonstrate E‑E‑A‑T:</strong> author bios, credentials, case studies, inline proof.</li>\n              </ul>\n              <p class=\"hint\">Validation: test with Perplexity/Gemini for citations and crawl your JSON‑LD with a schema tester.</p>",
+        "paragraphs": [],
+        "bullets": [
+          "<strong>Publish definitive answers:</strong> lead with a 2–3 sentence summary, then bullets, examples, and <code>FAQPage</code> markup.",
+          "<strong>Use entities & IDs:</strong> repeat <em>EncryVia Digital Solutions</em>, authors, products, locations; add <code>sameAs</code> links.",
+          "<strong>Cite sources:</strong> link to primary docs, standards, or datasets; keep dates visible.",
+          "<strong>Demonstrate E‑E‑A‑T:</strong> author bios, credentials, case studies, inline proof."
+        ],
+        "hint": "Validation: test with Perplexity/Gemini for citations and crawl your JSON‑LD with a schema tester."
+      },
+      {
+        "question": "How does AI answer generation impact website traffic and SEO?",
+        "rawAnswerHtml": "<ul>\n                <li><strong>More zero‑click:</strong> fewer list clicks, more brand mentions inside answers.</li>\n                <li><strong>Quality > quantity:</strong> traffic may dip while <em>assisted conversions</em> and direct traffic rise.</li>\n                <li><strong>Measurement shift:</strong> track citations, brand recall queries, and multi‑touch attribution not just sessions.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "<strong>More zero‑click:</strong> fewer list clicks, more brand mentions inside answers.",
+          "<strong>Quality > quantity:</strong> traffic may dip while <em>assisted conversions</em> and direct traffic rise.",
+          "<strong>Measurement shift:</strong> track citations, brand recall queries, and multi‑touch attribution not just sessions."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Best practices to appear in AI search results",
+        "rawAnswerHtml": "<ul>\n                <li>Write in <strong>Q&A blocks</strong> with concise summaries up top.</li>\n                <li>Add <strong>FAQPage</strong>, <strong>HowTo</strong>, <strong>Product</strong>, <strong>LocalBusiness</strong> schema where relevant.</li>\n                <li>Use <strong>named entities</strong> consistently: brand, services, locations, industries.</li>\n                <li>Provide <strong>examples, tables, and checklists</strong> that AI can quote.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Write in <strong>Q&A blocks</strong> with concise summaries up top.",
+          "Add <strong>FAQPage</strong>, <strong>HowTo</strong>, <strong>Product</strong>, <strong>LocalBusiness</strong> schema where relevant.",
+          "Use <strong>named entities</strong> consistently: brand, services, locations, industries.",
+          "Provide <strong>examples, tables, and checklists</strong> that AI can quote."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How to optimize for zero‑click (AI Overview) results?",
+        "rawAnswerHtml": "<ul>\n                <li>Front‑load answers (first 2–3 sentences) and add <strong>supporting bullets</strong>.</li>\n                <li>Embed <strong>source links</strong> near claims; keep dates and authorship visible.</li>\n                <li>Make <strong>snippable chunks</strong>: 40–80 word blocks, definition boxes, mini‑glossaries.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Front‑load answers (first 2–3 sentences) and add <strong>supporting bullets</strong>.",
+          "Embed <strong>source links</strong> near claims; keep dates and authorship visible.",
+          "Make <strong>snippable chunks</strong>: 40–80 word blocks, definition boxes, mini‑glossaries."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Content formats preferred by generative and voice engines",
+        "rawAnswerHtml": "<ul>\n                <li>Structured <strong>FAQs</strong>, <strong>How‑Tos</strong>, <strong>Checklists</strong>, <strong>Comparisons</strong>, and <strong>Glossaries</strong>.</li>\n                <li>Short, declarative sentences with clear entities and units.</li>\n                <li>Audio summaries and <strong>concise steps</strong> for voice assistants.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Structured <strong>FAQs</strong>, <strong>How‑Tos</strong>, <strong>Checklists</strong>, <strong>Comparisons</strong>, and <strong>Glossaries</strong>.",
+          "Short, declarative sentences with clear entities and units.",
+          "Audio summaries and <strong>concise steps</strong> for voice assistants."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How often should I update content for GEO success?",
+        "rawAnswerHtml": "<ul>\n                <li>Quarterly refresh for pillar pages; monthly for fast‑moving topics (ads, threats, compliance).</li>\n                <li>Show <strong>last‑updated</strong> dates and change logs.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Quarterly refresh for pillar pages; monthly for fast‑moving topics (ads, threats, compliance).",
+          "Show <strong>last‑updated</strong> dates and change logs."
+        ],
+        "hint": null
+      },
+      {
+        "question": "What tools help track GEO performance and AI citations?",
+        "rawAnswerHtml": "<ul>\n                <li>Log <strong>brand mentions</strong> in AI engines (manual prompts + share URLs).</li>\n                <li>Use analytics with <strong>assisted conversion</strong> models; monitor branded and entity queries.</li>\n                <li>Check <strong>schema validation</strong> and crawlability; compare AI vs search snippets.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Log <strong>brand mentions</strong> in AI engines (manual prompts + share URLs).",
+          "Use analytics with <strong>assisted conversion</strong> models; monitor branded and entity queries.",
+          "Check <strong>schema validation</strong> and crawlability; compare AI vs search snippets."
+        ],
+        "hint": null
+      },
+      {
+        "question": "What is E‑E‑A‑T and why is it important in 2026?",
+        "rawAnswerHtml": "<p><strong>Experience, Expertise, Authoritativeness, Trustworthiness</strong> guide both search and AI engines.</p>\n              <ul>\n                <li>Show practitioner <strong>experience</strong> (case studies, screenshots, repos).</li>\n                <li>List <strong>expertise</strong> (certs, client logos, press).</li>\n                <li>Strengthen <strong>trust</strong> (policies, pricing transparency, verifiable claims).</li>\n              </ul>",
+        "paragraphs": [
+          "<strong>Experience, Expertise, Authoritativeness, Trustworthiness</strong> guide both search and AI engines."
+        ],
+        "bullets": [
+          "Show practitioner <strong>experience</strong> (case studies, screenshots, repos).",
+          "List <strong>expertise</strong> (certs, client logos, press).",
+          "Strengthen <strong>trust</strong> (policies, pricing transparency, verifiable claims)."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How to optimize for voice search and conversational queries?",
+        "rawAnswerHtml": "<ul>\n                <li>Write <strong>natural questions</strong> and direct answers (≤ 30 seconds spoken).</li>\n                <li>Add <strong>pronounceable</strong> brand & product names; include phonetic hints if needed.</li>\n                <li>Provide <strong>action steps</strong> (\"do\", \"ask\", \"check\") and locality cues.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Write <strong>natural questions</strong> and direct answers (≤ 30 seconds spoken).",
+          "Add <strong>pronounceable</strong> brand & product names; include phonetic hints if needed.",
+          "Provide <strong>action steps</strong> (\"do\", \"ask\", \"check\") and locality cues."
+        ],
+        "hint": null
+      },
+      {
+        "question": "What is semantic SEO and why does it matter now?",
+        "rawAnswerHtml": "<ul>\n                <li>Models map <strong>topics ↔ entities</strong>. Use explicit entities, synonyms, and relationships.</li>\n                <li>Design <strong>topic clusters</strong> with internal links and shared schema graphs.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Models map <strong>topics ↔ entities</strong>. Use explicit entities, synonyms, and relationships.",
+          "Design <strong>topic clusters</strong> with internal links and shared schema graphs."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How can I improve local SEO and appear in “near me” searches?",
+        "rawAnswerHtml": "<ul>\n                <li>Complete <strong>Google Business Profile</strong> with categories, services, and Q&A.</li>\n                <li>Add <strong>LocalBusiness</strong> schema, NAP consistency, hours, and reviews.</li>\n                <li>Create city/area service pages with unique proof (photos, case studies).</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Complete <strong>Google Business Profile</strong> with categories, services, and Q&A.",
+          "Add <strong>LocalBusiness</strong> schema, NAP consistency, hours, and reviews.",
+          "Create city/area service pages with unique proof (photos, case studies)."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How do privacy, cookies, and user consent affect SEO?",
+        "rawAnswerHtml": "<ul>\n                <li>Respect consent; avoid blocking core content behind banners.</li>\n                <li>Server‑side tagging and <strong>modeled conversions</strong> preserve measurement.</li>\n                <li>Publish clear privacy pages; link them in footers and schema.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Respect consent; avoid blocking core content behind banners.",
+          "Server‑side tagging and <strong>modeled conversions</strong> preserve measurement.",
+          "Publish clear privacy pages; link them in footers and schema."
+        ],
+        "hint": null
+      },
+      {
+        "question": "What does a technical SEO audit include in 2026?",
+        "rawAnswerHtml": "<ul>\n                <li>Crawlability, indexing, canonicals, sitemaps, robots, 4xx/5xx.</li>\n                <li>Core Web Vitals, responsive/adaptive rendering, lazy‑loading behavior.</li>\n                <li>Schema graph health, internal linking, duplication, hreflang.</li>\n                <li>AI readiness: Q&A structure, entity consistency, and content freshness.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Crawlability, indexing, canonicals, sitemaps, robots, 4xx/5xx.",
+          "Core Web Vitals, responsive/adaptive rendering, lazy‑loading behavior.",
+          "Schema graph health, internal linking, duplication, hreflang.",
+          "AI readiness: Q&A structure, entity consistency, and content freshness."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How do I get featured in People Also Ask and zero‑click boxes?",
+        "rawAnswerHtml": "<ul>\n                <li>Target sub‑questions with <strong>50–80 word</strong> direct answers.</li>\n                <li>Use semantic variants and FAQPage schema; keep headings descriptive.</li>\n                <li>Answer follow‑ups on the same page to capture related PAA nodes.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Target sub‑questions with <strong>50–80 word</strong> direct answers.",
+          "Use semantic variants and FAQPage schema; keep headings descriptive.",
+          "Answer follow‑ups on the same page to capture related PAA nodes."
+        ],
+        "hint": null
+      }
+    ]
+  },
+  {
+    "id": "cyber",
+    "title": "Cybersecurity",
+    "count": 7,
+    "faqs": [
+      {
+        "question": "Top cybersecurity threats in 2026",
+        "rawAnswerHtml": "<ul>\n                <li>AI‑assisted phishing, business email compromise, and deepfake fraud.</li>\n                <li>Ransomware-as-a-service, supply‑chain compromises, cloud misconfigurations.</li>\n                <li>IoT/OT exploitation and insider threats.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "AI‑assisted phishing, business email compromise, and deepfake fraud.",
+          "Ransomware-as-a-service, supply‑chain compromises, cloud misconfigurations.",
+          "IoT/OT exploitation and insider threats."
+        ],
+        "hint": null
+      },
+      {
+        "question": "What is zero trust and do I need it?",
+        "rawAnswerHtml": "<ul>\n                <li><strong>Never trust, always verify</strong>: continuous authZ, micro‑segmentation, least privilege.</li>\n                <li>Essential for remote work, SaaS/cloud estates, and regulated data.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "<strong>Never trust, always verify</strong>: continuous authZ, micro‑segmentation, least privilege.",
+          "Essential for remote work, SaaS/cloud estates, and regulated data."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How to protect digital assets from AI‑enabled threats",
+        "rawAnswerHtml": "<ul>\n                <li>Strong identity (MFA, passkeys), phishing‑resistant FIDO, and role hygiene.</li>\n                <li>Continuous monitoring with anomaly detection; protect model inputs/outputs.</li>\n                <li>Backups, immutability, incident runbooks, tabletop exercises.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Strong identity (MFA, passkeys), phishing‑resistant FIDO, and role hygiene.",
+          "Continuous monitoring with anomaly detection; protect model inputs/outputs.",
+          "Backups, immutability, incident runbooks, tabletop exercises."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Current compliance requirements for data privacy",
+        "rawAnswerHtml": "<ul>\n                <li>Map data flows, define purposes, establish DSR processes.</li>\n                <li>Record of processing, DPA with vendors, breach notifications.</li>\n                <li>Publish cookie & consent policies; minimize data collection.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Map data flows, define purposes, establish DSR processes.",
+          "Record of processing, DPA with vendors, breach notifications.",
+          "Publish cookie & consent policies; minimize data collection."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How is AI used in penetration testing and threat detection?",
+        "rawAnswerHtml": "<ul>\n                <li>Faster recon and payload generation (red teams), smarter anomaly detection (blue teams).</li>\n                <li>Use safely: guardrails, signed tooling, and human review.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Faster recon and payload generation (red teams), smarter anomaly detection (blue teams).",
+          "Use safely: guardrails, signed tooling, and human review."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How to appear in GEO results for “best cybersecurity solution”",
+        "rawAnswerHtml": "<ul>\n                <li>Create a <strong>comparison guide</strong> with criteria, matrices, and use‑case fit.</li>\n                <li>Add <strong>Product</strong> and <strong>Organization</strong> schema; include customer quotes with sources.</li>\n                <li>Answer “who is it for”, “pricing”, “deployment”, and “support” in skimmable blocks.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Create a <strong>comparison guide</strong> with criteria, matrices, and use‑case fit.",
+          "Add <strong>Product</strong> and <strong>Organization</strong> schema; include customer quotes with sources.",
+          "Answer “who is it for”, “pricing”, “deployment”, and “support” in skimmable blocks."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Compliance FAQs cybersecurity brands should address",
+        "rawAnswerHtml": "<ul>\n                <li>Data residency, cross‑border transfers, retention & deletion timelines.</li>\n                <li>AI usage disclosure, training data, evals, and human‑in‑the‑loop.</li>\n                <li>Vendor risk (SOC 2/ISO 27001), DPIAs, lawful bases.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Data residency, cross‑border transfers, retention & deletion timelines.",
+          "AI usage disclosure, training data, evals, and human‑in‑the‑loop.",
+          "Vendor risk (SOC 2/ISO 27001), DPIAs, lawful bases."
+        ],
+        "hint": null
+      }
+    ]
+  },
+  {
+    "id": "ppc",
+    "title": "PPC & Multichannel Advertising",
+    "count": 7,
+    "faqs": [
+      {
+        "question": "How is AI changing Google Ads and PPC management?",
+        "rawAnswerHtml": "<ul>\n                <li>Algorithmic bidding, creative rotation, query expansion, asset auto‑generation.</li>\n                <li>Shift from keyword micromanagement to <strong>signal curation</strong> and conversion feedback.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Algorithmic bidding, creative rotation, query expansion, asset auto‑generation.",
+          "Shift from keyword micromanagement to <strong>signal curation</strong> and conversion feedback."
+        ],
+        "hint": null
+      },
+      {
+        "question": "What are best strategies for multi‑channel campaigns in 2026?",
+        "rawAnswerHtml": "<ul>\n                <li>Unify audiences across search, social, video, and email; share <strong>first‑party signals</strong>.</li>\n                <li>Creative systems: modular headlines, CTAs, and brand rules feed all channels.</li>\n                <li>Measure incrementality with geo‑tests or holdouts.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Unify audiences across search, social, video, and email; share <strong>first‑party signals</strong>.",
+          "Creative systems: modular headlines, CTAs, and brand rules feed all channels.",
+          "Measure incrementality with geo‑tests or holdouts."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How do agencies blend organic and paid tactics?",
+        "rawAnswerHtml": "<ul>\n                <li>Use SEO insights to seed paid themes; use paid data to refine content gaps.</li>\n                <li>Retarget organic visitors, boost winning pages, and align landing pages to SERP/AI intent.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Use SEO insights to seed paid themes; use paid data to refine content gaps.",
+          "Retarget organic visitors, boost winning pages, and align landing pages to SERP/AI intent."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Most effective automation tools for marketing",
+        "rawAnswerHtml": "<ul>\n                <li>CRM + marketing automation (journeys, lead scoring, lifecycle emails).</li>\n                <li>Ad automation (scripted rules, feed‑based ads, creative variants).</li>\n                <li>AI content assist with human QA and brand guardrails.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "CRM + marketing automation (journeys, lead scoring, lifecycle emails).",
+          "Ad automation (scripted rules, feed‑based ads, creative variants).",
+          "AI content assist with human QA and brand guardrails."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How to measure marketing ROI with AI‑driven analytics?",
+        "rawAnswerHtml": "<ul>\n                <li>Adopt modeled conversions and <strong>data‑driven attribution</strong>.</li>\n                <li>Blend platform data with first‑party analytics and finance (CAC, LTV, payback).</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Adopt modeled conversions and <strong>data‑driven attribution</strong>.",
+          "Blend platform data with first‑party analytics and finance (CAC, LTV, payback)."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Best Instagram ad strategies for AI & GEO",
+        "rawAnswerHtml": "<ul>\n                <li>Hook fast, show payoff, align to clear landing page answers.</li>\n                <li>Use entity‑rich captions and product tags; retarget profile engagers.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Hook fast, show payoff, align to clear landing page answers.",
+          "Use entity‑rich captions and product tags; retarget profile engagers."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How does retargeting adapt to privacy/AI/voice?",
+        "rawAnswerHtml": "<ul>\n                <li>Reliance on <strong>first‑party</strong> data, email/SMS lists, and modeled audiences.</li>\n                <li>Contextual + creative sequencing when IDs are limited.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Reliance on <strong>first‑party</strong> data, email/SMS lists, and modeled audiences.",
+          "Contextual + creative sequencing when IDs are limited."
+        ],
+        "hint": null
+      }
+    ]
+  },
+  {
+    "id": "webdev",
+    "title": "Custom Web Development & App Architecture",
+    "count": 20,
+    "faqs": [
+      {
+        "question": "What is custom web development in the AI era?",
+        "rawAnswerHtml": "<ul>\n                <li>Composable frontends, API‑first backends, and data pipelines designed for AI/analytics.</li>\n                <li>Built‑in privacy, consent, and content schemas ready for GEO/SEO.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Composable frontends, API‑first backends, and data pipelines designed for AI/analytics.",
+          "Built‑in privacy, consent, and content schemas ready for GEO/SEO."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How does AI impact custom site builds in 2026?",
+        "rawAnswerHtml": "<ul>\n                <li>Codegen accelerates scaffolding; humans handle architecture, security, DX, and QA.</li>\n                <li>On‑site assistants (search, chat) improve UX and collect zero‑party data.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Codegen accelerates scaffolding; humans handle architecture, security, DX, and QA.",
+          "On‑site assistants (search, chat) improve UX and collect zero‑party data."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Best practices for AI‑ready, entity‑optimized architecture",
+        "rawAnswerHtml": "<ul>\n                <li>Stable <strong>URL</strong> and <strong>schema</strong> patterns; consistent entity names and <code>@id</code> graphs.</li>\n                <li>Dedicated FAQ/How‑To blocks on service pages; internal linking between clusters.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Stable <strong>URL</strong> and <strong>schema</strong> patterns; consistent entity names and <code>@id</code> graphs.",
+          "Dedicated FAQ/How‑To blocks on service pages; internal linking between clusters."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Why are no‑code and Jamstack trending?",
+        "rawAnswerHtml": "<ul>\n                <li>Speed, security, and lower infra overhead via pre‑render + edge functions.</li>\n                <li>Pairs well with design systems and content governance.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Speed, security, and lower infra overhead via pre‑render + edge functions.",
+          "Pairs well with design systems and content governance."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Next‑gen trends: serverless, PWA, APIs",
+        "rawAnswerHtml": "<ul>\n                <li>Serverless reduces ops toil; PWAs add app‑like UX and offline.</li>\n                <li>GraphQL/REST hybrids and event streams feed AI and analytics.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Serverless reduces ops toil; PWAs add app‑like UX and offline.",
+          "GraphQL/REST hybrids and event streams feed AI and analytics."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Voice UI/AI chatbot integration is transforming apps how?",
+        "rawAnswerHtml": "<ul>\n                <li>Hands‑free flows, faster support, and embedded guidance.</li>\n                <li>Design for <strong>turn‑taking</strong>, confirmations, and fallbacks to human agents.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Hands‑free flows, faster support, and embedded guidance.",
+          "Design for <strong>turn‑taking</strong>, confirmations, and fallbacks to human agents."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How can your app rank in GEO‑powered AI answers?",
+        "rawAnswerHtml": "<ul>\n                <li>Public docs with Q&A, changelogs, and benchmarks that engines can cite.</li>\n                <li>Link your app entities to brand/site entities via schema and docs.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Public docs with Q&A, changelogs, and benchmarks that engines can cite.",
+          "Link your app entities to brand/site entities via schema and docs."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Compliance & privacy measures for modern web apps",
+        "rawAnswerHtml": "<ul>\n                <li>Consent modes, data minimization, and encryption in transit/at rest.</li>\n                <li>Role‑based access, audit logs, retention schedules, and DPIAs.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Consent modes, data minimization, and encryption in transit/at rest.",
+          "Role‑based access, audit logs, retention schedules, and DPIAs."
+        ],
+        "hint": null
+      },
+      {
+        "question": "What does full stack mean in a hybrid/AI context?",
+        "rawAnswerHtml": "<ul>\n                <li>Frontend, backend, data, and ML glue plus security and observability.</li>\n                <li>Teams ship features, evaluate impact, and harden reliability end‑to‑end.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Frontend, backend, data, and ML glue plus security and observability.",
+          "Teams ship features, evaluate impact, and harden reliability end‑to‑end."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Stacks most in demand in 2026",
+        "rawAnswerHtml": "<ul>\n                <li>MERN/MEVN, Next.js + edge/serverless, Jamstack, Python/FastAPI, Go, and cloud data stacks.</li>\n                <li>Vector search and event‑driven data layers for AI features.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "MERN/MEVN, Next.js + edge/serverless, Jamstack, Python/FastAPI, Go, and cloud data stacks.",
+          "Vector search and event‑driven data layers for AI features."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How full‑stack optimization helps AI/SEO/GEO",
+        "rawAnswerHtml": "<ul>\n                <li>Faster TTFB & Core Web Vitals → better crawl, rankings, and answer inclusion.</li>\n                <li>Semantic components & schema → clearer citations and entity graphs.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Faster TTFB & Core Web Vitals → better crawl, rankings, and answer inclusion.",
+          "Semantic components & schema → clearer citations and entity graphs."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Why responsive & adaptive design is critical",
+        "rawAnswerHtml": "<ul>\n                <li>Layout stability (CLS), input latency (INP), and visual readiness (LCP) boost UX and SEO.</li>\n                <li>AI excerpts favor clean, legible markup and headings.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Layout stability (CLS), input latency (INP), and visual readiness (LCP) boost UX and SEO.",
+          "AI excerpts favor clean, legible markup and headings."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How mobile‑first design supports AI/voice & multimodal search",
+        "rawAnswerHtml": "<ul>\n                <li>Readable at small sizes; concise summaries for on‑the‑go tasks.</li>\n                <li>Accessible labels and alt text help models interpret UI.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Readable at small sizes; concise summaries for on‑the‑go tasks.",
+          "Accessible labels and alt text help models interpret UI."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Structured data that helps responsive design get cited",
+        "rawAnswerHtml": "<ul>\n                <li><strong>FAQPage</strong>, <strong>BreadcrumbList</strong>, <strong>HowTo</strong>, <strong>Product</strong>, <strong>SoftwareApplication</strong>, <strong>LocalBusiness</strong>.</li>\n                <li>Use <code>@id</code> anchors and <code>sameAs</code> to connect your graph.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "<strong>FAQPage</strong>, <strong>BreadcrumbList</strong>, <strong>HowTo</strong>, <strong>Product</strong>, <strong>SoftwareApplication</strong>, <strong>LocalBusiness</strong>.",
+          "Use <code>@id</code> anchors and <code>sameAs</code> to connect your graph."
+        ],
+        "hint": null
+      },
+      {
+        "question": "GEO/AI requirements for UI/UX in 2026",
+        "rawAnswerHtml": "<ul>\n                <li>Clear headings, scannable bullets, footnotes/sources, and accessible components.</li>\n                <li>Stable anchors for direct linking; consistent terminology.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Clear headings, scannable bullets, footnotes/sources, and accessible components.",
+          "Stable anchors for direct linking; consistent terminology."
+        ],
+        "hint": null
+      },
+      {
+        "question": "User signals & engagement impact on AI citations",
+        "rawAnswerHtml": "<ul>\n                <li>Engaged time, low pogo‑sticking, and repeat visits correlate with trust.</li>\n                <li>Good UX yields <strong>cleaner passages</strong> for models to quote.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Engaged time, low pogo‑sticking, and repeat visits correlate with trust.",
+          "Good UX yields <strong>cleaner passages</strong> for models to quote."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Create FAQ/page layouts optimized for answer engines",
+        "rawAnswerHtml": "<ul>\n                <li>One question per anchor; short answer first; expandable depth below.</li>\n                <li>Add examples, tables, and checklists; include schema mirroring on‑page content.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "One question per anchor; short answer first; expandable depth below.",
+          "Add examples, tables, and checklists; include schema mirroring on‑page content."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Landing page tactics for AI‑driven & zero‑click journeys",
+        "rawAnswerHtml": "<ul>\n                <li>Echo the answer users saw; remove friction; show proof.</li>\n                <li>Offer chat/demo/quote CTAs; support voice & short‑form summaries.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Echo the answer users saw; remove friction; show proof.",
+          "Offer chat/demo/quote CTAs; support voice & short‑form summaries."
+        ],
+        "hint": null
+      },
+      {
+        "question": "How to structure landing pages for AI inclusion & citation",
+        "rawAnswerHtml": "<ul>\n                <li>Intro summary → bullets → proof → FAQs → schema → CTAs.</li>\n                <li>Keep headings descriptive; reuse entities; add internal links to clusters.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Intro summary → bullets → proof → FAQs → schema → CTAs.",
+          "Keep headings descriptive; reuse entities; add internal links to clusters."
+        ],
+        "hint": null
+      },
+      {
+        "question": "Real‑time personalization tools that boost GEO & paid",
+        "rawAnswerHtml": "<ul>\n                <li>Server‑side audiences, geo/industry messaging, and product‑led prompts.</li>\n                <li>Respect consent; fall back to contextual if signals are limited.</li>\n              </ul>",
+        "paragraphs": [],
+        "bullets": [
+          "Server‑side audiences, geo/industry messaging, and product‑led prompts.",
+          "Respect consent; fall back to contextual if signals are limited."
+        ],
+        "hint": null
+      }
+    ]
+  }
+]

@@ -1,92 +1,116 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Sparkles, ArrowUpRight, ChevronDown } from 'lucide-react';
 
-const ServiceCard = ({ service, index, totalServices }) => {
+const ServiceCard = ({ service, index }) => {
+  const [showDetails, setShowDetails] = useState(false);
   const isOdd = index % 2 !== 0;
 
-  // Variants for consistent animations across all cards
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.98, filter: 'blur(6px)' },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-      transition: { type: 'spring', stiffness: 120, damping: 18, delay: 0.08 + i * 0.08 }
-    })
-  };
-
-  const imageVariants = {
-    initial: { opacity: 0, x: isOdd ? 40 : -40, rotate: isOdd ? 2 : -2 },
-    enter: { opacity: 1, x: 0, rotate: 0, transition: { type: 'spring', stiffness: 180, damping: 20 } }
-  };
-
-  const textVariants = {
-    initial: { opacity: 0, x: isOdd ? -30 : 30 },
-    enter: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 180, damping: 20, delay: 0.1 } }
-  };
-
   return (
-    <motion.div
-      className={`relative flex flex-col md:flex-row items-center w-full my-10 md:my-20 group`}
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
-      custom={index}
-    >
-      <div className={`flex flex-col md:flex-row items-center w-full ${isOdd ? 'md:flex-row-reverse' : ''}`}>
-        {/* Text */}
-        <motion.div
-          className={`md:w-5/12 flex flex-col items-center text-center md:items-start p-4 rounded-lg ${isOdd ? 'md:text-right md:items-end' : 'md:text-left'}`}
-          initial="initial"
-          whileInView="enter"
-          viewport={{ once: true, amount: 0.4 }}
-          variants={textVariants}
+    <div className="relative w-full py-4 sm:py-6 overflow-visible">
+      <div className="max-w-7xl mx-auto overflow-visible">
+        <div
+          className={`flex flex-col lg:flex-row items-center gap-8 lg:gap-12 overflow-visible ${
+            isOdd ? 'lg:flex-row-reverse' : 'lg:flex-row'
+          }`}
         >
-          <motion.h3 className="text-2xl font-bold mb-2" whileHover={{ scale: 1.03 }}>
-            {service.title}
-          </motion.h3>
-          <motion.p className="text-gray-400 text-sm mb-4" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.15 }}>
-            {service.description}
-          </motion.p>
-          <motion.button
-            className="bg-white text-black px-6 py-2 rounded-lg font-semibold hover:bg-gray-200 transition duration-300 ease-in-out"
-            whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(255,255,255,0.15)' }}
-            whileTap={{ scale: 0.97 }}
-          >
-            View More
-          </motion.button>
-        </motion.div>
+          {/* Image Column (lg:w-1/2 matching Why Should You Trust Us) */}
+          <div className="lg:w-1/2 flex justify-center items-center w-full p-2 overflow-visible">
+            <Link
+              to={service.link || '/services'}
+              className="relative group w-full h-full flex items-center justify-center block"
+            >
+              {/* Ambient Purple Glow */}
+              <div className="absolute -inset-2 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-3xl opacity-30 blur-xl group-hover:opacity-55 transition duration-500 pointer-events-none" />
+              <img
+                src={service.imageUrl}
+                alt={service.imageAlt || service.title}
+                className="rounded-3xl relative shadow-2xl object-cover border border-white/10 w-full h-full min-h-[340px] sm:min-h-[400px] lg:min-h-[440px] max-h-[500px]"
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src =
+                    'https://placehold.co/600x600/4F46E5/ffffff?text=EncryVia+Service';
+                }}
+              />
+            </Link>
+          </div>
 
-        {/* Image */}
-        <motion.div className={`md:w-5/12 flex justify-center p-4`} initial="initial" whileInView="enter" viewport={{ once: true, amount: 0.4 }} variants={imageVariants}>
-          <motion.img
-            src={service.imageUrl}
-            alt={service.title}
-            className="rounded-2xl shadow-lg w-full max-w-xs h-auto"
-            onError={(e) => { e.target.onerror = null; e.target.src = 'https://placehold.co/300x200/0A0A0A/FFFFFF?text=Image+Error'; }}
-            whileHover={{ scale: 1.03, rotate: 0.5 }}
-            transition={{ type: 'spring', stiffness: 250, damping: 18 }}
-          />
-        </motion.div>
-      </div>
+          {/* Content Column (lg:w-1/2 text-left matching Why Should You Trust Us) */}
+          <div className="lg:w-1/2 text-left space-y-6 w-full">
+            <Link to={service.link || '/services'} className="block group">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight text-left">
+                {service.highlightWord ? (
+                  <>
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-pink-400">
+                      {service.highlightWord}
+                    </span>
+                    {service.middleWord && <span>{service.middleWord}</span>}
+                    {service.highlightWord2 && (
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-indigo-300 to-pink-400">
+                        {service.highlightWord2}
+                      </span>
+                    )}
+                    <span>{service.titleRest}</span>
+                  </>
+                ) : (
+                  service.title
+                )}
+              </h3>
+            </Link>
 
-      {/* Timeline dots and lines (unchanged) */}
-      <div className="hidden md:block absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-        <div className="w-6 h-6 bg-white rounded-full border-4 border-gray-700"></div>
-        {index % 2 === 0 ? (
-          <div className="absolute right-full w-60 h-1 bg-gray-700 top-1/2 transform -translate-y-1/2 -mr-2"></div>
-        ) : (
-          <div className="absolute left-full w-60 h-1 bg-gray-700 top-1/2 transform -translate-y-1/2 -ml-2"></div>
-        )}
+            {service.hook && (
+              <p className="text-base sm:text-lg lg:text-xl text-gray-300 italic leading-relaxed text-left">
+                {service.hook}
+              </p>
+            )}
+
+            {/* Expandable Details Drawer */}
+            <AnimatePresence>
+              {showDetails && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden space-y-4 pt-1 text-left"
+                >
+                  {service.description && (
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed text-left">
+                      {service.description}
+                    </p>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Action Buttons: View Details + Explore Service Page */}
+            <div className="flex flex-wrap items-center justify-start gap-3.5 sm:gap-4 pt-2">
+              <button
+                onClick={() => setShowDetails(!showDetails)}
+                className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold px-6 py-3 rounded-2xl flex items-center gap-2 shadow-lg shadow-purple-600/30 hover:shadow-purple-500/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm sm:text-base cursor-pointer"
+                aria-expanded={showDetails}
+              >
+                <span>{showDetails ? 'Hide Details' : 'View Details'}</span>
+                <motion.div animate={{ rotate: showDetails ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                  <ChevronDown size={18} />
+                </motion.div>
+              </button>
+
+              <Link
+                to={service.link || '/services'}
+                className="bg-purple-950/40 hover:bg-purple-900/60 border border-purple-500/40 hover:border-purple-400/70 text-purple-100 hover:text-white font-bold px-6 py-3 rounded-2xl flex items-center gap-2 shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 text-sm sm:text-base group"
+              >
+                <span>{service.ctaText || 'Explore Service Page'}</span>
+                <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="md:hidden absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center h-full">
-        {index > 0 && <div className="absolute top-0 w-1 h-[calc(50%_-_12px)] bg-gray-700"></div>}
-        <div className="w-6 h-6 bg-white rounded-full border-4 border-gray-700 z-10"></div>
-        {index < totalServices - 1 && <div className="absolute bottom-0 w-1 h-[calc(50%_-_12px)] bg-gray-700"></div>}
-      </div>
-    </motion.div>
+    </div>
   );
 };
 

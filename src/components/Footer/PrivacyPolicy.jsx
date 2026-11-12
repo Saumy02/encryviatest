@@ -184,7 +184,7 @@ const EncryViaPrivacyPolicy = () => {
       <h3 className="text-xl font-semibold mb-2 text-indigo-300">Digital Marketing</h3>
       <ul className="list-disc list-inside mb-4 ml-4">
         <li>We work to improve traffic, rankings, and conversions with measurable KPIs.</li>
-        <li>However, results also depend on search engines, competition, and ad budgets — things outside our direct control.</li>
+        <li>However, results also depend on search engines, competition, and ad budgets things outside our direct control.</li>
       </ul>
 
       {/* Section 11: Third Party Platforms */}
@@ -204,7 +204,7 @@ const EncryViaPrivacyPolicy = () => {
       {/* Section 13: Governing Law */}
       <h2 className="text-2xl font-semibold mt-8 mb-2 text-white">13. Governing Law</h2>
       <p className="mb-4">
-        These terms are governed by the laws of India, and any disputes will be handled by the courts of New Delhi & Noida - Uttar Pradesh.
+        These terms are governed by the laws of India, and any disputes will be handled by the courts of Gurugram, Haryana, India.
       </p>
 
       {/* Section 14: Changes */}
@@ -221,7 +221,7 @@ const EncryViaPrivacyPolicy = () => {
       <div className="bg-gray-800 p-4 rounded-lg mb-8">
         <p className="mb-2">📧 Email: <a href="mailto:info@encryvia.com" className="text-blue-400 underline">info@encryvia.com</a></p>
         <p className="mb-2">🌐 Website: <a href="https://www.encryvia.com" className="text-blue-400 underline">www.encryvia.com</a></p>
-        <p>📍 Address: New Delhi & Noida, Uttar Pradesh, India</p>
+        <p>📍 Address: 39/B Dwarka Expressway, Opposite Royal Oak International School, New Palam Vihar Phase 1, Gurugram, Haryana - 122017, India</p>
       </div>
 
       {/* FAQ Section */}

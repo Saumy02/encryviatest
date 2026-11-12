@@ -1,32 +1,63 @@
 [
   {
-    "text": "EncryVia didn’t just build us a website — they built a growth machine. Traffic doubled within months.",
-    "author": "Founder, SaaS startup",
-    "image": "https://placehold.co/630x630/0A0A0A/FFFFFF?text=Founder+SaaS",
-    "rating": 5
+    "id": 1,
+    "category": "EDTECH & SKILLING",
+    "quote": "Partnering with EncryVia for custom web engineering and talent portal infrastructure brought exceptional speed, zero-trust security, and high reliability across all our student and enterprise portals.",
+    "text": "Partnering with EncryVia for custom web engineering and talent portal infrastructure brought exceptional speed, zero-trust security, and high reliability across all our student and enterprise portals.",
+    "author": "Yashvendra Kumar",
+    "role": "Founder & CEO",
+    "company": "ForkSkill",
+    "avatar": "YK",
+    "rating": 5,
+    "verified": true
   },
   {
-    "text": "Finally, a security partner who speaks our language. Clear, actionable audits and fast fixes.",
-    "author": "CTO, retail eCommerce brand",
-    "image": "https://placehold.co/630x630/0A0A0A/FFFFFF?text=CTO+eCommerce",
-    "rating": 5
+    "id": 2,
+    "category": "CERTIFICATION & COMPLIANCE",
+    "quote": "EncryVia's automated credential verification and secure cloud architecture allowed us to scale digital certifications with absolute trust and 100% verifiability.",
+    "text": "EncryVia's automated credential verification and secure cloud architecture allowed us to scale digital certifications with absolute trust and 100% verifiability.",
+    "author": "Dhruv",
+    "role": "Founder",
+    "company": "Incertify",
+    "avatar": "D",
+    "rating": 5,
+    "verified": true
   },
   {
-    "text": "From day one, they felt like part of our team. Creative, responsive, and always focused on ROI.",
-    "author": "Marketing lead, health tech startup",
-    "image": "https://placehold.co/630x630/0A0A0A/FFFFFF?text=Marketing+Lead",
-    "rating": 5
+    "id": 3,
+    "category": "CYBERSECURITY PARTNER",
+    "quote": "Their cybersecurity WAPT audit and infrastructure hardening uncovered critical zero-day vulnerabilities before our platform release. Thanks to EncryVia's zero-trust implementation, we achieved 100% compliance with zero downtime.",
+    "text": "Their cybersecurity WAPT audit and infrastructure hardening uncovered critical zero-day vulnerabilities before our platform release. Thanks to EncryVia's zero-trust implementation, we achieved 100% compliance with zero downtime.",
+    "author": "Avadhoot Sindhe",
+    "role": "Cybersecurity & IT Partner",
+    "company": "SKS Infosystem",
+    "avatar": "AS",
+    "logo": "/image/sks-logo.webp",
+    "rating": 5,
+    "verified": true
   },
   {
-    "text": "We scaled fast without worrying about vulnerabilities, thanks to EncryVia’s 24/7 monitoring.",
-    "author": "COO, logistics SME",
-    "image": "https://placehold.co/630x630/0A0A0A/FFFFFF?text=COO+Logistics",
-    "rating": 5
+    "id": 4,
+    "category": "HEALTHCARE & PHARMA",
+    "quote": "EncryVia built a high-performance web platform and AI-driven data intelligence architecture that streamlined our pharmaceutical research pipeline. Qualified organic traffic grew by 140% in just 2 months.",
+    "text": "EncryVia built a high-performance web platform and AI-driven data intelligence architecture that streamlined our pharmaceutical research pipeline. Qualified organic traffic grew by 140% in just 2 months.",
+    "author": "Sadab",
+    "role": "Managing Director",
+    "company": "DrugIntelHub",
+    "avatar": "S",
+    "rating": 5,
+    "verified": true
   },
   {
-    "text": "Smart strategies, real numbers. Our ad campaigns paid for themselves within weeks.",
-    "author": "Founder, direct-to-consumer brand",
-    "image": "https://placehold.co/630x630/0A0A0A/FFFFFF?text=Founder+D2C",
-    "rating": 5
+    "id": 5,
+    "category": "E-COMMERCE & GROWTH",
+    "quote": "EncryVia transformed our entire web ecosystem and search visibility through Generative Engine Optimization (GEO). Our e-commerce client conversions and speed scores reached top tier instantly.",
+    "text": "EncryVia transformed our entire web ecosystem and search visibility through Generative Engine Optimization (GEO). Our e-commerce client conversions and speed scores reached top tier instantly.",
+    "author": "Managing Director",
+    "role": "Growth & E-Com Lead",
+    "company": "EcomBizGrow",
+    "avatar": "EB",
+    "rating": 5,
+    "verified": true
   }
 ]

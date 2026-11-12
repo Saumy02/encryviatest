@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 70" fill="none">
+  <!-- Gear Lion Silhouette representation -->
+  <g fill="#FFFFFF">
+    <!-- Mane / Head -->
+    <path d="M12 28C10 24 12 18 18 16C24 14 30 18 32 24C34 22 38 22 40 25C42 28 40 32 38 34C42 36 44 42 40 46C36 50 30 48 28 46C26 50 20 52 16 48C12 44 14 38 12 36C8 34 8 30 12 28Z" fill="#F59E0B"/>
+    <!-- Gear Spokes inside Lion Mane -->
+    <circle cx="25" cy="32" r="5" fill="#0B1220"/>
+    <circle cx="25" cy="32" r="2.5" fill="#F59E0B"/>
+    
+    <!-- Body / Spine (Gears) -->
+    <path d="M34 26C38 24 44 26 48 30C52 34 50 40 44 42C40 44 36 40 34 36C32 32 32 28 34 26Z" fill="#FFFFFF"/>
+    <circle cx="42" cy="33" r="3" fill="#0B1220"/>
+    
+    <!-- Hind Leg / Paw -->
+    <path d="M46 36L52 38L50 48L44 46L46 36Z" fill="#FFFFFF"/>
+    <!-- Front Leg / Paw -->
+    <path d="M22 46L24 54L18 55L16 48L22 46Z" fill="#F59E0B"/>
+    <path d="M32 44L34 54L28 55L27 45L32 44Z" fill="#FFFFFF"/>
+    <!-- Tail Curve -->
+    <path d="M50 34C55 30 58 22 55 18C52 14 48 18 50 20" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Make in India Text -->
+  <text x="64" y="33" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="14" fill="#FFFFFF" letter-spacing="1">MAKE IN</text>
+  <text x="64" y="49" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="16" fill="#F59E0B" letter-spacing="2">INDIA</text>
+</svg>
